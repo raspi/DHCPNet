@@ -1,0 +1,51 @@
+# https://www.appveyor.com/docs/appveyor-yml/
+
+version: "{build}"
+
+os: Visual Studio 2015
+
+configuration: Release
+
+platform:
+  - x86
+  - x64
+
+branches:
+  only:
+    - master
+
+matrix:
+  allow_failures:
+    - platform: x86
+      configuration: Debug
+    - platform: x64
+      configuration: Debug
+  exclude:
+    - platform: x86
+      configuration: Debug
+    - platform: x64
+      configuration: Debug
+
+assembly_info:
+  patch: false
+  
+cache:
+  - packages -> **\packages.config
+
+skip_tags: true
+
+test: on
+
+init:
+  - git config --global core.autocrlf input
+
+before_build:
+  - cmd: nuget restore
+
+build:
+  parallel: true
+  verbosity: detailed
+
+environment:
+  ghapikey:
+    secure: "qxDTsrjBZ3bZCaTvxQMVE52PK03x3CeopvZYLRvceugKwnmpk49o8Shir9Gy1z+W"
