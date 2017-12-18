@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.2</TargetFramework>
+    <Authors>Pekka Järvinen</Authors>
+    <Company />
+    <Description>DHCP packets for .NET</Description>
+    <Copyright>Pekka Järvinen</Copyright>
+    <PackageProjectUrl>https://github.com/raspi/DHCPNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/raspi/DHCPNet</RepositoryUrl>
+    <PackageTags>dhcp</PackageTags>
+    <Version>0.0.1</Version>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>true</Optimize>
+    <LangVersion>6</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+</Project>
