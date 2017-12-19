@@ -33,4 +33,8 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD1_2</DefineConstants>
+  </PropertyGroup>
+
 </Project>
