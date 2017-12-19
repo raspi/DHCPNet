@@ -40,12 +40,17 @@ init:
   - git config --global core.autocrlf input
 
 before_build:
-  - cmd: nuget restore
+  - nuget restore
 
 build:
   parallel: true
   verbosity: detailed
+  
+test_script:
+ - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"Test.dll -noshadow" -output:"coverage.xml"
 
-environment:
-  ghapikey:
-    secure: "qxDTsrjBZ3bZCaTvxQMVE52PK03x3CeopvZYLRvceugKwnmpk49o8Shir9Gy1z+W"
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.xml"
