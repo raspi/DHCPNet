@@ -36,21 +36,15 @@ skip_tags: true
 
 test: on
 
-init:
-  - git config --global core.autocrlf input
-
 before_build:
   - nuget restore
-
+  - choco install opencover.portable
+  - choco install codecov
+  
 build:
   parallel: true
   verbosity: detailed
   
 test_script:
- - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"UnitTest\bin\Release\net46\Test.dll -noshadow" -output:"coverage.xml"
-
-after_test:
-  - ps: |
-      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-      bash codecov.sh -f "coverage.xml"
+  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -noshadow" -output:".\coverage.xml"
+  - codecov -f "coverage.xml
