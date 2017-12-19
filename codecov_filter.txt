@@ -1,3 +1,4 @@
-+[DHCPNet]*
-+[DHCPNet.v4.Option]*
--[*Test]*
++[DHCPNet*]*
++[DHCPNet.v4.Option*]*
+-[*Test*]*
+-[*UnitTest*]*
