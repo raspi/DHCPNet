@@ -47,7 +47,7 @@ build:
   verbosity: detailed
   
 test_script:
- - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"Test.dll -noshadow" -output:"coverage.xml"
+ - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"bin\Release\net46\Test.dll -noshadow" -output:"coverage.xml"
 
 after_test:
   - ps: |
