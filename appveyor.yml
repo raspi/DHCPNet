@@ -31,7 +31,9 @@ assembly_info:
   
 cache:
   - packages -> **\packages.config
-
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  
 skip_tags: true
 
 before_build:
@@ -49,9 +51,10 @@ test:
       - '**\*.Test.dll'
 
 before_test:
-  - ps: $covfile = ".\coverage-$Env:PLATFORM.xml"
-  - Write-Host "Coverage file: $covfile"
+  - $covfile = ".\coverage-$Env:PLATFORM.xml"
+  - $covdll = ".\UnitTest\bin\net46\Test.dll"
+  - Write-Host "Coverage file: $covfile DLL: $covdll"
 
 test_script:
-  - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -verbose -noshadow" -output:"$covfile"
+  - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:"$covdll -verbose -noshadow" -output:"$covfile"
   - codecov -f "$covfile"
