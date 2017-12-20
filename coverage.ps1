@@ -19,7 +19,7 @@ $files | foreach {
 	$dll = $_.Fullname | Resolve-Path -Relative
 	Write-Host "DLL: $dll"
 	
-	$args = [string]::Format('-log:"All" -register:"user" -target:"xunit.console.exe" -targetargs:"{0} -verbose -noshadow" -filterfile:"codecov_filter.txt" -output:"{1}"', $dll, $covfile)
+	$args = [string]::Format('-register:"user" -target:"xunit.console.exe" -targetargs:"{0} -noshadow" -filterfile:"codecov_filter.txt" -output:"{1}"', $dll, $covfile)
 	
 	Write-Host "Arguments: $args"
 	Write-Host "Running Opencover.."
