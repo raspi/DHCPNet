@@ -46,5 +46,7 @@ build:
   verbosity: detailed
   
 test_script:
-  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -noshadow" -filterfile:".\codecov_filter.txt" -output:".\coverage.xml"
-  - codecov -f "coverage.xml"
+  - ps: $covfile = ".\coverage-$Env:PLATFORM.xml"
+  - ps: Write-Host "$covfile"
+  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -verbose -noshadow" -output:"$covfile"
+  - codecov -f "$covfile"
