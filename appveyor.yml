@@ -4,11 +4,14 @@ image: Visual Studio 2017
 
 version: "{build}"
 
-configuration: Release
+configuration: 
+  - Release
+  - Debug
 
 platform:
   - x86
   - x64
+  - Any CPU
 
 branches:
   only:
@@ -20,10 +23,7 @@ matrix:
       configuration: Debug
     - platform: x64
       configuration: Debug
-  exclude:
-    - platform: x86
-      configuration: Debug
-    - platform: x64
+    - platform: Any CPU
       configuration: Debug
 
 assembly_info:
@@ -34,8 +34,6 @@ cache:
 
 skip_tags: true
 
-test: on
-
 before_build:
   - nuget restore
   - choco install opencover.portable
@@ -44,9 +42,16 @@ before_build:
 build:
   parallel: true
   verbosity: detailed
-  
+
+test: 
+  assemblies:
+    only:
+      - '**\*.Test.dll'
+
+before_test:
+  - $covfile = ".\coverage-$Env:PLATFORM.xml"
+  - Write-Host "Coverage file: $covfile"
+
 test_script:
-  - ps: $covfile = ".\coverage-$Env:PLATFORM.xml"
-  - ps: Write-Host "$covfile"
-  - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -verbose -noshadow" -output:"$covfile"
+  - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -verbose -noshadow" -output:"$covfile"
   - codecov -f "$covfile"
