@@ -23,7 +23,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <LangVersion>4</LangVersion>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\test\</OutputPath>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <Optimize>true</Optimize>

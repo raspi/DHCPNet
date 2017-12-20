@@ -40,14 +40,11 @@ before_build:
   - nuget restore
   - choco install opencover.portable
   - choco install codecov
+  - choco install xunit
   
 build:
   parallel: true
   verbosity: detailed
-
-environment:
-  covfile: .\coverage-$Env:PLATFORM.xml
-  covdll: .\UnitTest\bin\net46\Test.dll
 
 test: 
   assemblies:
@@ -55,5 +52,5 @@ test:
       - '**\*.Test.dll'
 
 test_script:
-  - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:"$covdll -verbose -noshadow" -output:"$covfile"
-  - codecov -f "$covfile"
+  - coverage.ps1
+  - codecov -f "coverage.xml"
