@@ -45,14 +45,16 @@ build:
   parallel: true
   verbosity: detailed
 
+environment:
+  covfile: .\coverage-$Env:PLATFORM.xml
+  covdll: .\UnitTest\bin\net46\Test.dll
+
 test: 
   assemblies:
     only:
       - '**\*.Test.dll'
 
 before_test:
-  - $covfile = ".\coverage-$Env:PLATFORM.xml"
-  - $covdll = ".\UnitTest\bin\net46\Test.dll"
   - Write-Host "Coverage file: $covfile DLL: $covdll"
 
 test_script:
