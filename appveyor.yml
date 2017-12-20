@@ -54,9 +54,6 @@ test:
     only:
       - '**\*.Test.dll'
 
-before_test:
-  - Write-Host "Coverage file: $covfile DLL: $covdll"
-
 test_script:
   - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:"$covdll -verbose -noshadow" -output:"$covfile"
   - codecov -f "$covfile"
