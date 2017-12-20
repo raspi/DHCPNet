@@ -21,7 +21,7 @@ if (Test-Path Env:xunit20) {
   $xunit += "$Env:xunit20\"
 }
 
-$xunit += "xunit.console"
+$xunit += "xunit.console.exe"
 
 Write-Host "Xunit: $xunit"
 
