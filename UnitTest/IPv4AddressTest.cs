@@ -4,7 +4,7 @@ using DHCPNet.v4.Option;
 using Xunit;
 using Xunit.Extensions;
 
-namespace IPv4AddressTest
+namespace UnitTest.IPv4AddressTest
 {
     public class All
     {

@@ -29,8 +29,11 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Optimize>true</Optimize>
-    <LangVersion>6</LangVersion>
+    <LangVersion>4</LangVersion>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

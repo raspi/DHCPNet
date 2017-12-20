@@ -5,6 +5,10 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <Authors>Pekka Järvinen</Authors>
+    <Product>DHCPNet</Product>
+    <Company />
+    <Copyright>Pekka Järvinen</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,6 +24,9 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <LangVersion>4</LangVersion>
     <OutputPath>bin\Debug\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>true</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

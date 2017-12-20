@@ -3,7 +3,7 @@ using DHCPNet;
 using DHCPNet.v4.Option;
 using Xunit;
 
-namespace OptionSubnetMaskTest
+namespace UnitTest.OptionSubnetMaskTest
 {
     public class All
     {
