@@ -49,8 +49,8 @@ test:
       - '**\*.Test.dll'
 
 before_test:
-  - $covfile = ".\coverage-$Env:PLATFORM.xml"
-  - Write-Host "Coverage file: $covfile"
+  - ps: $covfile = ".\coverage-$Env:PLATFORM.xml"
+  - ps: Write-Host "Coverage file: $covfile"
 
 test_script:
   - OpenCover.Console.exe -log:"All" -register:"user" -target:"%xunit20%\xunit.console.exe" -targetargs:".\UnitTest\bin\Release\net46\Test.dll -verbose -noshadow" -output:"$covfile"
