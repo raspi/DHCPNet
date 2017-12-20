@@ -14,12 +14,25 @@ Write-Host "Done."
 
 Pop-Location
 
+$xunit = ""
+
+if (Test-Path Env:xunit20) {
+  Write-Host "Adding path to xunit"
+  $xunit += "$Env:xunit20\"
+}
+
+$xunit += "xunit.console"
+
+Write-Host "Xunit: $xunit"
+
 Write-Host "Generating '$covfile'.."
 $files | foreach {
+	# Opencover or xUnit doesn't like absolute paths
 	$dll = $_.Fullname | Resolve-Path -Relative
+
 	Write-Host "DLL: $dll"
 	
-	$args = [string]::Format('-register:"user" -target:"xunit.console.exe" -targetargs:"{0} -noshadow" -filterfile:"codecov_filter.txt" -output:"{1}"', $dll, $covfile)
+	$args = [string]::Format('-register:"user" -target:"{0}" -targetargs:"{1} -noshadow" -filterfile:"codecov_filter.txt" -output:"{2}"', $xunit, $dll, $covfile)
 	
 	Write-Host "Arguments: $args"
 	Write-Host "Running Opencover.."
