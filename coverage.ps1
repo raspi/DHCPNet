@@ -8,9 +8,14 @@ Push-Location "unittest"
 
 Write-Host "Dir: $pwd"
 
-Get-ChildItem -Recurse -Filter "Test.dll" | Where-Object DirectoryName -NotLike "*obj*" | foreach {
+Get-ChildItem . -Recurse -Filter "Test.dll" | Where-Object DirectoryName -NotLike "*obj*" | foreach {
   $dll = $_.Fullname
-  OpenCover.Console.exe -log:"All" -register:"user" -target:"xunit.console.exe" -targetargs:"$dll -verbose -noshadow" -output:"$covfile"
+  Write-Host "DLL: $dll"
+  $targetargs = "$dll -verbose -noshadow"
+  Write-Host "Arguments: $targetargs"
+  Write-Host "Running Opencover.."
+  OpenCover.Console.exe -log:"All" -register:"user" -target:"xunit.console.exe" -targetargs:"$targetargs" -output:"$covfile"
+  Write-Host "Opencover finished."
 }
 Pop-Location
 
