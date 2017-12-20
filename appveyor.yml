@@ -49,8 +49,8 @@ build:
 test: 
   assemblies:
     only:
-      - '**\*.Test.dll'
+      - '**\Test.dll'
 
 test_script:
-  - coverage.ps1
+  - ps: .\coverage.ps1
   - codecov -f "coverage.xml"
