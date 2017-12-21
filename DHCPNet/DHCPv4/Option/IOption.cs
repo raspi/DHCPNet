@@ -8,6 +8,9 @@
     /// </summary>
     public interface IOption
     {
+        /// <summary>
+        /// Option code determining which kinf of option it is
+        /// </summary>
         byte Code { get; }
 
         byte[] GetRawBytes();

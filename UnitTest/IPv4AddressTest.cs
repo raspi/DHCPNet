@@ -45,5 +45,13 @@ namespace UnitTest.IPv4AddressTest
             Assert.Equal("123.123.123.123", IP.ToString());
         }
 
+        [Fact]
+        public void Test0Byte()
+        {
+            IPv4Address IP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+            Assert.Equal(new byte[] { 0, 0, 0, 0 }, IP.Address);
+        }
+
+
     }
 }
