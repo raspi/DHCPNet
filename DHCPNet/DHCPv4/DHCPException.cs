@@ -11,14 +11,14 @@ namespace DHCPNet
         {
         }
 
-        public DHCPException(string message) : base(message)
+        public DHCPException(string message)
+            : base(message)
         {
         }
 
-        public DHCPException(string message, Exception inner) : base(message, inner)
+        public DHCPException(string message, Exception inner)
+            : base(message, inner)
         {
         }
     }
-
-
 }
