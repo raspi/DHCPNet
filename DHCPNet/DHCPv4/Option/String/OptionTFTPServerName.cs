@@ -9,7 +9,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionTFTPServerName : AOptionString
+    public class OptionTFTPServerName : AOptionString
     {
         public override byte Code
         {

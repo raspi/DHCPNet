@@ -5,7 +5,7 @@ namespace DHCPNet.v4.Option
     /// RFC 865 cookie servers available to the client.
     /// Servers SHOULD be listed in order of preference.
     /// </summary>
-    class OptionCookieServer : AOptionIPAddresses
+    public class OptionCookieServer : AOptionIPAddresses
     {
         public override byte Code
         {

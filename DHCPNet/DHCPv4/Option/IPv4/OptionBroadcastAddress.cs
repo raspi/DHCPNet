@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Length 4 bytes
     /// </summary>
-    class OptionBroadcastAddress : AOptionIPAddress
+    public class OptionBroadcastAddress : AOptionIPAddress
     {
         public override byte Code
         {

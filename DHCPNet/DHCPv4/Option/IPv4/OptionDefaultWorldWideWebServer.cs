@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes.
     /// Length MUST always be a multiple of 4.
     /// </summary>
-    class OptionDefaultWorldWideWebServer : AOptionIPAddresses
+    public class OptionDefaultWorldWideWebServer : AOptionIPAddresses
     {
         public override byte Code
         {

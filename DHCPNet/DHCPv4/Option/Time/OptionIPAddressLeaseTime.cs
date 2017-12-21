@@ -17,7 +17,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Length 4 bytes.
     /// </summary>
-    class OptionIPAddressLeaseTime : AOptionTimeUint32
+    public class OptionIPAddressLeaseTime : AOptionTimeUint32
     {
         public override byte Code
         {

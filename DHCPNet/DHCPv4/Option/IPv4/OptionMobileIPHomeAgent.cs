@@ -18,7 +18,7 @@ namespace DHCPNet.v4.Option
     /// a single home agent's address.
     /// 
     /// </summary>
-    class OptionMobileIPHomeAgent : AOptionIPAddresses
+    public class OptionMobileIPHomeAgent : AOptionIPAddresses
     {
         public override byte Code
         {

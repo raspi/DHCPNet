@@ -12,7 +12,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 1 byte
     /// </summary>
-    class OptionEthernetEncapsulation : AOptionBoolean
+    public class OptionEthernetEncapsulation : AOptionBoolean
     {
         public override byte Code
         {

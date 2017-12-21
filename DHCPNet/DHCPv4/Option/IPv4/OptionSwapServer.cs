@@ -7,7 +7,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 4 bytes.
     /// </summary>
-    class OptionSwapServer : AOptionIPAddress
+    public class OptionSwapServer : AOptionIPAddress
     {
         public override byte Code
         {

@@ -19,7 +19,7 @@ namespace DHCPNet.v4.Option
     /// https://tools.ietf.org/html/rfc1001
     /// https://tools.ietf.org/html/rfc1002
     /// </summary>
-    class OptionNetBIOSOverTCPIPNodeType : Option
+    public class OptionNetBIOSOverTCPIPNodeType : Option
     {
         public override byte Code
         {

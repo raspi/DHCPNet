@@ -2,18 +2,20 @@ using System.Text;
 
 namespace DHCPNet.v4.Option
 {
-/// <summary>
-/// Don't confuse for OptionDomainNameServer.
-/// <seealso cref="OptionDomainNameServer"/>
-/// </summary>
-class OptionDomainName : AOptionString
-{
-    public override byte Code {
-        get {
-            return 15;
+    /// <summary>
+    /// Don't confuse for OptionDomainNameServer.
+    /// <seealso cref="OptionDomainNameServer"/>
+    /// </summary>
+    public class OptionDomainName : AOptionString
+    {
+        public override byte Code
+        {
+            get
+            {
+                return 15;
+            }
         }
-    }
 
-}
+    }
 
 }

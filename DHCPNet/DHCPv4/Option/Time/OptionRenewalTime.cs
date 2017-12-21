@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 4 bytes.
     /// </summary>
-    class OptionRenewalTime : AOptionTimeUint32
+    public class OptionRenewalTime : AOptionTimeUint32
     {
         public override byte Code
         {

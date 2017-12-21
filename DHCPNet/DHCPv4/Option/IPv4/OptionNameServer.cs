@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Don't confuse with OptionDomainNameServer
     /// </summary>
-    class OptionNameServer : AOptionIPAddresses
+    public class OptionNameServer : AOptionIPAddresses
     {
         public override byte Code
         {

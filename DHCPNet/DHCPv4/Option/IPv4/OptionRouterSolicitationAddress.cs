@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Length 4 bytes.
     /// </summary>
-    class OptionRouterSolicitationAddress : AOptionIPAddress
+    public class OptionRouterSolicitationAddress : AOptionIPAddress
     {
         public override byte Code
         {

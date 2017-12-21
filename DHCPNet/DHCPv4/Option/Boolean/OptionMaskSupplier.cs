@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Length 1 byte.
     /// </summary>
-    class OptionMaskSupplier : AOptionBoolean
+    public class OptionMaskSupplier : AOptionBoolean
     {
         public override byte Code
         {

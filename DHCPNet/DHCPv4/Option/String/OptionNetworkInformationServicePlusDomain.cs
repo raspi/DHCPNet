@@ -10,7 +10,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionNetworkInformationServicePlusDomain : AOptionString
+    public class OptionNetworkInformationServicePlusDomain : AOptionString
     {
         public override byte Code
         {

@@ -13,7 +13,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 1 byte.
     /// </summary>
-    class OptionTCPDefaultTTL : AOptionUint8
+    public class OptionTCPDefaultTTL : AOptionUint8
     {
         public override byte Code
         {

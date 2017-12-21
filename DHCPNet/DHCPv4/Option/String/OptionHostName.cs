@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length is 1 byte.
     /// </summary>
-    class OptionHostName : AOptionString
+    public class OptionHostName : AOptionString
     {
         public override byte Code
         {

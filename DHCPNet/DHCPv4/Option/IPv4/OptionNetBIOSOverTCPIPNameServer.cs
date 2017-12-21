@@ -10,7 +10,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes.
     /// Length must always be a multiple of 4.
     /// </summary>
-    class OptionNetBIOSOverTCPIPNameServer : AOptionIPAddresses
+    public class OptionNetBIOSOverTCPIPNameServer : AOptionIPAddresses
     {
         public override byte Code
         {

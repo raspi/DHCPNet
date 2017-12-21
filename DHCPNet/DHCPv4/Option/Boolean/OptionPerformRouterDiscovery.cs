@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 1 byte.
     /// </summary>
-    class OptionPerformRouterDiscovery : AOptionBoolean
+    public class OptionPerformRouterDiscovery : AOptionBoolean
     {
         public override byte Code
         {

@@ -15,7 +15,7 @@ namespace DHCPNet.v4.Option
     /// Length 2 bytes.
     /// Minimum legal value is 576 octets.
     /// </summary>
-    class OptionMaximumDHCPMessageSize : AOptionUint16
+    public class OptionMaximumDHCPMessageSize : AOptionUint16
     {
         public override byte Code
         {

@@ -12,7 +12,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes.
     /// Length MUST always be a multiple of 4.
     /// </summary>
-    class OptionStreetTalkDirectoryAssistanceServer : AOptionIPAddresses
+    public class OptionStreetTalkDirectoryAssistanceServer : AOptionIPAddresses
     {
         public override byte Code
         {

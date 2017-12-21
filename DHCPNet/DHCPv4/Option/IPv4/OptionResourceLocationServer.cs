@@ -7,7 +7,7 @@
     /// Servers SHOULD be listed in order of preference.
     /// 
     /// </summary>
-    class OptionResourceLocationServer : AOptionIPAddresses
+    public class OptionResourceLocationServer : AOptionIPAddresses
     {
         public override byte Code
         {

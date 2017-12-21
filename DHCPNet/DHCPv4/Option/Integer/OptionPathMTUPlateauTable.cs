@@ -12,7 +12,7 @@ namespace DHCPNet.v4.Option
     /// Length MUST be a multiple of 2 bytes.
     /// Minimum length 2 bytes
     /// </summary>
-    class OptionPathMTUPlateauTable : Option
+    public class OptionPathMTUPlateauTable : Option
     {
         public List<ushort> List = new List<ushort>();
 

@@ -39,7 +39,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionVendorSpecificInformation : Option
+    public class OptionVendorSpecificInformation : Option
     {
         public byte[] VendorSpecificInformation = { };
 

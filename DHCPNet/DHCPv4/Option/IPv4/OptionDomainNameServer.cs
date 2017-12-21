@@ -9,14 +9,16 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes.
     /// Length MUST always be a multiple of 4.
     /// </summary>
-    class OptionDomainNameServer : AOptionIPAddresses
-{
-    public override byte Code {
-        get {
-            return 6;
+    public class OptionDomainNameServer : AOptionIPAddresses
+    {
+        public override byte Code
+        {
+            get
+            {
+                return 6;
+            }
         }
     }
-}
 
 
 }

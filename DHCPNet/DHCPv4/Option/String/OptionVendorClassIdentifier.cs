@@ -23,7 +23,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionVendorClassIdentifier : AOptionString
+    public class OptionVendorClassIdentifier : AOptionString
     {
         public override byte Code
         {

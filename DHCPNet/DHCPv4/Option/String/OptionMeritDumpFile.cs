@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionMeritDumpFile : AOptionString
+    public class OptionMeritDumpFile : AOptionString
     {
         public override byte Code
         {

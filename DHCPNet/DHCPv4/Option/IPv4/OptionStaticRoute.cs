@@ -20,7 +20,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 8 bytes.
     /// Length MUST be a multiple of 8.
     /// </summary>
-    class OptionStaticRoute : AOptionIPAddresses
+    public class OptionStaticRoute : AOptionIPAddresses
     {
         public override byte Code
         {

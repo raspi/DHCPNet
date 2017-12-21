@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes
     /// Length MUST be a multiple of 4.
     /// </summary>
-    class OptionNetworkTimeProtocolServers : AOptionIPAddresses
+    public class OptionNetworkTimeProtocolServers : AOptionIPAddresses
     {
         public override byte Code
         {

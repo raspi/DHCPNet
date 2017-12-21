@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     /// 
     /// Minimum length is 1.
     /// </summary>
-    class OptionBootFileName : AOptionString
+    public class OptionBootFileName : AOptionString
     {
         public override byte Code
         {

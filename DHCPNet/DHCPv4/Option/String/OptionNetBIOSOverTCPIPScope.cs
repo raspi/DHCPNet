@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 1 byte.
     /// </summary>
-    class OptionNetBIOSOverTCPIPScope : AOptionString
+    public class OptionNetBIOSOverTCPIPScope : AOptionString
     {
         public override byte Code
         {

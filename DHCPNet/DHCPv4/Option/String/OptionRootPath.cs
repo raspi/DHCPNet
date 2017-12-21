@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     /// character string consisting of characters from
     /// the NVT ASCII character set.
     /// </summary>
-    class OptionRootPath : AOptionString
+    public class OptionRootPath : AOptionString
     {
         public override byte Code
         {

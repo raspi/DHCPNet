@@ -10,7 +10,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Length 2 bytes.
     /// </summary>
-    class OptionInterfaceMTU : AOptionUint16
+    public class OptionInterfaceMTU : AOptionUint16
     {
         public override byte Code
         {

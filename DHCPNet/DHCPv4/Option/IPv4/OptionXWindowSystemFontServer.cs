@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
     /// Minimum length 4 bytes.
     /// Length MUST be a multiple of 4.
     /// </summary>
-    class OptionXWindowSystemFontServer : AOptionIPAddresses
+    public class OptionXWindowSystemFontServer : AOptionIPAddresses
     {
         public override byte Code
         {
