@@ -27,7 +27,7 @@ namespace DHCPNet.v4.Option
     ///
     /// Minimum length 2 bytes.
     /// </summary>
-    class OptionClientIdentifier : Option
+    public class OptionClientIdentifier : Option
     {
         public override byte Code
         {
@@ -37,21 +37,56 @@ namespace DHCPNet.v4.Option
             }
         }
 
-        public byte Type = 6;
-        public byte[] Identifier = { };
+        public EHardwareType Type { get; set; }
+
+        protected byte[] _id;
+
+        public byte[] Identifier
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if (value.Length < 2)
+                {
+                    throw new OptionException("Minimum length 2");
+                }
+
+                this._id = value;
+            }
+        }
 
         public override void ReadRaw(byte[] raw)
         {
-            Type = raw[0];
+            Type = (EHardwareType)raw[0];
             Array.Copy(raw, 1, Identifier, 0, raw.Length - 1);
         }
 
         public override byte[] GetRawBytes()
         {
-            byte[] b = { Type };
+            byte[] b = { (byte)Type };
             Array.Copy(Identifier, 0, b, 1, Identifier.Length);
 
             return b;
+        }
+
+        public OptionClientIdentifier(byte[] id)
+        {
+            if (id.Length == 6)
+            {
+                this.Type = EHardwareType.Ethernet;
+            }
+
+            Array.Copy(id, 1, Identifier, 0, id.Length - 1);
+        }
+
+        public OptionClientIdentifier(byte[] id, EHardwareType type)
+        {
+            this.Type = type;
+
+            Identifier = id;
         }
 
         public OptionClientIdentifier(string id)

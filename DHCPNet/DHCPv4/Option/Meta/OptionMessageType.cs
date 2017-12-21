@@ -28,7 +28,12 @@ namespace DHCPNet.v4.Option
             }
         }
 
-        public EMessageType Type;
+        public EMessageType Type { get; set; }
+
+        public OptionMessageType(EMessageType type)
+        {
+            Type = type;
+        }
 
         public override void ReadRaw(byte[] raw)
         {
