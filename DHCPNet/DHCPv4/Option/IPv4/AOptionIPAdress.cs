@@ -65,5 +65,4 @@ namespace DHCPNet.v4.Option
             return Address[0].Address;
         }
     }
-
 }

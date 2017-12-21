@@ -9,9 +9,14 @@ namespace DHCPNet
     public enum EHardwareType
     {
         /// <summary>
+        /// Unknown type
+        /// </summary>
+        Unknown,
+
+        /// <summary>
         /// Ethernet (10Mb)
         /// </summary>
-        Ethernet = 1, // *
+        Ethernet, // *
 
         /// <summary>
         /// Experimental Ethernet (3 Mb)
@@ -68,6 +73,4 @@ namespace DHCPNet
         /// </summary>
         LocalNet,
     }
-
-
 }

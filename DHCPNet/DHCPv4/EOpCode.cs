@@ -8,7 +8,7 @@ namespace DHCPNet
         /// <summary>
         /// Sent by Client
         /// </summary>
-        BootRequest = 1, 
+        BootRequest = 1,
 
         /// <summary>
         /// Sent by Server

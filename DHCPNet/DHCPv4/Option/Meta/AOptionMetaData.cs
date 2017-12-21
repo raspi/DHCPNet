@@ -2,19 +2,19 @@
 
 namespace DHCPNet.v4.Option
 {
-/// <summary>
-/// Meta
-/// </summary>
-public abstract class AOptionMetaData : Option
-{
-    public override byte[] GetRawBytes()
+    /// <summary>
+    /// Meta
+    /// </summary>
+    public abstract class AOptionMetaData : Option
     {
-        return new byte[] { Code };
-    }
+        public override byte[] GetRawBytes()
+        {
+            return new byte[] { Code };
+        }
 
-    public override void ReadRaw(byte[] raw)
-    {
-        if (raw.Length == 0)
+        public override void ReadRaw(byte[] raw)
+        {
+            if (raw.Length == 0)
             {
                 throw new OptionException("Zero length");
             }
@@ -29,7 +29,5 @@ public abstract class AOptionMetaData : Option
                 throw new OptionException(String.Format("Malformed packet: Invalid data: {0}.", raw[0]));
             }
         }
-
-}
-
+    }
 }

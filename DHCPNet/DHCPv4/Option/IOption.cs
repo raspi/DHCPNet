@@ -13,8 +13,10 @@
         /// </summary>
         byte Code { get; }
 
+        /// <summary>
+        /// Read raw bytes and convert to meaningful type
+        /// </summary>
+        /// <returns></returns>
         byte[] GetRawBytes();
-
     }
-
 }

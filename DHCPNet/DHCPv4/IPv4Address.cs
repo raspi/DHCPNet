@@ -47,8 +47,5 @@ namespace DHCPNet
         {
             return String.Format("{0}.{1}.{2}.{3}", Address[0], Address[1], Address[2], Address[3]);
         }
-
     }
-
-
 }

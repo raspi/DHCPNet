@@ -2,18 +2,17 @@ using System;
 
 namespace DHCPNet.v4.Option
 {
-
+    /// <summary>
+    /// DHCP Option base class
+    /// </summary>
     public abstract class Option : MustInitialize, IOption
     {
         public abstract byte Code { get; }
-
-        protected Option() { }
 
         public abstract byte[] GetRawBytes();
 
         public static byte GetCIDRFromBytes(byte[] bytes)
         {
-
             if (bytes.Length == 0)
             {
                 throw new OptionException(String.Format("Zero length"));
@@ -90,8 +89,5 @@ namespace DHCPNet.v4.Option
             Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, str.Length);
             return bytes;
         }
-
-
     }
-
 }

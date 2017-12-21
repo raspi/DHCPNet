@@ -7,7 +7,6 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionUint16 : Option
     {
-
         public ushort Value;
 
         public override void ReadRaw(byte[] raw)
@@ -20,5 +19,4 @@ namespace DHCPNet.v4.Option
             return BitConverter.GetBytes(Value);
         }
     }
-
 }

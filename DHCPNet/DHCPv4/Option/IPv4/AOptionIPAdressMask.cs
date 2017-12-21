@@ -21,14 +21,7 @@ namespace DHCPNet.v4.Option
         /// </summary>
         protected AOptionIPAdressMask(IPv4Address ip, IPv4Address mask)
         {
-            IPMaskPair.Add(new IPAdressMaskPair()
-            {
-                IP = ip,
-                Netmask = (byte)GetCIDRFromBytes(mask.Address)
-            });
+            IPMaskPair.Add(new IPAdressMaskPair() { IP = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) });
         }
-
     }
-
-
 }

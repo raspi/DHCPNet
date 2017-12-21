@@ -11,14 +11,14 @@ namespace DHCPNet
         {
         }
 
-        public IPv4AddressException(string message) : base(message)
+        public IPv4AddressException(string message)
+            : base(message)
         {
         }
 
-        public IPv4AddressException(string message, Exception inner) : base(message, inner)
+        public IPv4AddressException(string message, Exception inner)
+            : base(message, inner)
         {
         }
     }
-
-
 }

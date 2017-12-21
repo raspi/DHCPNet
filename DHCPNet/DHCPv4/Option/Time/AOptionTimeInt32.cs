@@ -18,8 +18,5 @@ namespace DHCPNet.v4.Option
         {
             Time = new TimeSpan(0, 0, BitConverter.ToInt32(raw, 0));
         }
-
     }
-
-
 }

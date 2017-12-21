@@ -21,6 +21,4 @@ namespace DHCPNet.v4.Option
         {
         }
     }
-
-
 }

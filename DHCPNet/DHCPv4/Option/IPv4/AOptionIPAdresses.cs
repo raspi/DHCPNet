@@ -33,7 +33,6 @@ namespace DHCPNet.v4.Option
                 Array.Copy(raw, i, b, 0, 4);
                 IPAdresses.Add(new IPv4Address(b));
             }
-
         }
 
         /// <summary>
@@ -75,8 +74,5 @@ namespace DHCPNet.v4.Option
 
             return b;
         }
-
     }
-
-
 }

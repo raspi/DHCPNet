@@ -5,7 +5,6 @@
     /// </summary>
     public abstract class AOptionUint8 : Option
     {
-
         public byte Value;
 
         public override void ReadRaw(byte[] raw)
@@ -18,5 +17,4 @@
             return new byte[] { Value };
         }
     }
-
 }

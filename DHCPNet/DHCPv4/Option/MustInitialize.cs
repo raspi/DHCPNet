@@ -8,7 +8,5 @@ namespace DHCPNet.v4.Option
         /// Read raw bytes to more meaningful type
         /// </summary>
         public abstract void ReadRaw(byte[] raw);
-
     }
-
 }

@@ -15,6 +15,4 @@ namespace DHCPNet
         /// </summary>
         Broadcast = 16384,
     }
-
-
 }

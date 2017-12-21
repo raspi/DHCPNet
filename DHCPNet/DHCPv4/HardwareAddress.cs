@@ -8,6 +8,7 @@ namespace DHCPNet
     public class HardwareAddress
     {
         protected byte[] _addr = { };
+
         protected byte _len;
 
         public byte Length
@@ -49,12 +50,9 @@ namespace DHCPNet
             Address = raw;
         }
 
-
         public HardwareAddress(MacAddress mac)
         {
             Address = mac.Address;
         }
-
     }
-
 }

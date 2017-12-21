@@ -37,7 +37,7 @@ namespace DHCPNet.v4.Option
 
         public override byte[] GetRawBytes()
         {
-            return new byte[] { (byte) NodeType};
+            return new byte[] { (byte)NodeType };
         }
 
         public override void ReadRaw(byte[] raw)
@@ -46,4 +46,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-
