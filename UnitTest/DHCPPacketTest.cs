@@ -104,7 +104,7 @@ namespace UnitTest.DHCPPacketTest
 
             byte[] expected = { 1, 1, 6, 0 };
 
-            Assert.Equal(312, p.GetRawBytes().Length);
+            Assert.Equal(272, p.GetRawBytes().Length);
 
         }
 
