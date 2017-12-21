@@ -5,6 +5,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionPad : AOptionMetaData
     {
+        public OptionPad()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -12,7 +16,5 @@ namespace DHCPNet.v4.Option
                 return 0;
             }
         }
-
     }
-
 }

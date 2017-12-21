@@ -20,6 +20,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMobileIPHomeAgent : AOptionIPAddresses
     {
+        public OptionMobileIPHomeAgent()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -29,4 +33,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

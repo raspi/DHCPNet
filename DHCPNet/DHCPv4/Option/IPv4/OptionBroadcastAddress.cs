@@ -2,7 +2,6 @@ using System;
 
 namespace DHCPNet.v4.Option
 {
-
     /// <summary>
     /// This option specifies the broadcast address in use 
     /// on the client's subnet. 
@@ -13,6 +12,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionBroadcastAddress : AOptionIPAddress
     {
+        public OptionBroadcastAddress()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -22,4 +25,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

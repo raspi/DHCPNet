@@ -7,6 +7,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionTimeServer : AOptionIPAddresses
     {
+        public OptionTimeServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -15,5 +19,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
 }

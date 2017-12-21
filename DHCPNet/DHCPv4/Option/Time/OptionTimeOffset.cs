@@ -1,4 +1,5 @@
 ﻿using DHCPNet.v4.Option;
+
 using System;
 
 namespace DHCPNet
@@ -17,6 +18,10 @@ namespace DHCPNet
     /// </summary>
     public class OptionTimeOffset : AOptionTimeInt32
     {
+        public OptionTimeOffset()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -25,5 +30,4 @@ namespace DHCPNet
             }
         }
     }
-
 }

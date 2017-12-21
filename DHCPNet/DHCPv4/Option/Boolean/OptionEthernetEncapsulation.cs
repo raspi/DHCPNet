@@ -14,6 +14,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionEthernetEncapsulation : AOptionBoolean
     {
+        public OptionEthernetEncapsulation()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -23,4 +27,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

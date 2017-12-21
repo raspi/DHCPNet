@@ -1,6 +1,5 @@
 namespace DHCPNet.v4.Option
 {
-
     /// <summary>
     /// IP Adress(es) of gateway(s)
     /// 
@@ -14,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionGateway : AOptionIPAddresses
     {
+        public OptionGateway()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -23,4 +26,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

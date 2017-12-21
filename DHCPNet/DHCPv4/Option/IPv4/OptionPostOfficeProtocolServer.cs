@@ -13,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionPostOfficeProtocolServer : AOptionIPAddresses
     {
+        public OptionPostOfficeProtocolServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -22,4 +26,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

@@ -21,6 +21,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionNetBIOSOverTCPIPNodeType : Option
     {
+        public OptionNetBIOSOverTCPIPNodeType()
+        {
+        }
+
         public override byte Code
         {
             get

@@ -30,6 +30,10 @@ namespace DHCPNet.v4.Option
 
         public EMessageType Type { get; set; }
 
+        public OptionMessageType()
+        {
+        }
+
         public OptionMessageType(EMessageType type)
         {
             Type = type;
@@ -45,5 +49,4 @@ namespace DHCPNet.v4.Option
             return new byte[] { (byte)Type };
         }
     }
-
 }

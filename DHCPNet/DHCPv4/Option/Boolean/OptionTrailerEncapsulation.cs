@@ -13,6 +13,9 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionTrailerEncapsulation : AOptionBoolean
     {
+        public OptionTrailerEncapsulation()
+        {
+        }
 
         public override byte Code
         {
@@ -23,4 +26,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

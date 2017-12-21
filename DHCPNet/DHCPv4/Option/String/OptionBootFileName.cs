@@ -10,6 +10,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionBootFileName : AOptionString
     {
+        public OptionBootFileName()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -18,5 +22,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
 }

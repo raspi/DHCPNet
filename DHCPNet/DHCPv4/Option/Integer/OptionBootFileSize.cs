@@ -11,6 +11,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionBootFileSize : AOptionUint16
     {
+        public OptionBootFileSize()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -18,8 +22,5 @@ namespace DHCPNet.v4.Option
                 return 13;
             }
         }
-
     }
-
-
 }

@@ -18,6 +18,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMessage : AOptionString
     {
+        public OptionMessage()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -27,4 +31,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

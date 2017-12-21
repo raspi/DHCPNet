@@ -7,6 +7,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionEnd : AOptionMetaData
     {
+        public OptionEnd()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -14,7 +18,5 @@ namespace DHCPNet.v4.Option
                 return 255;
             }
         }
-
     }
-
 }

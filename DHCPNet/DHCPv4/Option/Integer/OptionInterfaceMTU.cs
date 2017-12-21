@@ -12,6 +12,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionInterfaceMTU : AOptionUint16
     {
+        public OptionInterfaceMTU()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -20,5 +24,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
 }

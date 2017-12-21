@@ -13,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionHostName : AOptionString
     {
+        public OptionHostName()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -21,6 +25,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
-
 }

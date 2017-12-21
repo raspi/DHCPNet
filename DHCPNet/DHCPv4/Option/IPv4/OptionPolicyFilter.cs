@@ -16,6 +16,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionPolicyFilter : AOptionIPAddresses
     {
+        public OptionPolicyFilter()
+        {
+        }
+
         public override byte Code
         {
             get

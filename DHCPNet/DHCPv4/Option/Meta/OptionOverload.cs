@@ -23,6 +23,10 @@
     {
         public EOverload OverloadType = EOverload.File;
 
+        public OptionOverload()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -41,5 +45,4 @@
             OverloadType = (EOverload)raw[0];
         }
     }
-
 }

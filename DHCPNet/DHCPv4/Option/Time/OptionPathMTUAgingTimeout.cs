@@ -20,7 +20,8 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        public OptionPathMTUAgingTimeout()
+        {
+        }
     }
-
 }
-

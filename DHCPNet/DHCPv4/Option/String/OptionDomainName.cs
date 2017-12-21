@@ -8,6 +8,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionDomainName : AOptionString
     {
+        public OptionDomainName()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -15,7 +19,5 @@ namespace DHCPNet.v4.Option
                 return 15;
             }
         }
-
     }
-
 }

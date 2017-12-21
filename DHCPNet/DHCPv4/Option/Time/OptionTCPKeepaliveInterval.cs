@@ -16,6 +16,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionTCPKeepaliveInterval : AOptionTimeUint32
     {
+        public OptionTCPKeepaliveInterval()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -24,5 +28,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
 }

@@ -13,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionNetworkTimeProtocolServers : AOptionIPAddresses
     {
+        public OptionNetworkTimeProtocolServers()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -22,4 +26,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

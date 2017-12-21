@@ -11,6 +11,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionRequestedIPAddress : AOptionIPAddress
     {
+        public OptionRequestedIPAddress()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -18,7 +22,5 @@ namespace DHCPNet.v4.Option
                 return 50;
             }
         }
-
     }
-
 }

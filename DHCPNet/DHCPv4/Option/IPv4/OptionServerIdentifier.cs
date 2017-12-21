@@ -18,6 +18,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionServerIdentifier : AOptionIPAddress
     {
+        public OptionServerIdentifier()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -25,7 +29,5 @@ namespace DHCPNet.v4.Option
                 return 54;
             }
         }
-
     }
-
 }

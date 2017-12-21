@@ -19,6 +19,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionIPAddressLeaseTime : AOptionTimeUint32
     {
+        public OptionIPAddressLeaseTime()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -26,7 +30,5 @@ namespace DHCPNet.v4.Option
                 return 51;
             }
         }
-
     }
-
 }

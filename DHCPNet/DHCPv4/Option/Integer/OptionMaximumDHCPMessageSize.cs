@@ -17,6 +17,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMaximumDHCPMessageSize : AOptionUint16
     {
+        public OptionMaximumDHCPMessageSize()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -26,4 +30,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

@@ -10,6 +10,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionRootPath : AOptionString
     {
+        public OptionRootPath()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -17,7 +21,5 @@ namespace DHCPNet.v4.Option
                 return 17;
             }
         }
-
     }
-
 }

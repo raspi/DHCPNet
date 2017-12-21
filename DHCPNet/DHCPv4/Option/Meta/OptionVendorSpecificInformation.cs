@@ -43,6 +43,10 @@ namespace DHCPNet.v4.Option
     {
         public byte[] VendorSpecificInformation = { };
 
+        public OptionVendorSpecificInformation()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -62,4 +66,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

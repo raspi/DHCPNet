@@ -25,6 +25,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionParameterRequestList : Option
     {
+        public OptionParameterRequestList()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -68,5 +72,4 @@ namespace DHCPNet.v4.Option
             RequestList = new List<byte>(raw);
         }
     }
-
 }

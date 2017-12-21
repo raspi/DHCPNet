@@ -13,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionRenewalTime : AOptionTimeUint32
     {
+        public OptionRenewalTime()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -21,5 +25,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
 }

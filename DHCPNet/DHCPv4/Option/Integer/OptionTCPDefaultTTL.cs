@@ -15,6 +15,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionTCPDefaultTTL : AOptionUint8
     {
+        public OptionTCPDefaultTTL()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -24,4 +28,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

@@ -9,6 +9,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSwapServer : AOptionIPAddress
     {
+        public OptionSwapServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -16,8 +20,5 @@ namespace DHCPNet.v4.Option
                 return 16;
             }
         }
-
     }
-
-
 }

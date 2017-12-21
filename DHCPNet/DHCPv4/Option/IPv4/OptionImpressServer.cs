@@ -7,6 +7,10 @@
     /// </summary>
     public class OptionImpressServer : AOptionIPAddresses
     {
+        public OptionImpressServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -15,6 +19,4 @@
             }
         }
     }
-
-
 }

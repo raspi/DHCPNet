@@ -16,6 +16,10 @@ namespace DHCPNet.v4.Option
     {
         public List<ushort> List = new List<ushort>();
 
+        public OptionPathMTUPlateauTable()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -48,7 +52,6 @@ namespace DHCPNet.v4.Option
             {
                 List.Add(BitConverter.ToUInt16(raw, i));
             }
-
         }
     }
 }

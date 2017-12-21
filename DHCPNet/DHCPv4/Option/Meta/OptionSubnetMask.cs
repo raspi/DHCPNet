@@ -9,6 +9,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSubnetMask : Option
     {
+        public OptionSubnetMask()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -18,7 +22,6 @@ namespace DHCPNet.v4.Option
         }
 
         protected byte _cidr = 24;
-
 
         /// <summary>
         /// Subnet mask as CIDR
@@ -36,7 +39,6 @@ namespace DHCPNet.v4.Option
             }
             set
             {
-
                 if (value > 32)
                 {
                     throw new OptionException(String.Format("Invalid CIDR: {0}", value));
@@ -71,5 +73,4 @@ namespace DHCPNet.v4.Option
             return GetCIDRBytes(CIDR);
         }
     }
-
 }

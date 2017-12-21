@@ -22,6 +22,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionStaticRoute : AOptionIPAddresses
     {
+        public OptionStaticRoute()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -31,4 +35,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

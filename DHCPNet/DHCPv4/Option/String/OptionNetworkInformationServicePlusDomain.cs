@@ -12,6 +12,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionNetworkInformationServicePlusDomain : AOptionString
     {
+        public OptionNetworkInformationServicePlusDomain()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -21,4 +25,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

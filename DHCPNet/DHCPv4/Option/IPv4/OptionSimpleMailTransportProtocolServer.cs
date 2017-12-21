@@ -13,6 +13,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSimpleMailTransportProtocolServer : AOptionIPAddresses
     {
+        public OptionSimpleMailTransportProtocolServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -22,4 +26,3 @@ namespace DHCPNet.v4.Option
         }
     }
 }
-

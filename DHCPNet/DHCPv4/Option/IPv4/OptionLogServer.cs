@@ -7,6 +7,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionLogServer : AOptionIPAddresses
     {
+        public OptionLogServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -15,6 +19,4 @@ namespace DHCPNet.v4.Option
             }
         }
     }
-
-
 }

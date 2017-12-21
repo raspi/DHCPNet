@@ -9,6 +9,10 @@
     /// </summary>
     public class OptionResourceLocationServer : AOptionIPAddresses
     {
+        public OptionResourceLocationServer()
+        {
+        }
+
         public override byte Code
         {
             get
@@ -16,7 +20,5 @@
                 return 11;
             }
         }
-
     }
-
 }
