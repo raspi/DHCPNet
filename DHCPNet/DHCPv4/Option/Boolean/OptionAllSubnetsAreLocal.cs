@@ -14,7 +14,7 @@ namespace DHCPNet.v4.Option
     /// A value of 0 means that the client should assume that
     /// some subnets of the directly connected network may have smaller MTUs.
     /// </summary>
-    class OptionAllSubnetsAreLocal : AOptionBoolean
+    public class OptionAllSubnetsAreLocal : AOptionBoolean
     {
         public override byte Code
         {
