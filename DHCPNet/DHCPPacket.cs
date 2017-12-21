@@ -17,7 +17,7 @@ namespace DHCPNet
     public class DHCPPacket
     {
 
-        private const ushort PacketMinimumLength = 312;
+        private const ushort PacketMinimumLength = 272;
         private const ushort PacketMaxLength = 576;
 
         /// <summary>
