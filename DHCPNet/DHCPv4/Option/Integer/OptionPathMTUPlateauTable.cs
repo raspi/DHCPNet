@@ -34,8 +34,15 @@ namespace DHCPNet.v4.Option
 
         public override void ReadRaw(byte[] raw)
         {
-            if (raw.Length == 0) throw new OptionException("Zero length.");
-            if (raw.Length % 2 != 0) throw new OptionException("Not divisiable by 2.");
+            if (raw.Length == 0)
+            {
+                throw new OptionException("Zero length.");
+            }
+
+            if (raw.Length % 2 != 0)
+            {
+                throw new OptionException("Not divisiable by 2.");
+            }
 
             for (int i = 0; i < raw.Length; i += 2)
             {

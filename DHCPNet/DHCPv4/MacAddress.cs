@@ -6,7 +6,7 @@ namespace DHCPNet
     /// MAC Address
     /// 00:11:22:33:44:55
     /// </summary>
-    public class MacAddress
+    public class MacAddress 
     {
         protected const char DefaultSeparator = ':';
         public char Separator = DefaultSeparator;
@@ -15,8 +15,15 @@ namespace DHCPNet
 
         public MacAddress(byte[] v)
         {
-            if (v.Length == 0) throw new Exception("Zero length.");
-            if (v.Length != 6) throw new Exception(String.Format("Invalid length: {0}.", v.Length));
+            if (v.Length == 0)
+            {
+                throw new Exception("Zero length.");
+            }
+
+            if (v.Length != 6)
+            {
+                throw new Exception(String.Format("Invalid length: {0}.", v.Length));
+            }
 
             Address = v;
         }

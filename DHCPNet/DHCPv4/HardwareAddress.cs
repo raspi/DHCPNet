@@ -7,7 +7,38 @@ namespace DHCPNet
     /// </summary>
     public class HardwareAddress
     {
-        public byte[] Address = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        protected byte[] _addr = { };
+        protected byte _len;
+
+        public byte Length
+        {
+            get
+            {
+                return this._len;
+            }
+        }
+
+        public byte[] Address
+        {
+            get
+            {
+                // Always return 16 bytes
+                byte[] b = new byte[this.Length];
+                Array.Copy(this._addr, 0, b, 0, this.Length);
+                Array.Resize(ref b, 16);
+                return b;
+            }
+            set
+            {
+                if (value.Length > 16)
+                {
+                    throw new Exception(String.Format("Invalid length: {0}.", value.Length));
+                }
+
+                this._len = (byte)value.Length;
+                this._addr = value;
+            }
+        }
 
         public HardwareAddress()
         {
@@ -15,16 +46,15 @@ namespace DHCPNet
 
         public HardwareAddress(byte[] raw)
         {
-            if (raw.Length == 0) throw new Exception("Zero length.");
-            if (raw.Length != 16) throw new Exception(String.Format("Invalid length: {0}.", raw.Length));
             Address = raw;
         }
 
 
         public HardwareAddress(MacAddress mac)
         {
-            Array.Copy(mac.Address, 0, Address, 0, 6);
+            Address = mac.Address;
         }
 
     }
+
 }

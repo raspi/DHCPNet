@@ -4,12 +4,32 @@ namespace DHCPNet
 {
     public class IPv4Address
     {
-        public byte[] Address = { 0, 0, 0, 0 };
+        protected byte[] _addr;
+
+        public byte[] Address
+        {
+            get
+            {
+                return this._addr;
+            }
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new IPv4AddressException("Zero length.");
+                }
+
+                if (value.Length != 4)
+                {
+                    throw new IPv4AddressException(String.Format("Invalid length: {0}.", value.Length));
+                }
+
+                this._addr = value;
+            }
+        }
 
         public IPv4Address(byte[] v)
         {
-            if (v.Length == 0) throw new IPv4AddressException("Zero length.");
-            if (v.Length != 4) throw new IPv4AddressException(String.Format("Invalid length: {0}.", v.Length));
             Address = v;
         }
 

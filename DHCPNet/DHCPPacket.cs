@@ -25,27 +25,35 @@ namespace DHCPNet
         /// Message op code / message type.
         /// 1 = BootRequest, 2 = BootReply
         /// </summary>
-        public EOpCode OpCode = EOpCode.BootReply;
+        public EOpCode OpCode { get; set; }
 
         /// <summary>
         /// htype 1 byte, rfc1060 page 46
         /// See ARP section in "Assigned Numbers" RFC; e.g., 
         /// 1 = 10mb ethernet.
         /// </summary>
-        public EHardwareType HardwareAddressType = EHardwareType.Ethernet;
+        public EHardwareType HardwareAddressType { get; set; }
 
         /// <summary>
         /// hlen 1 byte
         /// (e.g.  '6' for 10mb ethernet).
         /// mac = 00:11:22:33:44:55 = 6
+        /// Set via ClientHardwareAddress
+        /// <see cref="ClientHardwareAddress"/>
         /// </summary>
-        public byte HardwareAddressLength = 6;
+        public byte HardwareAddressLength
+        {
+            get
+            {
+                return (byte)this.ClientHardwareAddress.Length;
+            }
+        }
 
         /// <summary>
         /// hops 1 byte
         /// Client sets to zero, optionally used by relay agents
         /// </summary>
-        public byte Hops;
+        public byte Hops { get; set; }
 
         /// <summary>
         /// xid 4 bytes
@@ -53,14 +61,14 @@ namespace DHCPNet
         /// used by the client and server to associate messages 
         /// and responses between a client and a server.
         /// </summary>
-        public uint TransactionID;
+        public uint TransactionID { get; set; }
 
         /// <summary>
         /// secs 2 bytes
         /// Filled in by client, seconds elapsed since client 
         /// began address acquisition or renewal process.
         /// </summary>
-        public ushort Seconds;
+        public ushort Seconds { get; set; }
 
         /// <summary>
         /// flags 2 bytes
@@ -74,7 +82,7 @@ namespace DHCPNet
         /// B:  BROADCAST flag
         /// MBZ:  MUST BE ZERO(reserved for future use)        
         /// </summary>
-        public ushort Flags;
+        public ushort Flags { get; set; }
 
         /// <summary>
         /// ciaddr 4 bytes
@@ -82,39 +90,39 @@ namespace DHCPNet
         /// BOUND, RENEW or REBINDING state and can respond
         /// to ARP requests.
         /// </summary>
-        public IPv4Address ClientAddress = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        public IPv4Address ClientAddress { get; set; }
 
         /// <summary>
         /// yiaddr 4 bytes
         /// 'your' (client) IP address.
         /// </summary>
-        public IPv4Address YourAddress = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        public IPv4Address YourAddress { get; set; }
 
         /// <summary>
         /// siaddr 4 bytes
         /// IP address of next server to use in bootstrap;
         /// returned in DHCPOFFER, DHCPACK by server.
         /// </summary>
-        public IPv4Address ServerAddress = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        public IPv4Address ServerAddress { get; set; }
 
         /// <summary>
         /// giaddr 4 bytes
         /// Relay agent IP address, used in booting via a
         /// relay agent.
         /// </summary>
-        public IPv4Address RelayAgentAddress = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        public IPv4Address RelayAgentAddress { get; set; }
 
         /// <summary>
         /// chaddr 16 bytes
         /// Client hardware address.
         /// </summary>
-        public HardwareAddress ClientHardwareAddress = new HardwareAddress();
+        public HardwareAddress ClientHardwareAddress { get; set; }
 
         /// <summary>
         /// sname 64 bytes
         /// Optional server host name, null terminated string.
         /// </summary>
-        public string ServerHostName = "";
+        public string ServerHostName { get; set; }
 
         /// <summary>
         /// file 128 bytes
@@ -122,7 +130,7 @@ namespace DHCPNet
         /// name or null in DHCPDISCOVER, fully qualified
         /// directory-path name in DHCPOFFER.
         /// </summary>
-        public string File = "";
+        public string File { get; set; }
 
         /// <summary>
         /// n bytes
@@ -151,14 +159,14 @@ namespace DHCPNet
             writer.Write(TransactionID); // 4
             writer.Write(Seconds); // 2
             writer.Write(Flags); // 2
-            writer.Write(ClientAddress.Address, 0, 4);
-            writer.Write(YourAddress.Address, 0, 4);
-            writer.Write(ServerAddress.Address, 0, 4);
-            writer.Write(RelayAgentAddress.Address, 0, 4);
-            writer.Write(ClientHardwareAddress.Address, 0, 16);
-            writer.Write(ServerHostName.ToCharArray(), 0, 64);
-            writer.Write(File.ToCharArray(), 0, 128);
-            writer.Write(MagicCookie, 0, 4);
+            writer.Write(ClientAddress.Address); // 4
+            writer.Write(YourAddress.Address); // 4
+            writer.Write(ServerAddress.Address); // 4
+            writer.Write(RelayAgentAddress.Address); // 4
+            writer.Write(ClientHardwareAddress.Address); // 16
+            writer.Write(Option.StringToBytes(ServerHostName, 64)); // 64
+            writer.Write(Option.StringToBytes(File, 128)); // 128
+            writer.Write(MagicCookie);
 
             // Read options
             writer.Write(GetRawOptionsBytes());
@@ -230,7 +238,7 @@ namespace DHCPNet
         /// </summary>
         public void Read(BinaryReader reader)
         {
-            if(reader.BaseStream.Length < PacketMinimumLength)
+            if (reader.BaseStream.Length < PacketMinimumLength)
             {
                 throw new DHCPException(String.Format("Packet too small: {0} bytes", reader.BaseStream.Length));
             }
@@ -242,8 +250,10 @@ namespace DHCPNet
 
             OpCode = (EOpCode)reader.ReadByte();
             HardwareAddressType = (EHardwareType)reader.ReadByte();
-            HardwareAddressLength = reader.ReadByte();
             Hops = reader.ReadByte();
+
+            byte _hwaddrlen = reader.ReadByte();
+
             TransactionID = BitConverter.ToUInt32(reader.ReadBytes(4), 0);
             Seconds = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
             Flags = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
@@ -251,9 +261,26 @@ namespace DHCPNet
             YourAddress = new IPv4Address(reader.ReadBytes(4));
             ServerAddress = new IPv4Address(reader.ReadBytes(4));
             RelayAgentAddress = new IPv4Address(reader.ReadBytes(4));
-            ClientHardwareAddress.Address = reader.ReadBytes(16);
+
+            byte[] _clienthwaddr = reader.ReadBytes(16);
+
             ServerHostName = Option.BytesToString(reader.ReadBytes(64));
             File = Option.BytesToString(reader.ReadBytes(128));
+
+            if (_hwaddrlen == 0)
+            {
+                ClientHardwareAddress = new HardwareAddress(new byte[] { });
+            }
+            else if (_hwaddrlen == 6)
+            {
+                byte[] macaddr = new byte[6];
+                Array.Copy(_clienthwaddr, 0, macaddr, 0, 6);
+                ClientHardwareAddress = new HardwareAddress(new MacAddress(macaddr));
+            }
+            else
+            {
+                ClientHardwareAddress = new HardwareAddress(_clienthwaddr);
+            }
 
             // Magic cookie
             byte[] cookie = reader.ReadBytes(4);
