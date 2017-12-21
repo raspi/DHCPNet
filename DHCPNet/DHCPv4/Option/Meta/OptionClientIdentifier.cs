@@ -37,10 +37,21 @@ namespace DHCPNet.v4.Option
             }
         }
 
-        public EHardwareType Type { get; set; }
+        protected EHardwareType _type = EHardwareType.Ethernet;
+
+        public EHardwareType Type
+        {
+            get
+            {
+                return this._type;
+            }
+        }
 
         protected byte[] _id;
 
+        /// <summary>
+        /// Mac address, FQDN or other ASCII or binary data
+        /// </summary>
         public byte[] Identifier
         {
             get
@@ -54,47 +65,32 @@ namespace DHCPNet.v4.Option
                     throw new OptionException("Minimum length 2");
                 }
 
-                this._id = value;
+                this._type = (EHardwareType)value[0];
+                Array.Resize(ref _id, value.Length - 1);
+
+                Array.Copy(value, 1, this._id, 0, value.Length - 1);
             }
         }
 
         public override void ReadRaw(byte[] raw)
         {
-            Type = (EHardwareType)raw[0];
-            Array.Copy(raw, 1, Identifier, 0, raw.Length - 1);
+            if (raw.Length < 2)
+            {
+                throw new OptionException("Minimum length 2.");
+            }
+
+            Identifier = raw;
         }
 
         public override byte[] GetRawBytes()
         {
             byte[] b = { (byte)Type };
             Array.Copy(Identifier, 0, b, 1, Identifier.Length);
-
             return b;
         }
 
-        public OptionClientIdentifier(byte[] id)
+        public OptionClientIdentifier()
         {
-            if (id.Length == 6)
-            {
-                this.Type = EHardwareType.Ethernet;
-            }
-
-            Array.Copy(id, 1, Identifier, 0, id.Length - 1);
         }
-
-        public OptionClientIdentifier(byte[] id, EHardwareType type)
-        {
-            this.Type = type;
-
-            Identifier = id;
-        }
-
-        public OptionClientIdentifier(string id)
-        {
-            Type = 0;
-            Identifier = StringToBytes(id);
-        }
-
     }
-
 }

@@ -1,4 +1,5 @@
 using DHCPNet.v4.Option;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,9 @@ using System.Text;
 
 namespace DHCPNet
 {
+    using System.Diagnostics;
+    using System.Linq;
+
     /// <summary>
     /// Dynamic Host Configuration Protocol (DHCP)
     /// rfc2131
@@ -16,9 +20,11 @@ namespace DHCPNet
     /// </summary>
     public class DHCPPacket
     {
-
         private const ushort PacketMinimumLength = 272;
+
         private const ushort PacketMaxLength = 576;
+
+        public bool ThrowExceptionOnParse = true;
 
         /// <summary>
         /// op 1 byte
@@ -173,7 +179,8 @@ namespace DHCPNet
 
             if (writer.BaseStream.Length > PacketMaxLength)
             {
-                throw new DHCPException(String.Format("Packet is too large ({0} / {1} bytes)", writer.BaseStream.Length, PacketMaxLength));
+                throw new DHCPException(
+                    String.Format("Packet is too large ({0} / {1} bytes)", writer.BaseStream.Length, PacketMaxLength));
             }
 
             // Add padding
@@ -187,7 +194,6 @@ namespace DHCPNet
             writer.BaseStream.Read(rawbytes, 0, (int)writer.BaseStream.Length);
 
             return rawbytes;
-
         }
 
         public byte[] GetRawOptionsBytes()
@@ -285,13 +291,8 @@ namespace DHCPNet
             // Magic cookie
             byte[] cookie = reader.ReadBytes(4);
 
-            if (!(
-                cookie[0] == MagicCookie[0]
-                && cookie[1] == MagicCookie[1]
-                && cookie[2] == MagicCookie[2]
-                && cookie[3] == MagicCookie[3]
-                )
-            )
+            if (!(cookie[0] == MagicCookie[0] && cookie[1] == MagicCookie[1] && cookie[2] == MagicCookie[2]
+                  && cookie[3] == MagicCookie[3]))
             {
                 throw new DHCPException("Malformed packet: Magic cookie not found.");
             }
@@ -313,23 +314,49 @@ namespace DHCPNet
         /// </summary>
         public bool ReadOptions(BinaryReader reader)
         {
-            do
-            {
-                Option o = OptionFactory.GetOption(reader.ReadByte());
+            Debug.WriteLine(reader.BaseStream.Position);
 
-                if (!(o is AOptionMetaData))
+            using (reader)
+            {
+                try
                 {
-                    byte len = reader.ReadByte();
-                    byte[] data = reader.ReadBytes(len);
-                    o.ReadRaw(data);
+                    while (reader.BaseStream.Position != reader.BaseStream.Length)
+                    {
+
+                        Option o = OptionFactory.GetOption(reader.ReadByte());
+
+                        if (!(o is AOptionMetaData))
+                        {
+                            byte len = reader.ReadByte();
+                            Debug.WriteLine(len);
+                            byte[] data = reader.ReadBytes(len);
+                            o.ReadRaw(data);
+                        }
+
+                        // Add to this object
+                        Options.Add(o);
+
+                    }
+                }
+                catch (EndOfStreamException e)
+                {
+                    if (ThrowExceptionOnParse)
+                    {
+                        string err = String.Format(
+                            "Error reading: position: {0} len: {1}. Options read: {2} ({3})",
+                            reader.BaseStream.Position,
+                            reader.BaseStream.Length,
+                            this.Options.Count,
+                            this.Options.Last().GetType()
+                            );
+
+                        throw new OptionException(err, e);
+                    }
                 }
 
-                // Add to this object
-                Options.Add(o);
-            } while (reader.BaseStream.CanRead);
 
+            }
             return true;
-
         }
 
         /// <summary>
