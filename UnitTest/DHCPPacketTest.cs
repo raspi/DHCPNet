@@ -8,6 +8,8 @@ namespace UnitTest.DHCPPacketTest
 {
     using System.Collections.Generic;
 
+    using UnitTest.Raw;
+
     using Option = DHCPNet.v4.Option.Option;
 
     public class All
@@ -108,6 +110,14 @@ namespace UnitTest.DHCPPacketTest
 
         }
 
+        [Fact]
+        public void RawDiscover()
+        {
+            byte[] b = RawData.Discover();
+            DHCPPacket p = new DHCPPacket(b);
+            Assert.Equal(b, p.GetRawBytes());
+            Assert.Equal(b.Length, p.GetRawBytes().Length);
+        }
 
     }
 }
