@@ -20,7 +20,7 @@ namespace DHCPNet
     /// </summary>
     public class DHCPPacket
     {
-        private const ushort PacketMinimumLength = 272;
+        private const ushort PacketMinimumLength = 265;
 
         private const ushort PacketMaxLength = 576;
 
@@ -172,7 +172,7 @@ namespace DHCPNet
             writer.Write(ClientHardwareAddress.Address); // 16
             writer.Write(Option.StringToBytes(ServerHostName, 64)); // 64
             writer.Write(Option.StringToBytes(File, 128)); // 128
-            writer.Write(MagicCookie);
+            writer.Write(MagicCookie); // 4
 
             // Read options
             writer.Write(GetRawOptionsBytes());
@@ -200,6 +200,11 @@ namespace DHCPNet
         {
             BinaryWriter writer = new BinaryWriter(new MemoryStream());
 
+            if (this.Options.Count == 0)
+            {
+                throw new DHCPException(String.Format("No options."));
+            }
+
             // Find End
             bool endFound = false;
             foreach (Option i in Options)
@@ -213,7 +218,10 @@ namespace DHCPNet
 
             if (!endFound)
             {
-                throw new DHCPException(String.Format("End option was not found"));
+                if (this.ThrowExceptionOnParse)
+                {
+                    throw new DHCPException(String.Format("End option was not found"));
+                }
             }
 
             foreach (Option i in Options)
@@ -222,7 +230,7 @@ namespace DHCPNet
 
                 if (i is AOptionMetaData)
                 {
-                    writer.Write(data, 0, 1);
+                    writer.Write(i.Code);
                 }
                 else
                 {
@@ -256,10 +264,10 @@ namespace DHCPNet
 
             OpCode = (EOpCode)reader.ReadByte();
             HardwareAddressType = (EHardwareType)reader.ReadByte();
-            Hops = reader.ReadByte();
 
             byte _hwaddrlen = reader.ReadByte();
 
+            Hops = reader.ReadByte();
             TransactionID = BitConverter.ToUInt32(reader.ReadBytes(4), 0);
             Seconds = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
             Flags = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
@@ -333,9 +341,7 @@ namespace DHCPNet
                             o.ReadRaw(data);
                         }
 
-                        // Add to this object
-                        Options.Add(o);
-
+                        this.Options.Add(o);
                     }
                 }
                 catch (EndOfStreamException e)
