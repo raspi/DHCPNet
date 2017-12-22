@@ -84,7 +84,8 @@ namespace DHCPNet.v4.Option
 
         public override byte[] GetRawBytes()
         {
-            byte[] b = { (byte)Type };
+            byte[] b = new byte[Identifier.Length + 1];
+            b[0] = (byte)Type;
             Array.Copy(Identifier, 0, b, 1, Identifier.Length);
             return b;
         }
