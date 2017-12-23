@@ -1,15 +1,14 @@
-using DHCPNet.v4.Option;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Diagnostics;
+
+using DHCPNet.v4.Option;
 
 namespace DHCPNet
 {
-    using System.Diagnostics;
-    using System.Linq;
 
     /// <summary>
     /// Dynamic Host Configuration Protocol (DHCP)
@@ -142,7 +141,7 @@ namespace DHCPNet
         /// n bytes
         /// DHCP Magic cookie before options
         /// </summary>
-        public readonly byte[] MagicCookie = { 99, 130, 83, 99 };
+        public readonly uint MagicCookie = 0x63538263;
 
         /// <summary>
         /// DHCP Options and BOOTP Vendor Extensions
@@ -156,36 +155,43 @@ namespace DHCPNet
         /// <returns></returns>
         public byte[] GetRawBytes()
         {
-            BinaryWriter writer = new BinaryWriter(new MemoryStream());
+            NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
 
-            writer.Write((byte)OpCode); // 1
-            writer.Write((byte)HardwareAddressType); // 1
-            writer.Write(HardwareAddressLength); // 1
-            writer.Write(Hops); // 1
-            writer.Write(TransactionID); // 4
-            writer.Write(Seconds); // 2
-            writer.Write(Flags); // 2
-            writer.Write(ClientAddress.Address); // 4
-            writer.Write(YourAddress.Address); // 4
-            writer.Write(ServerAddress.Address); // 4
-            writer.Write(RelayAgentAddress.Address); // 4
-            writer.Write(ClientHardwareAddress.Address); // 16
-            writer.Write(Option.StringToBytes(ServerHostName, 64)); // 64
-            writer.Write(Option.StringToBytes(File, 128)); // 128
-            writer.Write(MagicCookie); // 4
+            writer.Write((byte)this.OpCode); // 1
+            writer.Write((byte)this.HardwareAddressType); // 1 (2)
+            writer.Write(this.HardwareAddressLength); // 1 (3)
+            writer.Write(this.Hops); // 1 (4)
+            writer.Write(this.TransactionID); // 4 (8)
+            writer.Write(this.Seconds); // 2 (10)
+            writer.Write(this.Flags); // 2 (12)
+            writer.Write(this.ClientAddress.Address); // 4 (16)
+            writer.Write(this.YourAddress.Address); // 4 (20)
+            writer.Write(this.ServerAddress.Address); // 4 (24)
+            writer.Write(this.RelayAgentAddress.Address); // 4 (28)
+            writer.Write(this.ClientHardwareAddress.Address); // 16 (44)
+            writer.Write(Option.StringToBytes(this.ServerHostName, 64)); // 64 (108)
+            writer.Write(Option.StringToBytes(this.File, 128)); // 128 (236)
+            writer.Write(this.MagicCookie); // 4 (240)
+
+            if (writer.BaseStream.Length != 240)
+            {
+                throw new DHCPException(
+                    string.Format("Packet size should be 240 bytes but it is {0} bytes.", writer.BaseStream.Length));
+            }
 
             // Read options
-            writer.Write(GetRawOptionsBytes());
+            writer.Write(this.GetRawOptionsBytes());
 
             if (writer.BaseStream.Length > PacketMaxLength)
             {
                 throw new DHCPException(
-                    String.Format("Packet is too large ({0} / {1} bytes)", writer.BaseStream.Length, PacketMaxLength));
+                    string.Format("Packet is too large ({0} / {1} bytes)", writer.BaseStream.Length, PacketMaxLength));
             }
 
             // Add padding
             while (writer.BaseStream.Length < PacketMinimumLength)
             {
+                Debug.WriteLine("Adding padding..");
                 writer.Write((byte)0);
             }
 
@@ -198,16 +204,16 @@ namespace DHCPNet
 
         public byte[] GetRawOptionsBytes()
         {
-            BinaryWriter writer = new BinaryWriter(new MemoryStream());
+            NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
 
             if (this.Options.Count == 0)
             {
-                throw new DHCPException(String.Format("No options."));
+                throw new DHCPException(string.Format("No options."));
             }
 
             // Find End
             bool endFound = false;
-            foreach (Option i in Options)
+            foreach (Option i in this.Options)
             {
                 if (i.Code == (byte)EOption.End)
                 {
@@ -220,23 +226,21 @@ namespace DHCPNet
             {
                 if (this.ThrowExceptionOnParse)
                 {
-                    throw new DHCPException(String.Format("End option was not found"));
+                    throw new DHCPException(string.Format("End option was not found"));
                 }
             }
 
-            foreach (Option i in Options)
+            foreach (Option i in this.Options)
             {
-                byte[] data = i.GetRawBytes();
+                Debug.WriteLine(String.Format("Adding: {0} (0x{0:x2}) {1}", i.Code, i.GetType()));
+                writer.Write(i.Code);
 
-                if (i is AOptionMetaData)
+                if (!(i is AOptionMetaData))
                 {
-                    writer.Write(i.Code);
-                }
-                else
-                {
-                    writer.Write(i.Code);
-                    writer.Write(data.Length);
-                    writer.Write(data, 0, data.Length);
+                    byte[] data = i.GetRawBytes();
+                    Debug.WriteLine(String.Format("Length: {0} ", (byte)data.Length));
+                    writer.Write((byte)data.Length);
+                    writer.Write(data);
                 }
             }
 
@@ -245,133 +249,6 @@ namespace DHCPNet
             writer.BaseStream.Read(rawbytes, 0, (int)writer.BaseStream.Length);
 
             return rawbytes;
-        }
-
-        /// <summary>
-        /// Read DHCP packet to object
-        /// </summary>
-        public void Read(BinaryReader reader)
-        {
-            if (reader.BaseStream.Length < PacketMinimumLength)
-            {
-                throw new DHCPException(String.Format("Packet too small: {0} bytes", reader.BaseStream.Length));
-            }
-
-            if (reader.BaseStream.Length > PacketMaxLength)
-            {
-                throw new DHCPException(String.Format("Packet too large: {0} bytes", reader.BaseStream.Length));
-            }
-
-            OpCode = (EOpCode)reader.ReadByte();
-            HardwareAddressType = (EHardwareType)reader.ReadByte();
-
-            byte _hwaddrlen = reader.ReadByte();
-
-            Hops = reader.ReadByte();
-            TransactionID = BitConverter.ToUInt32(reader.ReadBytes(4), 0);
-            Seconds = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
-            Flags = BitConverter.ToUInt16(reader.ReadBytes(2), 0);
-            ClientAddress = new IPv4Address(reader.ReadBytes(4));
-            YourAddress = new IPv4Address(reader.ReadBytes(4));
-            ServerAddress = new IPv4Address(reader.ReadBytes(4));
-            RelayAgentAddress = new IPv4Address(reader.ReadBytes(4));
-
-            byte[] _clienthwaddr = reader.ReadBytes(16);
-
-            ServerHostName = Option.BytesToString(reader.ReadBytes(64));
-            File = Option.BytesToString(reader.ReadBytes(128));
-
-            if (_hwaddrlen == 0)
-            {
-                ClientHardwareAddress = new HardwareAddress(new byte[] { });
-            }
-            else if (_hwaddrlen == 6)
-            {
-                byte[] macaddr = new byte[6];
-                Array.Copy(_clienthwaddr, 0, macaddr, 0, 6);
-                ClientHardwareAddress = new HardwareAddress(new MacAddress(macaddr));
-            }
-            else
-            {
-                ClientHardwareAddress = new HardwareAddress(_clienthwaddr);
-            }
-
-            // Magic cookie
-            byte[] cookie = reader.ReadBytes(4);
-
-            if (!(cookie[0] == MagicCookie[0] && cookie[1] == MagicCookie[1] && cookie[2] == MagicCookie[2]
-                  && cookie[3] == MagicCookie[3]))
-            {
-                throw new DHCPException("Malformed packet: Magic cookie not found.");
-            }
-
-            ReadOptions(reader);
-        }
-
-        /// <summary>
-        /// Read DHCP packet to object
-        /// </summary>
-        public DHCPPacket(byte[] raw)
-        {
-            BinaryReader reader = new BinaryReader(new MemoryStream(raw, 0, raw.Length));
-            Read(reader);
-        }
-
-        /// <summary>
-        /// Read DHCP packet options to objects
-        /// </summary>
-        public bool ReadOptions(BinaryReader reader)
-        {
-            Debug.WriteLine(reader.BaseStream.Position);
-
-            using (reader)
-            {
-                try
-                {
-                    while (reader.BaseStream.Position != reader.BaseStream.Length)
-                    {
-
-                        Option o = OptionFactory.GetOption(reader.ReadByte());
-
-                        if (!(o is AOptionMetaData))
-                        {
-                            byte len = reader.ReadByte();
-                            Debug.WriteLine(len);
-                            byte[] data = reader.ReadBytes(len);
-                            o.ReadRaw(data);
-                        }
-
-                        this.Options.Add(o);
-                    }
-                }
-                catch (EndOfStreamException e)
-                {
-                    if (ThrowExceptionOnParse)
-                    {
-                        string err = String.Format(
-                            "Error reading: position: {0} len: {1}. Options read: {2} ({3})",
-                            reader.BaseStream.Position,
-                            reader.BaseStream.Length,
-                            this.Options.Count,
-                            this.Options.Last().GetType()
-                            );
-
-                        throw new OptionException(err, e);
-                    }
-                }
-
-
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Read DHCP packet options to objects
-        /// </summary>
-        public void ReadOptions(byte[] raw)
-        {
-            BinaryReader reader = new BinaryReader(new MemoryStream(raw, 0, raw.Length));
-            ReadOptions(reader);
         }
 
         public DHCPPacket()
