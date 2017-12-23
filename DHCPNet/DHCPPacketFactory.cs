@@ -43,16 +43,30 @@ namespace DHCPNet
 
                 byte _hwaddrlen = (byte)reader.ReadByte(); // 1 (3)
 
+                if (_hwaddrlen > 16)
+                {
+                    throw new DHCPException(String.Format("Malformed packet. Hardware address length was {0}.", _hwaddrlen));
+                }
+
                 p.Hops = (byte)reader.ReadByte(); // 1 (4)
                 p.TransactionID = reader.ReadUInt32(); // 4 (8)
                 p.Seconds = reader.ReadUInt16(); // 2 (10)
                 p.Flags = reader.ReadUInt16(); // 2 (12)
-                p.ClientAddress = new IPv4Address(reader.ReadUInt32()); // 4 (16)
-                p.YourAddress = new IPv4Address(reader.ReadUInt32()); // 4 (20)
-                p.ServerAddress = new IPv4Address(reader.ReadUInt32()); // 4 (24)
-                p.RelayAgentAddress = new IPv4Address(reader.ReadUInt32()); // 4 (28)
+                p.ClientAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (16)
+                p.YourAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (20)
+                p.ServerAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (24)
+                p.RelayAgentAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (28)
 
-                byte[] _clienthwaddr = reader.ReadBytes(16); // 16 (44)
+                // 16 (44)
+                byte[] _clienthwaddr = { };
+
+                if(_hwaddrlen > 0)
+                {
+                    _clienthwaddr = reader.ReadBytes(_hwaddrlen);
+                }
+
+                // Discard rest
+                reader.BaseStream.Seek(44, SeekOrigin.Begin);
 
                 p.ServerHostName = string.Empty;
 
@@ -93,11 +107,31 @@ namespace DHCPNet
                     p.ClientHardwareAddress = new HardwareAddress(_clienthwaddr);
                 }
 
-                // Magic cookie 4 bytes
-                uint cookie = reader.ReadUInt32(); // 4 (240)
-                if (cookie != p.MagicCookie)
+                bool validCookie = true;
+
+                if (reader.ReadByte() != 99)
                 {
-                    throw new DHCPException(String.Format("Malformed packet: Magic cookie not found. Found: '{0:x}' instead of '{1:x}'.", cookie, p.MagicCookie));
+                    validCookie = false;
+                }
+
+                if (reader.ReadByte() != 130)
+                {
+                    validCookie = false;
+                }
+
+                if (reader.ReadByte() != 83)
+                {
+                    validCookie = false;
+                }
+
+                if (reader.ReadByte() != 99)
+                {
+                    validCookie = false;
+                }
+
+                if (!validCookie)
+                {
+                    throw new DHCPException(String.Format("Malformed packet: Magic cookie not found."));
                 }
 
                 if (reader.BaseStream.Position != 240)

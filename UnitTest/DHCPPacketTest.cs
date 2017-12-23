@@ -87,15 +87,15 @@ namespace UnitTest.DHCPPacketTest
         {
             HardwareAddress ha = new HardwareAddress(new MacAddress(new byte[] { 00, 11, 22, 33, 44, 55 }));
 
-            IPv4Address expectedIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+            IPv4Address expectedIP = new IPv4Address(new byte[] { 1, 2, 3, 4 });
 
             DHCPPacket p = new DHCPPacket()
             {
                 OpCode = EOpCode.BootRequest,
                 HardwareAddressType = EHardwareType.Ethernet,
-                Hops = 0,
-                TransactionID = 0,
-                Seconds = 0,
+                Hops = 99,
+                TransactionID = 0x12345678,
+                Seconds = 0xf00f,
                 Flags = 0,
                 ClientAddress = expectedIP,
                 YourAddress = expectedIP,
@@ -110,9 +110,9 @@ namespace UnitTest.DHCPPacketTest
 
             Assert.Equal(EOpCode.BootRequest, p.OpCode);
             Assert.Equal(EHardwareType.Ethernet, p.HardwareAddressType);
-            Assert.Equal(0, p.Hops);
-            Assert.Equal((uint)0, p.TransactionID);
-            Assert.Equal((ushort)0, p.Seconds);
+            Assert.Equal(99, p.Hops);
+            Assert.Equal((uint)0x12345678, p.TransactionID);
+            Assert.Equal((ushort)0xf00f, p.Seconds);
             Assert.Equal((ushort)0, p.Flags);
             Assert.Equal(expectedIP.ToString(), p.ClientAddress.ToString());
             Assert.Equal(expectedIP.ToString(), p.YourAddress.ToString());
@@ -140,7 +140,7 @@ namespace UnitTest.DHCPPacketTest
                 byte actual = pb[i];
 
                 Assert.True(expected == actual,
-                    String.Format("Expected: '{0}', Actual: '{1}' at offset {2}.", (byte)expected, (byte)actual, i)
+                    String.Format("Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}.", (byte)expected, (byte)actual, i)
                 );
             }
         }
@@ -156,7 +156,7 @@ namespace UnitTest.DHCPPacketTest
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");
-            Assert.Equal((uint)0x3d1d, p.TransactionID);
+            Assert.True((uint)0x3d1d == p.TransactionID, String.Format("Transaction id was '{0:x}'", p.TransactionID));
             Assert.True(0 == p.Seconds, "Seconds wasn't 0");
             Assert.True(0 == p.Flags, "Flags wasn't 0");
             Assert.Equal(expectedIP.ToString(), p.ClientAddress.ToString());
@@ -164,7 +164,8 @@ namespace UnitTest.DHCPPacketTest
             Assert.Equal(expectedIP.ToString(), p.ServerAddress.ToString());
             Assert.Equal(expectedIP.ToString(), p.RelayAgentAddress.ToString());
 
-            byte[] expectedMac = { 0x00, 0x0b, 0x82, 0x01, 0xfc, 0x42 };
+            HardwareAddress expectedHardwareAddress = new HardwareAddress(new MacAddress(new byte[]{ 0x00, 0x0b, 0x82, 0x01, 0xfc, 0x42 }));
+            byte[] expectedMac = expectedHardwareAddress.Address;
             byte[] actualMac = p.ClientHardwareAddress.Address;
 
             for (int i = 0; i < expectedMac.Length; i++)
@@ -173,7 +174,7 @@ namespace UnitTest.DHCPPacketTest
                 byte actual = actualMac[i];
 
                 Assert.True(expected == actual,
-                    String.Format("Expected: '{0}', Actual: '{1}' at offset {2}.", (byte)expected, (byte)actual, i)
+                    String.Format("Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}. Expected: {3} Actual: {4}", (byte)expected, (byte)actual, i, expectedHardwareAddress, p.ClientHardwareAddress)
                 );
             }
 
@@ -196,7 +197,7 @@ namespace UnitTest.DHCPPacketTest
                 byte actual = pb[i];
 
                 Assert.True(expected == actual,
-                    String.Format("Expected: '{0}', Actual: '{1}' at offset {2}.", (byte)expected, (byte)actual, i)
+                    String.Format("Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}.", (byte)expected, (byte)actual, i)
                 );
             }
         }
@@ -224,7 +225,8 @@ namespace UnitTest.DHCPPacketTest
             Assert.Equal(expectedServerIP.ToString(), p.ServerAddress.ToString());
             Assert.Equal(expectedRelayIP.ToString(), p.RelayAgentAddress.ToString());
 
-            byte[] expectedMac = { 0x00, 0x0b, 0x82, 0x01, 0xfc, 0x42 };
+            HardwareAddress expectedHardwareAddress = new HardwareAddress(new MacAddress(new byte[] { 0x00, 0x0b, 0x82, 0x01, 0xfc, 0x42 }));
+            byte[] expectedMac = expectedHardwareAddress.Address;
             byte[] actualMac = p.ClientHardwareAddress.Address;
 
             for (int i = 0; i < expectedMac.Length; i++)
@@ -233,7 +235,7 @@ namespace UnitTest.DHCPPacketTest
                 byte actual = actualMac[i];
 
                 Assert.True(expected == actual,
-                    String.Format("Expected: '{0}', Actual: '{1}' at offset {2}.", (byte)expected, (byte)actual, i)
+                    String.Format("Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}. Expected: {3} Actual: {4}", (byte)expected, (byte)actual, i, expectedHardwareAddress, p.ClientHardwareAddress)
                 );
             }
 

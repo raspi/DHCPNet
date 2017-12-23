@@ -11,7 +11,7 @@ namespace DHCPNet.v4.Option
 
         public override string ToString()
         {
-            return this.Time.ToString();
+            return Time.ToString();
         }
     }
 

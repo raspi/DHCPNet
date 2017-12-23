@@ -3,6 +3,7 @@ using System.IO;
 
 namespace DHCPNet
 {
+    using System.Diagnostics;
 
     /// <summary>
     /// The network binary writer.
@@ -15,7 +16,7 @@ namespace DHCPNet
 
         public override void Write(byte[] buffer)
         {
-            if (!BitConverter.IsLittleEndian)
+            if (BitConverter.IsLittleEndian)
             {
                 Array.Reverse(buffer);
             }
@@ -25,8 +26,16 @@ namespace DHCPNet
 
         public override void Write(uint value)
         {
-            Write(BitConverter.GetBytes(value));
+            byte[] buffer = BitConverter.GetBytes(value);
+
+            if (!BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(buffer);
+            }
+
+            base.Write(buffer);
         }
+
     }
 
 }

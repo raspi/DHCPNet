@@ -39,7 +39,13 @@ namespace DHCPNet
 
         public override uint ReadUInt32()
         {
-            return BitConverter.ToUInt32(ReadBytes(4), 0);
+            byte[] tmp = ReadBytes(4);
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(tmp);
+            }
+
+            return BitConverter.ToUInt32(tmp, 0);
         }
     }
 

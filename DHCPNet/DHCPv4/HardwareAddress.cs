@@ -15,7 +15,7 @@ namespace DHCPNet
         {
             get
             {
-                return this._len;
+                return _len;
             }
         }
 
@@ -24,8 +24,8 @@ namespace DHCPNet
             get
             {
                 // Always return 16 bytes
-                byte[] b = new byte[this.Length];
-                Array.Copy(this._addr, 0, b, 0, this.Length);
+                byte[] b = new byte[Length];
+                Array.Copy(_addr, 0, b, 0, Length);
                 Array.Resize(ref b, 16);
                 return b;
             }
@@ -36,8 +36,8 @@ namespace DHCPNet
                     throw new Exception(String.Format("Invalid length: {0}.", value.Length));
                 }
 
-                this._len = (byte)value.Length;
-                this._addr = value;
+                _len = (byte)value.Length;
+                _addr = value;
             }
         }
 
@@ -53,6 +53,17 @@ namespace DHCPNet
         public HardwareAddress(MacAddress mac)
         {
             Address = mac.Address;
+        }
+
+        public override string ToString()
+        {
+            string o = String.Empty;
+            foreach (byte i in this._addr)
+            {
+                o += String.Format("{0:x2} ", i);
+            }
+
+            return o;
         }
     }
 }

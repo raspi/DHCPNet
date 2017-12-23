@@ -4,13 +4,13 @@ namespace DHCPNet
 {
     public class IPv4Address
     {
-        protected byte[] _addr;
+        protected byte[] _addr = { 0, 0, 0, 0 };
 
         public byte[] Address
         {
             get
             {
-                return this._addr;
+                return _addr;
             }
             set
             {
@@ -24,7 +24,7 @@ namespace DHCPNet
                     throw new IPv4AddressException(String.Format("Invalid length: {0}.", value.Length));
                 }
 
-                this._addr = value;
+                _addr = value;
             }
         }
 

@@ -35,7 +35,7 @@ namespace DHCPNet.v4.Option
         {
             get
             {
-                return GetCIDRFromBytes(this.GetRawBytes());
+                return GetCIDRFromBytes(GetRawBytes());
             }
             set
             {
@@ -44,7 +44,7 @@ namespace DHCPNet.v4.Option
                     throw new OptionException(String.Format("Invalid CIDR: {0}", value));
                 }
 
-                this.Address = new List<IPv4Address>()
+                Address = new List<IPv4Address>()
                                    {
                                        new IPv4Address(GetCIDRBytes(value))
                                    };

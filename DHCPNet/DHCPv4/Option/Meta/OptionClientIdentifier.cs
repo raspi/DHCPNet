@@ -43,7 +43,7 @@ namespace DHCPNet.v4.Option
         {
             get
             {
-                return this._type;
+                return _type;
             }
         }
 
@@ -56,7 +56,7 @@ namespace DHCPNet.v4.Option
         {
             get
             {
-                return this._id;
+                return _id;
             }
             set
             {
@@ -65,10 +65,10 @@ namespace DHCPNet.v4.Option
                     throw new OptionException("Minimum length 2");
                 }
 
-                this._type = (EHardwareType)value[0];
+                _type = (EHardwareType)value[0];
                 Array.Resize(ref _id, value.Length - 1);
 
-                Array.Copy(value, 1, this._id, 0, value.Length - 1);
+                Array.Copy(value, 1, _id, 0, value.Length - 1);
             }
         }
 

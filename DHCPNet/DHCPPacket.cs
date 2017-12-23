@@ -138,12 +138,6 @@ namespace DHCPNet
         public string File { get; set; }
 
         /// <summary>
-        /// n bytes
-        /// DHCP Magic cookie before options
-        /// </summary>
-        public readonly uint MagicCookie = 0x63538263;
-
-        /// <summary>
         /// DHCP Options and BOOTP Vendor Extensions
         /// https://tools.ietf.org/html/rfc2132
         /// </summary>
@@ -161,17 +155,25 @@ namespace DHCPNet
             writer.Write((byte)this.HardwareAddressType); // 1 (2)
             writer.Write(this.HardwareAddressLength); // 1 (3)
             writer.Write(this.Hops); // 1 (4)
-            writer.Write(this.TransactionID); // 4 (8)
-            writer.Write(this.Seconds); // 2 (10)
-            writer.Write(this.Flags); // 2 (12)
-            writer.Write(this.ClientAddress.Address); // 4 (16)
-            writer.Write(this.YourAddress.Address); // 4 (20)
-            writer.Write(this.ServerAddress.Address); // 4 (24)
-            writer.Write(this.RelayAgentAddress.Address); // 4 (28)
-            writer.Write(this.ClientHardwareAddress.Address); // 16 (44)
+            writer.Write(BitConverter.GetBytes(this.TransactionID)); // 4 (8)
+            writer.Write(BitConverter.GetBytes(this.Seconds)); // 2 (10)
+            writer.Write(BitConverter.GetBytes(this.Flags)); // 2 (12)
+
+            // IPv4 addresses
+            writer.Write(this.ClientAddress.Address, 0, 4); // 4 (16)
+            writer.Write(this.YourAddress.Address, 0, 4); // 4 (20)
+            writer.Write(this.ServerAddress.Address, 0, 4); // 4 (24)
+            writer.Write(this.RelayAgentAddress.Address, 0, 4); // 4 (28)
+
+            writer.Write(this.ClientHardwareAddress.Address, 0, 16); // 16 (44)
             writer.Write(Option.StringToBytes(this.ServerHostName, 64)); // 64 (108)
             writer.Write(Option.StringToBytes(this.File, 128)); // 128 (236)
-            writer.Write(this.MagicCookie); // 4 (240)
+
+            // Magic cookie
+            writer.Write((byte)99);
+            writer.Write((byte)130);
+            writer.Write((byte)83);
+            writer.Write((byte)99);
 
             if (writer.BaseStream.Length != 240)
             {
@@ -180,7 +182,8 @@ namespace DHCPNet
             }
 
             // Read options
-            writer.Write(this.GetRawOptionsBytes());
+            byte[] options = this.GetRawOptionsBytes();
+            writer.Write(options, 0, options.Length);
 
             if (writer.BaseStream.Length > PacketMaxLength)
             {
@@ -233,14 +236,14 @@ namespace DHCPNet
             foreach (Option i in this.Options)
             {
                 Debug.WriteLine(String.Format("Adding: {0} (0x{0:x2}) {1}", i.Code, i.GetType()));
-                writer.Write(i.Code);
+                writer.Write(new byte[] { i.Code }, 0, 1);
 
                 if (!(i is AOptionMetaData))
                 {
                     byte[] data = i.GetRawBytes();
                     Debug.WriteLine(String.Format("Length: {0} ", (byte)data.Length));
-                    writer.Write((byte)data.Length);
-                    writer.Write(data);
+                    writer.Write(new byte[] { (byte)data.Length }, 0, 1);
+                    writer.Write(data, 0, data.Length);
                 }
             }
 

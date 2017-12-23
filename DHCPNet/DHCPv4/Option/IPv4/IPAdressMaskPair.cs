@@ -15,7 +15,7 @@ namespace DHCPNet.v4.Option
 
         public override string ToString()
         {
-            return String.Format("{0}/{1}", this.Address, this.Netmask);
+            return String.Format("{0}/{1}", Address, Netmask);
         }
     }
 }
