@@ -3,7 +3,7 @@ namespace DHCPNet
     /// <summary>
     /// Flags
     /// </summary>
-    public enum EBroadcastFlag
+    public enum EBroadcastFlag : ushort
     {
         /// <summary>
         /// Broadcast disabled

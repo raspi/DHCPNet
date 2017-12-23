@@ -9,7 +9,7 @@ namespace DHCPNet.v4.Option
     {
         public override byte[] GetRawBytes()
         {
-            return new byte[] { Code };
+            return new byte[] { this.Code };
         }
 
         public override void ReadRaw(byte[] raw)

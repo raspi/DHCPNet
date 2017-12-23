@@ -33,5 +33,10 @@ namespace DHCPNet.v4.Option
 
             Enabled = raw[0] == 1;
         }
+
+        public override string ToString()
+        {
+            return Enabled ? "true" : "false";
+        }
     }
 }

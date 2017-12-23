@@ -1,6 +1,6 @@
 ﻿namespace DHCPNet.v4.Option
 {
-    public enum ENetBIOSNodeType
+    public enum ENetBIOSNodeType : byte
     {
         BNode = 0x01,
         PNode = 0x02,

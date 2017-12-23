@@ -3,7 +3,7 @@ namespace DHCPNet.v4.Option
     /// <summary>
     /// DHCP Message Type
     /// </summary>
-    public enum EMessageType
+    public enum EMessageType : byte
     {
         /// <summary>
         /// Client Broadcast: Can I have an IP?

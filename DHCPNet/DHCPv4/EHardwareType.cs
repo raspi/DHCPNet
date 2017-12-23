@@ -6,7 +6,7 @@ namespace DHCPNet
     /// https://tools.ietf.org/html/rfc1060
     /// Page 46
     /// </summary>
-    public enum EHardwareType
+    public enum EHardwareType : byte
     {
         /// <summary>
         /// Unknown type

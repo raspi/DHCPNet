@@ -18,5 +18,10 @@ namespace DHCPNet.v4.Option
         {
             return StringToBytes(Value);
         }
+
+        public override string ToString()
+        {
+            return this.Value;
+        }
     }
 }

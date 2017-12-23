@@ -41,7 +41,17 @@ namespace DHCPNet.v4.Option
 
         public override void ReadRaw(byte[] raw)
         {
-            Type = (EMessageType)raw[0];
+            if (raw.Length == 0)
+            {
+                throw new Exception("Zero length.");
+            }
+
+            if (raw.Length > 1)
+            {
+                throw new Exception(String.Format("Invalid length: {0}", raw.Length));
+            }
+
+            Type = (EMessageType)(byte)raw[0];
         }
 
         public override byte[] GetRawBytes()
