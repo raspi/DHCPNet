@@ -32,7 +32,7 @@ namespace DHCPNet.v4.Option
 
         public OptionPolicyFilter(IPv4Address ip, IPv4Address mask)
         {
-            pair = new IPAdressMaskPair() { IP = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) };
+            pair = new IPAdressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) };
         }
     }
 }

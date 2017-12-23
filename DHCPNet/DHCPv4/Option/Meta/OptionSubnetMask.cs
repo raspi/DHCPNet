@@ -1,13 +1,15 @@
 using System.Net;
 using System;
+using System.Collections.Generic;
 
 namespace DHCPNet.v4.Option
 {
+
     /// <summary>
     /// Subnet mask
     /// For example 255.255.255.0
     /// </summary>
-    public class OptionSubnetMask : Option
+    public class OptionSubnetMask : AOptionIPAddress
     {
         public OptionSubnetMask()
         {
@@ -21,8 +23,6 @@ namespace DHCPNet.v4.Option
             }
         }
 
-        protected byte _cidr = 24;
-
         /// <summary>
         /// Subnet mask as CIDR
         /// 32 = 255.255.255.255
@@ -35,7 +35,7 @@ namespace DHCPNet.v4.Option
         {
             get
             {
-                return _cidr;
+                return GetCIDRFromBytes(this.GetRawBytes());
             }
             set
             {
@@ -44,33 +44,11 @@ namespace DHCPNet.v4.Option
                     throw new OptionException(String.Format("Invalid CIDR: {0}", value));
                 }
 
-                _cidr = value;
+                this.Address = new List<IPv4Address>()
+                                   {
+                                       new IPv4Address(GetCIDRBytes(value))
+                                   };
             }
-        }
-
-        public override void ReadRaw(byte[] raw)
-        {
-            CIDR = (byte)GetCIDRFromBytes(raw);
-        }
-
-        public OptionSubnetMask(IPv4Address mask)
-        {
-            CIDR = (byte)GetCIDRFromBytes(mask.Address);
-        }
-
-        public OptionSubnetMask(byte cidr)
-        {
-            CIDR = cidr;
-        }
-
-        public IPv4Address GetSubnetMaskAsIPAddress()
-        {
-            return new IPv4Address(GetCIDRBytes(CIDR));
-        }
-
-        public override byte[] GetRawBytes()
-        {
-            return GetCIDRBytes(CIDR);
         }
     }
 }

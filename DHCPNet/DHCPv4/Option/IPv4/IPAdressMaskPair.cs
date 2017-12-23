@@ -5,12 +5,17 @@ namespace DHCPNet.v4.Option
 {
     public class IPAdressMaskPair
     {
-        public IPv4Address IP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        public IPv4Address Address = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
         public byte Netmask = 24;
 
         public IPAdressMaskPair()
         {
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}/{1}", this.Address, this.Netmask);
         }
     }
 }

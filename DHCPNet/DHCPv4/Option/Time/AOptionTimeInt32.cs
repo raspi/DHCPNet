@@ -3,12 +3,10 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// Option for 32 bit int
+    /// Option for 32 bit int seconds
     /// </summary>
-    public abstract class AOptionTimeInt32 : Option
+    public abstract class AOptionTimeInt32 : AOptionTimeBase
     {
-        public TimeSpan Time = new TimeSpan(0, 0, 0);
-
         public override byte[] GetRawBytes()
         {
             return BitConverter.GetBytes((int)Time.TotalSeconds);
@@ -19,4 +17,5 @@ namespace DHCPNet.v4.Option
             Time = new TimeSpan(0, 0, BitConverter.ToInt32(raw, 0));
         }
     }
+
 }

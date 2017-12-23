@@ -64,5 +64,10 @@ namespace DHCPNet.v4.Option
         {
             return Address[0].Address;
         }
+
+        public override string ToString()
+        {
+            return Address[0].Address.ToString();
+        }
     }
 }
