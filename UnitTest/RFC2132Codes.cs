@@ -29,5 +29,21 @@ namespace UnitTest.OptionCodes
                 );
             }
         }
+
+        [Fact]
+        public void RFC2132Booleans()
+        {
+            byte[] rfc2132codes = { 19, 20, 27, 29, 30, 31, 34, 36, 39 };
+
+            foreach (byte code in rfc2132codes)
+            {
+                Option o = OptionFactory.GetOption(code);
+
+                Assert.True(o is AOptionBoolean,
+                    String.Format("Expected Boolean type Actual: {0}", o.GetType())
+                );
+            }
+        }
+
     }
 }
