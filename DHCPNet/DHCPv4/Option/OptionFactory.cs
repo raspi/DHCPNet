@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DHCPNet.v4.Option
 {
     public static class OptionFactory
-        {
+    {
 
         /// <summary>
         /// Get all options
@@ -76,6 +76,8 @@ namespace DHCPNet.v4.Option
                 typeof(OptionRebindingTime), // 59*
                 typeof(OptionVendorClassIdentifier), // 60 see also 43
                 typeof(OptionClientIdentifier), // 61*
+                typeof(OptionNetWareIpDomainName), // 62
+                typeof(OptionNetWareIpInformation), // 63
                 typeof(OptionNetworkInformationServicePlusDomain), // 64
                 typeof(OptionNetworkInformationServicePlusServers), // 65
                 typeof(OptionTFTPServerName), // 66
@@ -89,18 +91,26 @@ namespace DHCPNet.v4.Option
                 typeof(OptionDefaultInternetRelayChat), // 74 IRC
                 typeof(OptionStreetTalkServer), // 75
                 typeof(OptionStreetTalkDirectoryAssistanceServer), // 76
+                typeof(OptionUserClassIdentity), // 77
+                typeof(OptionServiceLocationProtocolDirectoryAgent), // 78
+                typeof(OptionServiceLocationProtocolServiceScope), // 79
+                typeof(OptionNovellDirectoryServicesServers), // 85
+                typeof(OptionNovellDirectoryServicesTreeName), // 86
+                typeof(OptionNovellDirectoryServicesContext), // 87
+                typeof(OptionOpenGroupUserAuthenticationProtocol), // 98
+                typeof(OptionUseStatelessAutoConfigure), // 116
+                typeof(OptionNameServiceSearchOrder), // 117
+                typeof(OptionIPv4SubnetSelection), // 118
                 typeof(OptionEnd), // 255*
-
             };
 
             return opts;
-
         }
 
         /// <summary>
         /// Get empty option
         /// </summary>
-        public static Option GetOption(uint code)
+        public static Option GetOption(byte code)
         {
             foreach (Type i in GetOptions())
             {
@@ -113,7 +123,5 @@ namespace DHCPNet.v4.Option
 
             throw new OptionException(String.Format("No class found for option code: {0}", code));
         }
-
     }
-
 }
