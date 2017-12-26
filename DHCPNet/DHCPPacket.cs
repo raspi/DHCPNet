@@ -139,6 +139,7 @@ namespace DHCPNet
 
         /// <summary>
         /// DHCP Options and BOOTP Vendor Extensions
+        /// https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml
         /// https://tools.ietf.org/html/rfc2132
         /// </summary>
         public List<Option> Options = new List<Option>();
@@ -218,7 +219,7 @@ namespace DHCPNet
             bool endFound = false;
             foreach (Option i in this.Options)
             {
-                if (i.Code == (byte)EOption.End)
+                if (i.Code == 255)
                 {
                     endFound = true;
                     break;

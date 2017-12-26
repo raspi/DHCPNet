@@ -39,18 +39,6 @@ namespace DHCPNet.v4.Option
         public List<byte> RequestList = new List<byte>();
 
         /// <summary>
-        /// Generate request list from enum.
-        /// </summary>
-        public OptionParameterRequestList(EOption[] opts)
-        {
-            foreach (EOption i in opts)
-            {
-                Option o = OptionFactory.GetOption((byte)i);
-                RequestList.Add(o.Code);
-            }
-        }
-
-        /// <summary>
         /// Generate request list from Option list.
         /// </summary>
         public OptionParameterRequestList(Option[] opts)
