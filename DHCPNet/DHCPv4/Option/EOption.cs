@@ -4,7 +4,7 @@ namespace DHCPNet.v4.Option
     /// <summary>
     /// 
     /// </summary>
-    public enum EOption
+    public enum EOption : byte
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         /// <summary>
