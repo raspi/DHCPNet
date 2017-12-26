@@ -1,5 +1,4 @@
 using System.Net;
-using System;
 using System.Collections.Generic;
 
 namespace DHCPNet.v4.Option
@@ -46,7 +45,7 @@ namespace DHCPNet.v4.Option
         {
             foreach (EOption i in opts)
             {
-                Option o = OptionFactory.GetOption((uint)i);
+                Option o = OptionFactory.GetOption((byte)i);
                 RequestList.Add(o.Code);
             }
         }
