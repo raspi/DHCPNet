@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DHCPNet.v4.Option
 {
+    /// <summary>
+    /// https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml
+    /// </summary>
     public static class OptionFactory
     {
 
@@ -94,6 +97,10 @@ namespace DHCPNet.v4.Option
                 typeof(OptionUserClassIdentity), // 77
                 typeof(OptionServiceLocationProtocolDirectoryAgent), // 78
                 typeof(OptionServiceLocationProtocolServiceScope), // 79
+                typeof(OptionRapidCommit), // 80
+                typeof(OptionFullyQualifiedDomainName), // 81
+                typeof(OptionRelayAgentCircuitInformation), // 82
+                typeof(OptionInternetStorageNameServiceLocation), // 83
                 typeof(OptionNovellDirectoryServicesServers), // 85
                 typeof(OptionNovellDirectoryServicesTreeName), // 86
                 typeof(OptionNovellDirectoryServicesContext), // 87
@@ -101,6 +108,9 @@ namespace DHCPNet.v4.Option
                 typeof(OptionUseStatelessAutoConfigure), // 116
                 typeof(OptionNameServiceSearchOrder), // 117
                 typeof(OptionIPv4SubnetSelection), // 118
+                typeof(OptionClasslessStaticRoute), // 121
+                typeof(OptionTftpServerAddresses), // 150
+                typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
 
