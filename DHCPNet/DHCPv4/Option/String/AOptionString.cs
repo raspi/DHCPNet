@@ -3,7 +3,7 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// String
+    /// Option is string
     /// </summary>
     public abstract class AOptionString : Option
     {
