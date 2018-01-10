@@ -104,7 +104,19 @@ namespace DHCPNet.v4.Option
                 typeof(OptionNovellDirectoryServicesServers), // 85
                 typeof(OptionNovellDirectoryServicesTreeName), // 86
                 typeof(OptionNovellDirectoryServicesContext), // 87
+                typeof(OptionBroadcastAndMulticastServiceControllerDomainNameList), // 88
+                typeof(OptionBroadcastAndMulticastServiceControllerIPv4Address), // 89
+                typeof(OptionAuthentication), // 90
+                typeof(OptionClientLastTransactionTime), // 91
+                typeof(OptionAssociatedIpAddresses), // 92
+                typeof(OptionClientSystemArchitectureType), // 93
+                typeof(OptionClientNetworkInterfaceIdentifier), // 94
+                typeof(OptionLightweightDirectoryAccessProtocolAddress), // 95
+                typeof(OptionClientMachineIdentifier), // 97
                 typeof(OptionOpenGroupUserAuthenticationProtocol), // 98
+                typeof(OptionCivicLocation), // 99
+                typeof(OptionTimezone), // 100
+                typeof(OptionTimezoneDatabase), // 101
                 typeof(OptionUseStatelessAutoConfigure), // 116
                 typeof(OptionNameServiceSearchOrder), // 117
                 typeof(OptionIPv4SubnetSelection), // 118
