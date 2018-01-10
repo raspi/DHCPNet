@@ -162,10 +162,10 @@ namespace UnitTest.OptionCodes
                 100, // [RFC4833] PCode (Len: N) IEEE 1003.1 TZ String
                 101, // [RFC4833] TCode (Len: N) Reference to the TZ Database
                 // 102-107, // [RFC3679] REMOVED/Unassigned
-                108, // [RFC3679] REMOVED/Unassigned
-                109, // [RFC3679] Unassigned
-                110, // [RFC3679] REMOVED/Unassigned
-                111, // [RFC3679] Unassigned
+                // 108, // [RFC3679] REMOVED/Unassigned
+                // 109, // [RFC3679] Unassigned
+                // 110, // [RFC3679] REMOVED/Unassigned
+                // 111, // [RFC3679] Unassigned
                 112, // [RFC3679] Netinfo Address (Len: N) NetInfo Parent Server Address
                 113, // [RFC3679] Netinfo Tag (Len: N) NetInfo Parent Server Tag
                 114, // [RFC3679] URL (Len: N) URL
