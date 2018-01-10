@@ -7,14 +7,18 @@ namespace DHCPNet.v4.Option
     /// This option is used to convey the type of the DHCP message. 
     /// Legal values for options are:
     ///
-    /// 1 DHCPDISCOVER
-    /// 2 DHCPOFFER
-    /// 3 DHCPREQUEST
-    /// 4 DHCPDECLINE
-    /// 5 DHCPACK
-    /// 6 DHCPNAK
-    /// 7 DHCPRELEASE
-    /// 8 DHCPINFORM
+    ///  1 DHCPDISCOVER
+    ///  2 DHCPOFFER
+    ///  3 DHCPREQUEST
+    ///  4 DHCPDECLINE
+    ///  5 DHCPACK
+    ///  6 DHCPNAK
+    ///  7 DHCPRELEASE
+    ///  8 DHCPINFORM
+    /// 10 DHCPLEASEQUERY rfc4388
+    /// 11 DHCPLEASEUNASSIGNED rfc4388
+    /// 12 DHCPLEASEUNKNOWN rfc4388
+    /// 13 DHCPLEASEACTIVE rfc4388
     /// 
     /// Length 1 byte. 
     /// </summary>

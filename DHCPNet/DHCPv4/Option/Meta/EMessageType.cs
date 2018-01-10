@@ -44,5 +44,25 @@ namespace DHCPNet.v4.Option
         /// Client: I have this IP and there's nothing you can do about it
         /// </summary>
         Inform,
+
+        /// <summary>
+        /// https://tools.ietf.org/html/rfc4388
+        /// </summary>
+        LeaseQuery = 10,
+
+        /// <summary>
+        /// https://tools.ietf.org/html/rfc4388
+        /// </summary>
+        LeaseUnassigned = 11,
+
+        /// <summary>
+        /// https://tools.ietf.org/html/rfc4388
+        /// </summary>
+        LeaseUnknown = 12,
+
+        /// <summary>
+        /// https://tools.ietf.org/html/rfc4388
+        /// </summary>
+        LeaseActive = 13,
     }
 }
