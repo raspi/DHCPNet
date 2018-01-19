@@ -127,6 +127,14 @@ namespace DHCPNet.v4.Option
                 typeof(OptionCoordinateBasedLocationConfigurationInformation), // 123
                 typeof(OptionVendorIdentifyingVendorClass), // 124
                 typeof(OptionVendorIdentifyingVendorSpecificInformation), // 125
+                typeof(OptionIntelPreBootExecutionEnvironment128), // 128 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment129), // 129 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment130), // 130 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment131), // 131 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment132), // 132 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment133), // 133 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment134), // 134 PXE
+                typeof(OptionIntelPreBootExecutionEnvironment135), // 135 PXE
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
