@@ -5,6 +5,10 @@ using System;
 namespace DHCPNet
 {
     /// <summary>
+    /// DEPRECATED by:
+    /// 100 <see cref="OptionTimezone"/>
+    /// 101 <see cref="OptionTimezoneDatabase"/>
+    /// 
     /// The time offset field specifies the offset of
     /// the client's subnet in seconds from
     /// Coordinated Universal Time (UTC). The offset is
