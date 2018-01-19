@@ -118,6 +118,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionTimezone), // 100
                 typeof(OptionTimezoneDatabase), // 101
                 typeof(OptionNetInfoParentServerAddress), // 112
+                typeof(OptionNetInfoParentServerTag), // 113
                 typeof(OptionUseStatelessAutoConfigure), // 116
                 typeof(OptionNameServiceSearchOrder), // 117
                 typeof(OptionIPv4SubnetSelection), // 118
