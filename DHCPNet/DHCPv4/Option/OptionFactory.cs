@@ -141,6 +141,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionProtocolForCarryingAuthenticationForNetworkAccessAgent), // 136
                 typeof(OptionLocationToServiceTranslationServerLocation), // 137
                 typeof(OptionControlAndProvisioningOfWirelessAccessPointsAccessControllerAddresses), // 138
+                typeof(OptionMobilityServicesDiscoveryServerAddresses), // 139
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
