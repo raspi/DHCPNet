@@ -139,6 +139,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionIntelPreBootExecutionEnvironment134), // 134 PXE
                 typeof(OptionIntelPreBootExecutionEnvironment135), // 135 PXE
                 typeof(OptionProtocolForCarryingAuthenticationForNetworkAccessAgent), // 136
+                typeof(OptionLocationToServiceTranslationServerLocation), // 137
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
