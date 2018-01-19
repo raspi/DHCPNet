@@ -5,7 +5,7 @@ namespace DHCPNet.v4.Option
     /// Never published in an RFC
     /// https://tools.ietf.org/html/rfc3679
     /// </summary>
-    public class OptionUrl : Option
+    public class OptionUrl : AOptionString
     {
         public override byte Code
         {
@@ -13,16 +13,6 @@ namespace DHCPNet.v4.Option
             {
                 return 114;
             }
-        }
-
-        public override void ReadRaw(byte[] raw)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override byte[] GetRawBytes()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
