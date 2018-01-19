@@ -121,6 +121,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionNameServiceSearchOrder), // 117
                 typeof(OptionIPv4SubnetSelection), // 118
                 typeof(OptionDomainSearch), // 119
+                typeof(OptionSessionInitiationProtocolServers), // 120
                 typeof(OptionClasslessStaticRoute), // 121
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
