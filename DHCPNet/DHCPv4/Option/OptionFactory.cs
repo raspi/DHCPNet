@@ -124,6 +124,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionSessionInitiationProtocolServers), // 120
                 typeof(OptionClasslessStaticRoute), // 121
                 typeof(OptionCableLabsClientConfiguration), // 122
+                typeof(OptionCoordinateBasedLocationConfigurationInformation), // 123
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
