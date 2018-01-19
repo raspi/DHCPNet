@@ -126,6 +126,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionCableLabsClientConfiguration), // 122
                 typeof(OptionCoordinateBasedLocationConfigurationInformation), // 123
                 typeof(OptionVendorIdentifyingVendorClass), // 124
+                typeof(OptionVendorIdentifyingVendorSpecificInformation), // 125
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
