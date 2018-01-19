@@ -61,7 +61,7 @@ namespace UnitTest.OptionCodes
             byte[] rfc2132codes = {
                 0, // [RFC2132] Pad (Len: 0) None
                 1, // [RFC2132] Subnet Mask (Len: 4) Subnet Mask Value
-                2, // [RFC2132] Time Offset (Len: 4) Time Offset in Seconds from UTC (note: deprecated by 100 and 101)
+                // 2, // [RFC2132] Time Offset (Len: 4) Time Offset in Seconds from UTC (note: deprecated by 100 and 101)
                 3, // [RFC2132] Router (Len: N) N/4 Router addresses
                 4, // [RFC2132] Time Server (Len: N) N/4 Timeserver addresses
                 5, // [RFC2132] Name Server (Len: N) N/4 IEN-116 Server addresses
@@ -183,25 +183,25 @@ namespace UnitTest.OptionCodes
                 // 126, // [RFC3679] Removed/Unassigned 
                 // 127, // [RFC3679] Removed/Unassigned
                 128, // [RFC4578] PXE - undefined (vendor specific)
-                128, // Etherboot signature. 6 bytes:E4:45:74:68:00:00
-                128, // DOCSIS "full security" server IP address
-                128, // TFTP Server IP address (for IPPhone software load)
+                // 128, // Etherboot signature. 6 bytes:E4:45:74:68:00:00
+                // 128, // DOCSIS "full security" server IP address
+                // 128, // TFTP Server IP address (for IP Phone software load)
                 129, // [RFC4578] PXE - undefined (vendor specific)
-                129, // Kernel options. Variable lengthstring
-                129, // Call Server IP address
+                // 129, // Kernel options. Variable length string
+                // 129, // Call Server IP address
                 130, // [RFC4578] PXE - undefined (vendor specific)
-                130, // Ethernet interface. Variablelength string.
-                130, // Discrimination string (toidentify vendor)
+                // 130, // Ethernet interface. Variable length string.
+                // 130, // Discrimination string (to identify vendor)
                 131, // [RFC4578] PXE - undefined (vendor specific)
-                131, // Remote statistics server IP address
+                // 131, // Remote statistics server IP address
                 132, // [RFC4578] PXE - undefined (vendor specific)
-                132, // IEEE 802.1Q VLAN ID
+                // 132, // IEEE 802.1Q VLAN ID
                 133, // [RFC4578] PXE - undefined (vendor specific)
-                133, // IEEE 802.1D/p Layer 2 Priority
+                // 133, // IEEE 802.1D/p Layer 2 Priority
                 134, // [RFC4578] PXE - undefined (vendor specific)
-                134, // Diffserv Code Point (DSCP) forVoIP signalling and media streams
+                // 134, // Diffserv Code Point (DSCP) forVoIP signalling and media streams
                 135, // [RFC4578] PXE - undefined (vendor specific)
-                135, // HTTP Proxy for phone-specificapplications
+                // 135, // HTTP Proxy for phone-specific applications
                 136, // [RFC5192] OPTION_PANA_AGENT
                 137, // [RFC5223] OPTION_V4_LOST
                 138, // [RFC5417] OPTION_CAPWAP_AC_V4 (Len: N) CAPWAP Access Controller addresses
@@ -229,12 +229,12 @@ namespace UnitTest.OptionCodes
                 160, // [RFC7710] DHCP Captive-Portal (Len: N) DHCP Captive-Portal
                 161, // [draft-ietf-opsawg-mud] OPTION_MUD_URL_V4 (TEMPORARY - registered 2016-11-17, extension registered 2017-10-02, expires 2018-11-17) (Len: N (variable)) Manufacturer Usage Descriptions
                 // 162-174, // [RFC3942] Unassigned
-                175, // Etherboot (Tentatively Assigned -2005-06-23) 
-                176, // IP Telephone (Tentatively Assigned -2005-06-23)
-                177, // Etherboot (Tentatively Assigned -2005-06-23)
-                177, // PacketCable and CableHome (replaced by 122)
+                175, // Etherboot (Tentatively Assigned - 2005-06-23) 
+                176, // IP Telephone (Tentatively Assigned - 2005-06-23)
+                177, // Etherboot (Tentatively Assigned - 2005-06-23)
+                // 177, // PacketCable and CableHome (replaced by 122)
                 // 178-207, // [RFC3942] Unassigned
-                208, // [RFC5071][Deprecated] PXELINUX Magic (Len: 4) magic string = F1:00:74:7E
+                // 208, // [RFC5071][Deprecated] PXELINUX Magic (Len: 4) magic string = F1:00:74:7E
                 209, // [RFC5071] Configuration File (Len: N) Configuration file
                 210, // [RFC5071] Path Prefix (Len: N) Path Prefix Option
                 211, // [RFC5071] Reboot Time (Len: 4) Reboot Time
