@@ -142,6 +142,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionLocationToServiceTranslationServerLocation), // 137
                 typeof(OptionControlAndProvisioningOfWirelessAccessPointsAccessControllerAddresses), // 138
                 typeof(OptionMobilityServicesDiscoveryServerAddresses), // 139
+                typeof(OptionMobilityServicesDiscoveryServerDomainAddresses), // 140
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*

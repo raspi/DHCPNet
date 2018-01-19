@@ -2,6 +2,8 @@ namespace DHCPNet.v4.Option
 {
     /// <summary>
     /// <see cref="OptionMobilityServicesDiscoveryServerAddresses"/>
+    /// <see cref="OptionMobilityServicesDiscoveryServerDomainAddresses"/>
+    /// 
     /// * https://tools.ietf.org/html/rfc5678
     /// * http://www.ieee802.org/21/
     /// * IEEE Standard for Local and Metropolitan Area Networks
