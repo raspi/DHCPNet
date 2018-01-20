@@ -26,14 +26,19 @@ namespace DHCPNet
             {
                 byte len = raw[offset];
 
+                if (len == 0)
+                {
+                    throw new Exception("Zero length");
+                }
+
                 if (len > raw.Length)
                 {
-                    throw new IndexOutOfRangeException("Index out of range");
+                    throw new IndexOutOfRangeException("Index out of range.");
                 }
 
                 if (len > (raw.Length - offset))
                 {
-                    throw new IndexOutOfRangeException("Index out of range");
+                    throw new IndexOutOfRangeException("Index out of range.");
                 }
 
                 offset++;

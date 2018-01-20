@@ -10,6 +10,9 @@ using DHCPNet.v4.Option;
 namespace UnitTest.Helper
 {
 
+    /// <summary>
+    /// https://tools.ietf.org/html/rfc1035#section-4.1.4
+    /// </summary>
     public class All
     {
         [Fact]
@@ -37,12 +40,6 @@ namespace UnitTest.Helper
                     String.Format("Expected {0:x2} Actual: {1:x2}", expected, actual)
                 );
             }
-
-
-            //Encoding.ASCII.GetBytes("test");
-
-
-            //Assert.Equal("foo", list[0]);
         }
 
         [Fact]
@@ -70,5 +67,48 @@ namespace UnitTest.Helper
             }
 
         }
+
+        [Fact]
+        public void TestCompressedBytesToStringInvalidLength()
+        {
+            byte[] testBytes =
+                {
+                    10, (byte)'a', 0,
+                };
+
+            Assert.Throws<IndexOutOfRangeException>(
+                () => DomainName.CompressedBytesToString(testBytes)
+            );
+
+        }
+
+        [Fact]
+        public void TestCompressedBytesToStringInvalidLength2()
+        {
+            byte[] testBytes =
+                {
+                    2, (byte)'a', 0,
+                };
+
+            Assert.Throws<IndexOutOfRangeException>(
+                () => DomainName.CompressedBytesToString(testBytes)
+            );
+
+        }
+
+        [Fact]
+        public void TestCompressedBytesToStringInvalidLength3()
+        {
+            byte[] testBytes =
+                {
+                    0, (byte)'a', 0,
+                };
+
+            Assert.Throws<Exception>(
+                () => DomainName.CompressedBytesToString(testBytes)
+            );
+
+        }
+
     }
 }
