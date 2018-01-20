@@ -127,7 +127,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionSessionInitiationProtocolServers), // 120
                 typeof(OptionClasslessStaticRoute), // 121
                 typeof(OptionCableLabsClientConfiguration), // 122
-                typeof(OptionCoordinateBasedLocationConfigurationInformation), // 123
+                typeof(OptionCoordinateBasedLocationConfigurationInformationConfiguration), // 123
                 typeof(OptionVendorIdentifyingVendorClass), // 124
                 typeof(OptionVendorIdentifyingVendorSpecificInformation), // 125
                 typeof(OptionIntelPreBootExecutionEnvironment128), // 128 PXE
