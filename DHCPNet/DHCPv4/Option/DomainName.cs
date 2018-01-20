@@ -25,6 +25,12 @@ namespace DHCPNet
             do
             {
                 byte len = raw[offset];
+
+                if (len > raw.Length)
+                {
+                    throw new IndexOutOfRangeException("Index out of range");
+                }
+
                 offset++;
 
                 char[] c = new char[len];
@@ -34,13 +40,19 @@ namespace DHCPNet
                     c[i] = (char)raw[offset + i];
                 }
 
-                tmp += new string(c) + ".";
+                // Add part of domain
+                tmp += new string(c);
 
                 offset += len;
 
-                if (raw[offset] == 0)
+                if (raw[offset] != 0)
                 {
-                    tmp = tmp.Substring(0, tmp.Length - 1);
+                    // Add '.' to domain name
+                    tmp += ".";
+                }
+                else
+                {
+                    // Next
                     addr.Add(tmp);
                     offset++;
                     tmp = String.Empty;
