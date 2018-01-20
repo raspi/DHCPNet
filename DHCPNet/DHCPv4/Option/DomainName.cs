@@ -31,6 +31,11 @@ namespace DHCPNet
                     throw new IndexOutOfRangeException("Index out of range");
                 }
 
+                if (len > (raw.Length - offset))
+                {
+                    throw new IndexOutOfRangeException("Index out of range");
+                }
+
                 offset++;
 
                 char[] c = new char[len];
