@@ -3,11 +3,37 @@ using System.Net;
 
 namespace DHCPNet.v4.Option
 {
+    /// <summary>
+    /// Ipv4 and CIDR pair
+    /// </summary>
     public class IPAddressMaskPair
     {
-        public IPv4Address Address = new IPv4Address(new byte[] { 0, 0, 0, 0 });
+        /// <summary>
+        /// IPv4 address
+        /// </summary>
+        public IPv4Address Address { get; set; }
 
-        public byte Netmask = 24;
+        protected byte _netmask;
+
+        /// <summary>
+        /// CIDR mask
+        /// </summary>
+        public byte Netmask
+        {
+            get
+            {
+                return this._netmask;
+            }
+            set
+            {
+                if (value > 32)
+                {
+                    throw new Exception(String.Format("Invalid value: {0}", value));
+                }
+
+                this._netmask = value;
+            }
+        }
 
         public IPAddressMaskPair()
         {
