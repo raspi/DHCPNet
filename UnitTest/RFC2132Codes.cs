@@ -50,7 +50,7 @@ namespace UnitTest.OptionCodes
         {
             // https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml
             //
-            // Import-Csv.\options.csv | foreach { 
+            // Import-Csv .\options.csv | foreach { 
             //   $tag = $_.Tag.Trim(); 
             //   $mean = $_.Meaning.Trim() -replace "\n",""; 
             //   $len = $_.Len; 
