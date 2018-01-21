@@ -146,6 +146,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionSessionInitiationProtocolUserAgentConfigurationServiceDomains), // 141
                 typeof(OptionAccessNetworkDiscoveryAndSelectionFunctionIPv4Addresses), // 142
                 typeof(OptionCoordinateBasedLocationConfigurationInformationLocation), // 144
+                typeof(OptionForceRenewNonceProtocolCapabilities), // 145
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
