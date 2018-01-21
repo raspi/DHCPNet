@@ -152,6 +152,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionBulkLeaseQueryStatusCode), // 151
                 typeof(OptionBulkLeaseQueryBaseTime), // 152
                 typeof(OptionBulkLeaseQueryStateStartSeconds), // 153
+                typeof(OptionBulkLeaseQueryStartTime), // 154
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
