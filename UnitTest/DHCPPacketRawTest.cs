@@ -19,7 +19,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawDiscover()
         {
-            byte[] b = RawData.Discover();
+            byte[] b = RawData.Discover;
             byte[] pb = DHCPPacketFactory.Read(b).GetRawBytes();
 
             Assert.Equal(b.Length, pb.Length);
@@ -42,7 +42,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawDiscoverPacket()
         {
-            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Discover());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Discover);
 
             Assert.IsType(typeof(DHCPPacketBootRequest), p);
 
@@ -88,7 +88,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawOffer()
         {
-            byte[] b = RawData.Offer();
+            byte[] b = RawData.Offer;
             byte[] pb = DHCPPacketFactory.Read(b).GetRawBytes();
 
             Assert.Equal(b.Length, pb.Length);
@@ -111,7 +111,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawOfferPacket()
         {
-            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Offer());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Offer);
 
             Assert.IsType(typeof(DHCPPacketBootReply), p);
 
@@ -161,7 +161,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawRequest()
         {
-            byte[] b = RawData.Request();
+            byte[] b = RawData.Request;
             byte[] pb = DHCPPacketFactory.Read(b).GetRawBytes();
 
             Assert.Equal(b.Length, pb.Length);
@@ -184,7 +184,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawRequestPacket()
         {
-            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Request());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Request);
 
             Assert.IsType(typeof(DHCPPacketBootRequest), p);
 
@@ -231,7 +231,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawAcknowledge()
         {
-            byte[] b = RawData.Acknowledge();
+            byte[] b = RawData.Acknowledge;
             byte[] pb = DHCPPacketFactory.Read(b).GetRawBytes();
 
             Assert.Equal(b.Length, pb.Length);
@@ -254,7 +254,7 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawAcknowledgePacket()
         {
-            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Acknowledge());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Acknowledge);
 
             Assert.IsType(typeof(DHCPPacketBootReply), p);
 
