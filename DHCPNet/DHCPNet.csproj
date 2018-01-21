@@ -19,7 +19,7 @@
     <Optimize>true</Optimize>
     <LangVersion>4</LangVersion>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -35,11 +35,12 @@
     <Optimize>true</Optimize>
     <LangVersion>4</LangVersion>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD1_2</DefineConstants>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
     <LangVersion>4</LangVersion>
     <DebugType>full</DebugType>
