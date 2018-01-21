@@ -7,11 +7,11 @@ namespace DHCPNet.v4.Option
     /// <summary>
     /// Option which takes IPv4 Adress and mask as a param
     /// </summary>
-    public abstract class AOptionIPAdressMask : AOptionIPAddresses
+    public abstract class AOptionIPAddressMask : AOptionIPAddresses
     {
         public List<IPAdressMaskPair> IPMaskPair = new List<IPAdressMaskPair>();
 
-        protected AOptionIPAdressMask(IPAdressMaskPair ipmask)
+        protected AOptionIPAddressMask(IPAdressMaskPair ipmask)
         {
             IPMaskPair.Add(ipmask);
         }
@@ -19,7 +19,7 @@ namespace DHCPNet.v4.Option
         /// <summary>
         /// Set IP
         /// </summary>
-        protected AOptionIPAdressMask(IPv4Address ip, IPv4Address mask)
+        protected AOptionIPAddressMask(IPv4Address ip, IPv4Address mask)
         {
             IPMaskPair.Add(new IPAdressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) });
         }
