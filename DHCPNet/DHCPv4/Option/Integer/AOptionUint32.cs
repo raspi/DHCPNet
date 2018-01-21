@@ -3,7 +3,7 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// 32-bit unsigned integer
+    /// 32-bit unsigned integer, 4 bytes 
     /// </summary>
     public abstract class AOptionUint32 : Option
     {
