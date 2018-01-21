@@ -159,6 +159,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionPortControlProtocolServers), // 158
                 typeof(OptionDynamicAllocationOfSharedIpv4AddressesPortParameters), // 159
                 typeof(OptionCaptivePortalIdentificationUri), // 160
+                typeof(OptionManufacturerUsageDescriptionUrl), // 161
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
