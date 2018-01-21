@@ -162,6 +162,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionManufacturerUsageDescriptionUrl), // 161
                 typeof(OptionLinuxPreBootExecutionEnvironmentConfigurationFile), // 209
                 typeof(OptionLinuxPreBootExecutionEnvironmentPathPrefix), // 210
+                typeof(OptionLinuxPreBootExecutionEnvironmentRebootTimeSeconds), // 211
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
