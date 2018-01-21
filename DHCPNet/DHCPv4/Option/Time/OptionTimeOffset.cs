@@ -20,12 +20,15 @@ namespace DHCPNet
     /// (-) Negative offset
     /// indicates a location west of the zero meridian.
     /// </summary>
+    [Obsolete("Obsoleted by 100 and 101")]
     public class OptionTimeOffset : AOptionTimeInt32
     {
+        [Obsolete("Obsoleted by 100 and 101")]
         public OptionTimeOffset()
         {
         }
 
+        [Obsolete("Obsoleted by 100 and 101")]
         public override byte Code
         {
             get
@@ -33,5 +36,6 @@ namespace DHCPNet
                 return 2;
             }
         }
+       
     }
 }
