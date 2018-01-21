@@ -157,6 +157,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionBulkLeaseQueryDhcpState), // 156
                 typeof(OptionBulkLeaseQueryDataSource), // 157
                 typeof(OptionPortControlProtocolServers), // 158
+                typeof(OptionDynamicAllocationOfSharedIpv4AddressesPortParameters), // 159
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
