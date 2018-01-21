@@ -241,7 +241,7 @@ namespace UnitTest.OptionCodes
                 212, // [RFC5969] OPTION_6RD (Len: 18 + N) OPTION_6RD with N/4 6rd BR addresses
                 213, // [RFC5986] OPTION_V4_ACCESS_DOMAIN (Len: N) Access Network Domain Name
                 // 214-219, // Unassigned
-                220, // [RFC6656] Subnet Allocation Option (Len: N) Subnet Allocation Option
+                220, // [RFC6656] Subnet Allocation Option (Len: N)
                 221, // [RFC6607] Virtual Subnet Selection (VSS) Option
                 // 222-223, // [RFC3942] Unassigned
                 // 224-254, // Reserved (Private Use)
