@@ -188,7 +188,11 @@ namespace DHCPNet.v4.Option
                 }
             }
 
-            throw new OptionException(String.Format("No class found for option code: {0}", code));
+            return new OptionRawData()
+                       {
+                           _code = code,
+                       };
+
         }
     }
 }
