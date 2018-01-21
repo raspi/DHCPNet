@@ -1,6 +1,8 @@
 # Generate coverage file
 Write-Host "Generating coverage file.."
 
+Write-Host "Platform: $Env:PLATFORM"
+
 Push-Location "$PSScriptRoot"
 $covfile = "$pwd\coverage.xml"
 Write-Host "Coverage file: $covfile"
@@ -21,7 +23,13 @@ if (Test-Path Env:xunit20) {
   $xunit += "$Env:xunit20\"
 }
 
-$xunit += "xunit.console.exe"
+$xunit += "xunit.console"
+
+if ($Env:PLATFORM -eq "x86") {
+  $xunit += ".x86"
+}
+
+$xunit += ".exe"
 
 Write-Host "Xunit: $xunit"
 
