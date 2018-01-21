@@ -88,9 +88,8 @@ namespace UnitTest.DHCPPacketTest
 
             IPv4Address expectedIP = new IPv4Address(new byte[] { 1, 2, 3, 4 });
 
-            DHCPPacket p = new DHCPPacket()
+            DHCPPacketBase p = new DHCPPacketBootRequest()
             {
-                OpCode = EOpCode.BootRequest,
                 HardwareAddressType = EHardwareType.Ethernet,
                 Hops = 99,
                 TransactionID = 0x12345678,
@@ -107,7 +106,6 @@ namespace UnitTest.DHCPPacketTest
 
             p.Options = new List<Option>() { new OptionEnd() };
 
-            Assert.Equal(EOpCode.BootRequest, p.OpCode);
             Assert.Equal(EHardwareType.Ethernet, p.HardwareAddressType);
             Assert.Equal(99, p.Hops);
             Assert.Equal((uint)0x12345678, p.TransactionID);

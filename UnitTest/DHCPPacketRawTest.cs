@@ -4,7 +4,6 @@ using DHCPNet.v4.Option;
 using Xunit;
 using Xunit.Extensions;
 using System.Collections.Generic;
-
 using UnitTest.Raw;
 
 namespace UnitTest.RawPacketTest
@@ -43,11 +42,12 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawDiscoverPacket()
         {
-            DHCPPacket p = DHCPPacketFactory.Read(RawData.Discover());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Discover());
+
+            Assert.IsType(typeof(DHCPPacketBootRequest), p);
 
             IPv4Address expectedIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
-            Assert.True(EOpCode.BootRequest == p.OpCode, "Opcode wasn't BootRequest");
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");
@@ -111,14 +111,15 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawOfferPacket()
         {
-            DHCPPacket p = DHCPPacketFactory.Read(RawData.Offer());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Offer());
+
+            Assert.IsType(typeof(DHCPPacketBootReply), p);
 
             IPv4Address expectedClientIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
             IPv4Address expectedYourIP = new IPv4Address(new byte[] { 192, 168, 0, 10 });
             IPv4Address expectedServerIP = new IPv4Address(new byte[] { 192, 168, 0, 1 });
             IPv4Address expectedRelayIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
-            Assert.True(EOpCode.BootReply == p.OpCode, "Opcode wasn't BootReply");
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");
@@ -183,11 +184,12 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawRequestPacket()
         {
-            DHCPPacket p = DHCPPacketFactory.Read(RawData.Request());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Request());
+
+            Assert.IsType(typeof(DHCPPacketBootRequest), p);
 
             IPv4Address expectedIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
-            Assert.True(EOpCode.BootRequest == p.OpCode, "Opcode wasn't BootRequest");
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");
@@ -252,14 +254,15 @@ namespace UnitTest.RawPacketTest
         [Fact]
         public void RawAcknowledgePacket()
         {
-            DHCPPacket p = DHCPPacketFactory.Read(RawData.Acknowledge());
+            DHCPPacketBase p = DHCPPacketFactory.Read(RawData.Acknowledge());
+
+            Assert.IsType(typeof(DHCPPacketBootReply), p);
 
             IPv4Address expectedClientIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
             IPv4Address expectedYourIP = new IPv4Address(new byte[] { 192, 168, 0, 10 });
             IPv4Address expectedServerIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
             IPv4Address expectedRelayIP = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
-            Assert.True(EOpCode.BootReply == p.OpCode, "Opcode wasn't BootReply");
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");

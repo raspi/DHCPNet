@@ -9,7 +9,6 @@ using DHCPNet.v4.Option;
 
 namespace DHCPNet
 {
-
     /// <summary>
     /// Dynamic Host Configuration Protocol (DHCP)
     /// rfc2131
@@ -17,20 +16,13 @@ namespace DHCPNet
     /// https://tools.ietf.org/html/rfc2131
     /// https://tools.ietf.org/html/rfc2132
     /// </summary>
-    public class DHCPPacket
+    public class DHCPPacketBase
     {
         private const ushort PacketMinimumLength = 265;
 
         private const ushort PacketMaxLength = 576;
 
         public bool ThrowExceptionOnParse = true;
-
-        /// <summary>
-        /// op 1 byte
-        /// Message op code / message type.
-        /// 1 = BootRequest, 2 = BootReply
-        /// </summary>
-        public EOpCode OpCode { get; set; }
 
         /// <summary>
         /// htype 1 byte, rfc1060 page 46
@@ -152,7 +144,19 @@ namespace DHCPNet
         {
             NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
 
-            writer.Write((byte)this.OpCode); // 1
+            if (this is DHCPPacketBootRequest)
+            {
+                writer.Write((byte)EOpCode.BootRequest); // 1
+            }
+            else if (this is DHCPPacketBootReply)
+            {
+                writer.Write((byte)EOpCode.BootReply); // 1
+            }
+            else
+            {
+                throw new DHCPException(String.Format("Invalid type: {0}", this.GetType()));
+            }
+
             writer.Write((byte)this.HardwareAddressType); // 1 (2)
             writer.Write(this.HardwareAddressLength); // 1 (3)
             writer.Write(this.Hops); // 1 (4)
@@ -255,7 +259,7 @@ namespace DHCPNet
             return rawbytes;
         }
 
-        public DHCPPacket()
+        public DHCPPacketBase()
         {
         }
     }

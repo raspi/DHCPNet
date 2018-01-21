@@ -19,7 +19,7 @@ namespace DHCPNet
         /// <summary>
         /// Read DHCP packet to object
         /// </summary>
-        public static DHCPPacket Read(NetworkBinaryReader reader)
+        public static DHCPPacketBase Read(NetworkBinaryReader reader)
         {
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
 
@@ -33,12 +33,25 @@ namespace DHCPNet
                 throw new DHCPException(string.Format("Packet too large: {0} bytes", reader.BaseStream.Length));
             }
 
-            DHCPPacket p = new DHCPPacket();
+            DHCPPacketBase p;
 
             using (reader)
             {
 
-                p.OpCode = (EOpCode)(byte)reader.ReadByte(); // 1
+                EOpCode PacketType = (EOpCode)(byte)reader.ReadByte(); // 1
+
+                switch (PacketType)
+                {
+                    case EOpCode.BootReply:
+                        p = new DHCPPacketBootReply();
+                        break;
+                    case EOpCode.BootRequest:
+                        p = new DHCPPacketBootRequest();
+                        break;
+                    default:
+                        throw new DHCPException("Unknown OpCode.");
+                }
+
                 p.HardwareAddressType = (EHardwareType)(byte)reader.ReadByte(); // 1 (2)
 
                 byte _hwaddrlen = (byte)reader.ReadByte(); // 1 (3)
@@ -150,7 +163,7 @@ namespace DHCPNet
         /// <summary>
         /// Read DHCP packet to object
         /// </summary>
-        public static DHCPPacket Read(byte[] raw)
+        public static DHCPPacketBase Read(byte[] raw)
         {
             NetworkBinaryReader reader = new NetworkBinaryReader(new MemoryStream(raw, 0, raw.Length));
             return Read(reader);
