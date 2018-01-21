@@ -5,7 +5,11 @@ using System.Text;
 namespace DHCPNet.v4.Option
 {
     /// <summary>
+    /// status codes for bulk lease queries
+    /// 
     /// <see cref="OptionBulkLeaseQueryStatusCode"/>
+    /// <see cref="EMessageType.BulkLeaseDone"/>
+    /// <see cref="EMessageType.BulkLeaseQuery"/>
     /// https://tools.ietf.org/html/rfc6926#section-6.2.2
     /// </summary>
     public enum EBulkLeaseQueryStatusCode : byte

@@ -4,6 +4,8 @@ namespace DHCPNet.v4.Option
     /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
     /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
     /// <see cref="EBulkLeaseQueryStatusCode"/>
+    /// <see cref="EMessageType.BulkLeaseDone"/>
+    /// <see cref="EMessageType.BulkLeaseQuery"/>
     /// 
     /// The status-code option allows a machine-readable value to be returned
     /// regarding the status of a DHCPBULKLEASEQUERY request.

@@ -3,7 +3,8 @@ namespace DHCPNet.v4.Option
     /// <summary>
     /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
     /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
-    /// <see cref="EBulkLeaseQueryStatusCode"/>
+    /// <see cref="EMessageType.BulkLeaseDone"/>
+    /// <see cref="EMessageType.BulkLeaseQuery"/>
     /// 
     /// The base-time option is the current time the message was created to
     /// be sent by the DHCPv4 server to the requestor of the Bulk Leasequery.
