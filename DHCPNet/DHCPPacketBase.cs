@@ -134,11 +134,11 @@ namespace DHCPNet
         public string File { get; set; }
 
         /// <summary>
-        /// DHCP Options and BOOTP Vendor Extensions
+        /// Get or set DHCP Options and BOOTP Vendor Extensions
         /// https://www.iana.org/assignments/bootp-dhcp-parameters/bootp-dhcp-parameters.xhtml
         /// https://tools.ietf.org/html/rfc2132
         /// </summary>
-        public List<Option> Options = new List<Option>();
+        public List<Option> Options { get; set; }
 
         /// <summary>
         /// Get raw bytes of the packet
