@@ -18,6 +18,8 @@ namespace DHCPNet.v4.Option
     /// specified in the base-time option in the same message.
     /// 
     /// This is an unsigned integer in network byte order.
+    /// 
+    /// https://tools.ietf.org/html/rfc6926#section-6.2.4
     /// </summary>
     public class OptionBulkLeaseQueryStateStartSeconds : AOptionTimeUint32
     {
