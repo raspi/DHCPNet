@@ -211,7 +211,7 @@ namespace UnitTest.OptionCodes
                 142, // [RFC6153] OPTION-IPv4_Address-ANDSF (Len: N) ANDSF IPv4 Address Option for DHCPv4
                 // 143, // Unassigned
                 144, // [RFC6225] GeoLoc (Len: 16) Geospatial Location with Uncertainty
-                145, // [RFC6704] FORCERENEW_NONCE_CAPABLE (Len: 1) Forcerenew Nonce Capable
+                145, // [RFC6704] FORCERENEW_NONCE_CAPABLE (Len: N) Forcerenew Nonce Capable
                 146, // [RFC6731] RDNSS Selection (Len: N) Information for selecting RDNSS
                 // 147-149, // [RFC3942] Unassigned
                 150, // [RFC5859] TFTP server address
