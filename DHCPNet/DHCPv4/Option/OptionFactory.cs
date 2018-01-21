@@ -166,6 +166,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionIpv6RapidDeploymentAddresses), // 212
                 typeof(OptionLocalLocationInformationServerAccessNetworkDomainName), // 213
                 typeof(OptionCiscoSystemsSubnetAllocation), // 220
+                typeof(OptionVirtualSubnetSelectionInformation), // 221
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
