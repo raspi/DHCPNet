@@ -1,6 +1,7 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
+    /// <see cref="OptionBulkLeaseQueryStateStartSeconds"/>
     /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
     /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
     /// <see cref="EMessageType.BulkLeaseDone"/>
