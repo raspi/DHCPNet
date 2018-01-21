@@ -16,7 +16,7 @@ namespace DHCPNet
     /// https://tools.ietf.org/html/rfc2131
     /// https://tools.ietf.org/html/rfc2132
     /// </summary>
-    public class DHCPPacketBase
+    public abstract class DHCPPacketBase
     {
         private const ushort PacketMinimumLength = 265;
 
