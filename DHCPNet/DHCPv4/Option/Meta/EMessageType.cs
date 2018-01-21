@@ -46,21 +46,33 @@ namespace DHCPNet.v4.Option
         Inform,
 
         /// <summary>
+        /// Leasequery
+        /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
+        /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
         /// https://tools.ietf.org/html/rfc4388
         /// </summary>
         LeaseQuery = 10,
 
         /// <summary>
+        /// Leasequery
+        /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
+        /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
         /// https://tools.ietf.org/html/rfc4388
         /// </summary>
         LeaseUnassigned = 11,
 
         /// <summary>
+        /// Leasequery
+        /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
+        /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
         /// https://tools.ietf.org/html/rfc4388
         /// </summary>
         LeaseUnknown = 12,
 
         /// <summary>
+        /// Leasequery
+        /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
+        /// <see cref="OptionLeaseQueryClientLastTransactionTime"/>
         /// https://tools.ietf.org/html/rfc4388
         /// </summary>
         LeaseActive = 13,

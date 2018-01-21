@@ -24,8 +24,14 @@ namespace DHCPNet.v4.Option
     /// Length 4 bytes.
     /// 
     /// https://tools.ietf.org/html/rfc4388
+    /// 
+    /// <see cref="OptionLeaseQueryAssociatedIpAddresses"/>
+    /// <see cref="EMessageType.LeaseActive"/>
+    /// <see cref="EMessageType.LeaseQuery"/>
+    /// <see cref="EMessageType.LeaseUnassigned"/>
+    /// <see cref="EMessageType.LeaseUnknown"/>
     /// </summary>
-    public class OptionClientLastTransactionTime : AOptionTimeUint32
+    public class OptionLeaseQueryClientLastTransactionTime : AOptionTimeUint32
     {
         public override byte Code
         {

@@ -107,8 +107,8 @@ namespace DHCPNet.v4.Option
                 typeof(OptionBroadcastAndMulticastServiceControllerDomainNameList), // 88
                 typeof(OptionBroadcastAndMulticastServiceControllerIPv4Address), // 89
                 typeof(OptionAuthentication), // 90
-                typeof(OptionClientLastTransactionTime), // 91
-                typeof(OptionAssociatedIpAddresses), // 92
+                typeof(OptionLeaseQueryClientLastTransactionTime), // 91
+                typeof(OptionLeaseQueryAssociatedIpAddresses), // 92
                 typeof(OptionClientSystemArchitectureType), // 93
                 typeof(OptionClientNetworkInterfaceIdentifier), // 94
                 typeof(OptionLightweightDirectoryAccessProtocolAddress), // 95
