@@ -19,7 +19,7 @@ namespace DHCPNet.v4.Option
             {
                 typeof(OptionPad), // 0*
                 typeof(OptionSubnetMask), // 1*
-                typeof(OptionTimeOffset), // 2
+                typeof(OptionTimeOffset), // 2 deprecated by 100 and 101
                 typeof(OptionGateway), // 3* GW
                 typeof(OptionTimeServer), // 4
                 typeof(OptionNameServer), // 5
