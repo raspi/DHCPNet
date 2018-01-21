@@ -28,11 +28,11 @@ namespace DHCPNet.v4.Option
             }
         }
 
-        public IPAdressMaskPair pair = new IPAdressMaskPair();
+        public IPAddressMaskPair pair = new IPAddressMaskPair();
 
         public OptionPolicyFilter(IPv4Address ip, IPv4Address mask)
         {
-            pair = new IPAdressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) };
+            pair = new IPAddressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) };
         }
     }
 }

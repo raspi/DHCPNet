@@ -3,13 +3,13 @@ using System.Net;
 
 namespace DHCPNet.v4.Option
 {
-    public class IPAdressMaskPair
+    public class IPAddressMaskPair
     {
         public IPv4Address Address = new IPv4Address(new byte[] { 0, 0, 0, 0 });
 
         public byte Netmask = 24;
 
-        public IPAdressMaskPair()
+        public IPAddressMaskPair()
         {
         }
 

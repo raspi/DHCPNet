@@ -9,9 +9,9 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionIPAddressMask : AOptionIPAddresses
     {
-        public List<IPAdressMaskPair> IPMaskPair = new List<IPAdressMaskPair>();
+        public List<IPAddressMaskPair> IPMaskPair = new List<IPAddressMaskPair>();
 
-        protected AOptionIPAddressMask(IPAdressMaskPair ipmask)
+        protected AOptionIPAddressMask(IPAddressMaskPair ipmask)
         {
             IPMaskPair.Add(ipmask);
         }
@@ -21,7 +21,7 @@ namespace DHCPNet.v4.Option
         /// </summary>
         protected AOptionIPAddressMask(IPv4Address ip, IPv4Address mask)
         {
-            IPMaskPair.Add(new IPAdressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) });
+            IPMaskPair.Add(new IPAddressMaskPair() { Address = ip, Netmask = (byte)GetCIDRFromBytes(mask.Address) });
         }
     }
 }
