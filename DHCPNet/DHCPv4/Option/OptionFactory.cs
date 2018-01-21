@@ -150,6 +150,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionRecursiveDnsServersSelection), // 146
                 typeof(OptionTftpServerAddresses), // 150
                 typeof(OptionBulkLeaseQueryStatusCode), // 151
+                typeof(OptionBulkLeaseQueryBaseTime), // 152
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
