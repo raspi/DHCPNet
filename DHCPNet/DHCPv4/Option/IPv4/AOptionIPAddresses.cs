@@ -9,7 +9,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionIPAddresses : Option
     {
-        public List<IPv4Address> IPAdresses = new List<IPv4Address>();
+        public List<IPv4Address> IPAddresses { get; set; }
 
         protected AOptionIPAddresses()
         {
@@ -31,7 +31,7 @@ namespace DHCPNet.v4.Option
             {
                 byte[] b = { 0, 0, 0, 0 };
                 Array.Copy(raw, i, b, 0, 4);
-                IPAdresses.Add(new IPv4Address(b));
+                this.IPAddresses.Add(new IPv4Address(b));
             }
         }
 
@@ -40,7 +40,7 @@ namespace DHCPNet.v4.Option
         /// </summary>
         protected AOptionIPAddresses(IPv4Address ip)
         {
-            IPAdresses.Add(ip);
+            this.IPAddresses.Add(ip);
         }
 
         /// <summary>
@@ -50,13 +50,13 @@ namespace DHCPNet.v4.Option
         {
             foreach (IPv4Address i in ips)
             {
-                IPAdresses.Add(i);
+                this.IPAddresses.Add(i);
             }
         }
 
         protected AOptionIPAddresses(List<IPv4Address> ips)
         {
-            IPAdresses = ips;
+            this.IPAddresses = ips;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace DHCPNet.v4.Option
         {
             byte[] b = { };
 
-            foreach (IPv4Address i in IPAdresses)
+            foreach (IPv4Address i in this.IPAddresses)
             {
                 Array.Copy(i.Address, 0, b, 0, 4);
             }
