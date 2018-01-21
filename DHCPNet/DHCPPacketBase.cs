@@ -10,8 +10,12 @@ using DHCPNet.v4.Option;
 namespace DHCPNet
 {
     /// <summary>
+    /// Base class
     /// Dynamic Host Configuration Protocol (DHCP)
     /// rfc2131
+    /// 
+    /// <see cref="DHCPPacketBootRequest"/>
+    /// <see cref="DHCPPacketBootReply"/>
     /// 
     /// https://tools.ietf.org/html/rfc2131
     /// https://tools.ietf.org/html/rfc2132
