@@ -18,6 +18,7 @@
     /// option in the DHCPOFFER.
     /// 
     /// https://tools.ietf.org/html/rfc6704
+    /// Errata: https://www.rfc-editor.org/errata/rfc6704
     /// </summary>
     public class OptionForceRenewNonceProtocolCapabilities : Option
     {
