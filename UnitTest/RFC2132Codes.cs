@@ -229,9 +229,9 @@ namespace UnitTest.OptionCodes
                 160, // [RFC7710] DHCP Captive-Portal (Len: N) DHCP Captive-Portal
                 161, // [draft-ietf-opsawg-mud] OPTION_MUD_URL_V4 (TEMPORARY - registered 2016-11-17, extension registered 2017-10-02, expires 2018-11-17) (Len: N (variable)) Manufacturer Usage Descriptions
                 // 162-174, // [RFC3942] Unassigned
-                175, // Etherboot (Tentatively Assigned - 2005-06-23) 
-                176, // IP Telephone (Tentatively Assigned - 2005-06-23)
-                177, // Etherboot (Tentatively Assigned - 2005-06-23)
+                // 175, // Etherboot (Tentatively Assigned - 2005-06-23) 
+                // 176, // IP Telephone (Tentatively Assigned - 2005-06-23)
+                // 177, // Etherboot (Tentatively Assigned - 2005-06-23)
                 // 177, // PacketCable and CableHome (replaced by 122)
                 // 178-207, // [RFC3942] Unassigned
                 // 208, // [RFC5071][Deprecated] PXELINUX Magic (Len: 4) magic string = F1:00:74:7E
