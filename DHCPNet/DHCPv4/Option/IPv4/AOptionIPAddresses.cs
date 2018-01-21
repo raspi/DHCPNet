@@ -5,7 +5,7 @@ using System.Net;
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// Option which takes multiple IP Adressess as a param
+    /// Option which takes multiple IP Addressess as a param
     /// </summary>
     public abstract class AOptionIPAddresses : Option
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// Option which takes one IP Adress as a param
+    /// Option which takes one IP Address as a param
     /// </summary>
     public abstract class AOptionIPAddress : Option
     {

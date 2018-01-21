@@ -1,7 +1,7 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// IP Adress(es) of gateway(s)
+    /// IP Address(es) of gateway(s)
     /// 
     /// The router option specifies a list of IP addresses for 
     /// routers on the client's subnet.
