@@ -5,7 +5,7 @@ using System.Net;
 namespace DHCPNet.v4.Option
 {
     /// <summary>
-    /// Option which takes IPv4 Adress and mask as a param
+    /// Option which takes IPv4 Address and mask as a param
     /// </summary>
     public abstract class AOptionIPAddressMask : AOptionIPAddresses
     {
