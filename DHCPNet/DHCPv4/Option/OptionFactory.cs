@@ -149,6 +149,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionForceRenewNonceProtocolCapabilities), // 145
                 typeof(OptionRecursiveDnsServersSelection), // 146
                 typeof(OptionTftpServerAddresses), // 150
+                typeof(OptionBulkLeaseQueryStatusCode), // 151
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };

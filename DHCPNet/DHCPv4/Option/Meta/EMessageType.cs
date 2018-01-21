@@ -76,5 +76,17 @@ namespace DHCPNet.v4.Option
         /// https://tools.ietf.org/html/rfc4388
         /// </summary>
         LeaseActive = 13,
+
+        /// <summary>
+        /// Bulk Leasequery
+        /// https://tools.ietf.org/html/rfc6926#section-6.2.1
+        /// </summary>
+        BulkLeaseQuery = 14,
+
+        /// <summary>
+        /// Bulk Leasequery
+        /// https://tools.ietf.org/html/rfc6926#section-6.2.1
+        /// </summary>
+        BulkLeaseDone = 15,
     }
 }
