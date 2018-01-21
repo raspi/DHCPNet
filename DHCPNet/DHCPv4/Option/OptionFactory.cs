@@ -163,6 +163,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionLinuxPreBootExecutionEnvironmentConfigurationFile), // 209
                 typeof(OptionLinuxPreBootExecutionEnvironmentPathPrefix), // 210
                 typeof(OptionLinuxPreBootExecutionEnvironmentRebootTimeSeconds), // 211
+                typeof(OptionIpv6RapidDeploymentAddresses), // 212
                 typeof(OptionMicrosoftClasslessStaticRoute), // 249 see 121
                 typeof(OptionEnd), // 255*
             };
