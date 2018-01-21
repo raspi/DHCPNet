@@ -51,6 +51,6 @@ test:
     only:
       - '**\Test.dll'
 
-test_script:
-  - ps: .\coverage.ps1
-  - codecov -f "coverage.xml"
+# generate coverage report
+after_test:
+  - ps: if ($env:configuration -Match "Debug" -and $Env:PLATFORM -Match "Any CPU") { .\coverage.ps1; codecov -f "coverage.xml"}
