@@ -7,6 +7,9 @@ namespace DHCPNet
     /// </summary>
     public class IPv4Address
     {
+        /// <summary>
+        /// The _addr.
+        /// </summary>
         protected byte[] _addr = { 0, 0, 0, 0 };
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace DHCPNet
 
                 if (value.Length != 4)
                 {
-                    throw new IPv4AddressException(String.Format("Invalid length: {0}.", value.Length));
+                    throw new IPv4AddressException(string.Format("Invalid length: {0}.", value.Length));
                 }
 
                 _addr = value;
@@ -47,12 +50,19 @@ namespace DHCPNet
             Address = v;
         }
 
-        public IPv4Address(UInt32 v)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
+        public IPv4Address(uint v)
         {
             Address = BitConverter.GetBytes(v);
         }
 
-        public UInt32 ToUInt32()
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint ToUInt32()
         {
             return BitConverter.ToUInt32(Address, 0);
         }
@@ -62,7 +72,7 @@ namespace DHCPNet
         /// </summary>
         public override string ToString()
         {
-            return String.Format("{0}.{1}.{2}.{3}", Address[0], Address[1], Address[2], Address[3]);
+            return string.Format("{0}.{1}.{2}.{3}", Address[0], Address[1], Address[2], Address[3]);
         }
     }
 }
