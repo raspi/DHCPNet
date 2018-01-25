@@ -77,5 +77,19 @@ namespace DHCPNet.v4.Option
 
             return b;
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            string tmp = string.Empty;
+
+            foreach (IPv4Address ip in IPAddresses)
+            {
+                tmp += ip + " ";
+            }
+
+            return tmp.TrimEnd(' ');
+        }
+
     }
 }
