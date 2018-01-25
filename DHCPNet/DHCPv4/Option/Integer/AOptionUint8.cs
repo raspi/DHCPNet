@@ -9,6 +9,16 @@
 
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            if (raw.Length != 1)
+            {
+                throw new OptionLengthNotExactException("Length is not 1.");
+            }
+
             Value = raw[0];
         }
 
