@@ -42,7 +42,8 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionVendorSpecificInformation : Option
     {
-        public byte[] VendorSpecificInformation = { };
+        /// <inheritdoc />
+        public byte[] VendorSpecificInformation { get; set; }
 
         /// <inheritdoc />
         public OptionVendorSpecificInformation()
@@ -58,6 +59,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return VendorSpecificInformation;
@@ -66,6 +68,11 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             VendorSpecificInformation = raw;
         }
     }
