@@ -31,5 +31,12 @@ namespace DHCPNet.v4.Option
         {
             return BitConverter.GetBytes(Value);
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
+
     }
 }
