@@ -24,6 +24,11 @@
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             throw new NotImplementedException();
         }
 
