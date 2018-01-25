@@ -18,12 +18,12 @@ namespace DHCPNet.v4.Option
         {
             if (bytes.Length == 0)
             {
-                throw new OptionException(String.Format("Zero length"));
+                throw new OptionException(string.Format("Zero length"));
             }
 
             if (bytes.Length != 4)
             {
-                throw new OptionException(String.Format("Invalid length: {0}", bytes.Length));
+                throw new OptionException(string.Format("Invalid length: {0}", bytes.Length));
             }
 
             byte cidrnet = 0;
@@ -62,7 +62,7 @@ namespace DHCPNet.v4.Option
         {
             if (cidr > 32)
             {
-                throw new OptionException(String.Format("Invalid CIDR: {0}", cidr));
+                throw new OptionException(string.Format("Invalid CIDR: {0}", cidr));
             }
 
             byte[] b = { 0, 0, 0, 0 };
