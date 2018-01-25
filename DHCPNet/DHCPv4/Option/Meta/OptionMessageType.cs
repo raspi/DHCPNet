@@ -52,12 +52,12 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new Exception("Zero length.");
+                throw new OptionLengthZeroException();
             }
 
-            if (raw.Length > 1)
+            if (raw.Length != 1)
             {
-                throw new Exception(String.Format("Invalid length: {0}", raw.Length));
+                throw new OptionLengthNotExactException(string.Format("Invalid length: {0}. Should be 1.", raw.Length));
             }
 
             Type = (EMessageType)(byte)raw[0];
