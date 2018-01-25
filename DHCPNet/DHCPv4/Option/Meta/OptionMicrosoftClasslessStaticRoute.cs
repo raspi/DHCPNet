@@ -11,7 +11,7 @@
     /// <see cref="ClasslessStaticRoute"/>
     /// Same as https://tools.ietf.org/html/rfc3442
     /// </summary>
-    public class OptionMicrosoftClasslessStaticRoute : OptionClasslessStaticRoute
+    public class OptionMicrosoftClasslessStaticRoute : OptionClasslessStaticRouteBase
     {
         /// <inheritdoc />
         public override byte Code
