@@ -21,6 +21,7 @@ namespace DHCPNet.v4.Option
             Value = BytesToString(raw);
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return StringToBytes(Value);
