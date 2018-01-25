@@ -24,6 +24,12 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             int offset = 0;
 
             do
