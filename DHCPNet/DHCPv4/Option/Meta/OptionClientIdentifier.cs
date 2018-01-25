@@ -79,9 +79,14 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             if (raw.Length < 2)
             {
-                throw new OptionException("Minimum length 2.");
+                throw new OptionLengthException("Length less than 2 bytes.");
             }
 
             Identifier = raw;
