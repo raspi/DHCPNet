@@ -55,12 +55,12 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new OptionException("Zero length");
+                throw new OptionLengthZeroException();
             }
 
             if (raw.Length % 2 != 0)
             {
-                throw new OptionException("Length not divisiable by 2");
+                throw new OptionLengthNotMultipleOfException("Length not multiple of 2.");
             }
 
             for (int i = 0; i < raw.Length; i += 2)
