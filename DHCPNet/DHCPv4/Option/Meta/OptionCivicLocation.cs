@@ -17,6 +17,16 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            if (raw.Length <= 3)
+            {
+                throw new OptionLengthException("Length must be at least 3.");
+            }
+
             throw new System.NotImplementedException();
         }
 
