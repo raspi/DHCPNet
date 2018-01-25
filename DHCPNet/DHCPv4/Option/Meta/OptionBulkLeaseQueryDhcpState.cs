@@ -60,12 +60,12 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new OptionException("Zero length");
+                throw new OptionLengthZeroException();
             }
 
             if (raw.Length != 1)
             {
-                throw new OptionException("Length is not 1.");
+                throw new OptionLengthNotExactException("Length is not 1.");
             }
 
             State = (EBulkLeaseQueryDhcpState)raw[0];
