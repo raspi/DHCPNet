@@ -1,11 +1,16 @@
 namespace DHCPNet.v4.Option
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// The Open Group's User Authentication Protocol
     /// https://tools.ietf.org/html/rfc2485
     /// </summary>
     public class OptionOpenGroupUserAuthenticationProtocol : Option
     {
+        /// <inheritdoc />
+        public List<string> Urls { get; set; }
+
         /// <inheritdoc />
         public override byte Code
         {
@@ -18,7 +23,17 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
-            throw new System.NotImplementedException();
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            string tmp = BytesToString(raw);
+
+            foreach (string url in tmp.Split(' '))
+            {
+                Urls.Add(url);
+            }
         }
 
         /// <inheritdoc />
