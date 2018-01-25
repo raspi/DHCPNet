@@ -13,6 +13,16 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            if (raw.Length != 2)
+            {
+                throw new OptionLengthNotExactException("Length is not 2.");
+            }
+
             Value = BitConverter.ToUInt16(raw, 0);
         }
 
