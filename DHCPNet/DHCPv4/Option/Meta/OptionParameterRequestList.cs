@@ -52,14 +52,21 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
+        public override void ReadRaw(byte[] raw)
+        {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            RequestList = new List<byte>(raw);
+        }
+
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return RequestList.ToArray();
-        }
-
-        public override void ReadRaw(byte[] raw)
-        {
-            RequestList = new List<byte>(raw);
         }
     }
 }
