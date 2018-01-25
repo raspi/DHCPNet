@@ -20,12 +20,19 @@
             }
         }
 
-        public override byte[] GetRawBytes()
+        /// <inheritdoc />
+        public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             throw new NotImplementedException();
         }
 
-        public override void ReadRaw(byte[] raw)
+        /// <inheritdoc />
+        public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();
         }
