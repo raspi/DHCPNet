@@ -31,11 +31,16 @@
     /// high-speed modem.
     /// https://tools.ietf.org/html/rfc3046
     /// </summary>
-    public class OptionRelayAgentCircuitInformation : Option {
-
+    public class OptionRelayAgentCircuitInformation : Option
+    {
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             throw new NotImplementedException();
         }
 
