@@ -65,6 +65,16 @@
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            if (raw.Length != 4)
+            {
+                throw new OptionLengthNotExactException("Length is not 4");
+            }
+
             throw new System.NotImplementedException();
         }
 
