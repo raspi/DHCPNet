@@ -26,5 +26,11 @@
         {
             return new byte[] { Value };
         }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
     }
 }
