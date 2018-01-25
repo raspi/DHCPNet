@@ -22,12 +22,12 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new OptionException("Zero length.");
+                throw new OptionLengthZeroException();
             }
 
             if (raw.Length % 4 != 0)
             {
-                throw new OptionException("Length must be divisible by 4");
+                throw new OptionLengthNotMultipleOfException("Length must be multiple of 4.");
             }
 
             for (int i = 0; i < raw.Length; i += 4)
