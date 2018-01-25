@@ -1,6 +1,7 @@
 namespace DHCPNet.v4.Option
 {
     /// <summary>
+    /// Path Prefix
     /// https://tools.ietf.org/html/rfc5071#section-5
     /// </summary>
     public class OptionLinuxPreBootExecutionEnvironmentPathPrefix : AOptionString

@@ -8,10 +8,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionDomainName : AOptionString
     {
+        /// <inheritdoc />
         public OptionDomainName()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

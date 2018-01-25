@@ -13,10 +13,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionGateway : AOptionIPAddresses
     {
+        /// <inheritdoc />
         public OptionGateway()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

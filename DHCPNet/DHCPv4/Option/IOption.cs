@@ -9,14 +9,14 @@
     public interface IOption
     {
         /// <summary>
-        /// Option code determining which kinf of option it is
+        /// Gets DHCP Option code determining which kind of option it is
         /// </summary>
         byte Code { get; }
 
         /// <summary>
         /// Read raw bytes and convert to meaningful type
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Raw array of bytes</returns>
         byte[] GetRawBytes();
     }
 }

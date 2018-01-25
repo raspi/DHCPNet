@@ -11,10 +11,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSubnetMask : AOptionIPAddress
     {
+        /// <inheritdoc />
         public OptionSubnetMask()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

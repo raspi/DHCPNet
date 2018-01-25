@@ -29,6 +29,7 @@ namespace DHCPNet
         public bool ThrowExceptionOnParse = true;
 
         /// <summary>
+        /// Gets or sets hardware address type.
         /// htype 1 byte, rfc1060 page 46
         /// See ARP section in "Assigned Numbers" RFC; e.g., 
         /// 1 = 10mb ethernet.
@@ -36,6 +37,7 @@ namespace DHCPNet
         public EHardwareType HardwareAddressType { get; set; }
 
         /// <summary>
+        /// Gets hardware address length.
         /// hlen 1 byte
         /// (e.g.  '6' for 10mb ethernet).
         /// mac = 00:11:22:33:44:55 = 6

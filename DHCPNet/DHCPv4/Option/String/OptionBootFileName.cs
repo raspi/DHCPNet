@@ -10,10 +10,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionBootFileName : AOptionString
     {
+        /// <inheritdoc />
         public OptionBootFileName()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

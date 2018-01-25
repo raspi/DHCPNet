@@ -11,10 +11,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionDomainNameServer : AOptionIPAddresses
     {
+        /// <inheritdoc />
         public OptionDomainNameServer()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

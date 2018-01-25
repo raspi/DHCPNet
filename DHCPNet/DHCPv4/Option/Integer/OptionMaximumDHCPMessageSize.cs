@@ -17,10 +17,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMaximumDHCPMessageSize : AOptionUint16
     {
+        /// <inheritdoc />
         public OptionMaximumDHCPMessageSize()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

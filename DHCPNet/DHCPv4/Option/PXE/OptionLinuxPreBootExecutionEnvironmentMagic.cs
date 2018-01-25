@@ -43,6 +43,7 @@ namespace DHCPNet.v4.Option
             {
                 throw new OptionException("Zero length");
             }
+
             if (raw.Length != 4)
             {
                 throw new OptionException("Length is not 4.");
