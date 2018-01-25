@@ -48,6 +48,17 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            if (raw.Length != 1)
+            {
+                throw new OptionLengthNotExactException(string.Format("Invalid length: {0}", raw.Length));
+            }
+
+
             NodeType = (ENetBIOSNodeType)raw[0];
         }
     }
