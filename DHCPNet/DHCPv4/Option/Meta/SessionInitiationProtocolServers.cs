@@ -7,10 +7,11 @@ namespace DHCPNet.v4.Option
     /// 
     /// https://tools.ietf.org/html/rfc3361
     /// </summary>
-    public class OptionSessionInitiationProtocolServers : Option {
-
+    public class OptionSessionInitiationProtocolServers : Option
+    {
         /// <inheritdoc />
         public List<string> DnsAddresses = new List<string>();
+
         /// <inheritdoc />
         public List<IPv4Address> Ipv4Addresses = new List<IPv4Address>();
 
@@ -29,6 +30,11 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
             Encoding = (SessionInitiationProtocolServerEncoding)raw[0];
             throw new NotImplementedException();
         }
