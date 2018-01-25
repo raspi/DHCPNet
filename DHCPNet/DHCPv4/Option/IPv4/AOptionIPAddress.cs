@@ -45,12 +45,12 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new OptionException("Zero length.");
+                throw new OptionLengthZeroException();
             }
 
             if (raw.Length != 4)
             {
-                throw new OptionException(String.Format("Invalid length: {0}", raw.Length));
+                throw new OptionLengthNotExactException(string.Format("Invalid length: {0}", raw.Length));
             }
 
             Address.Add(new IPv4Address(raw));
