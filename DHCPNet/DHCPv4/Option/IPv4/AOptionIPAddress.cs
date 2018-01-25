@@ -8,12 +8,15 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionIPAddress : Option
     {
+        /// <inheritdoc />
         public List<IPv4Address> Address = new List<IPv4Address>();
 
+        /// <inheritdoc />
         protected AOptionIPAddress()
         {
         }
 
+        /// <inheritdoc />
         protected AOptionIPAddress(byte[] raw)
         {
             if (raw.Length == 0)
@@ -37,6 +40,7 @@ namespace DHCPNet.v4.Option
             Address.Add(ip);
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)
@@ -60,11 +64,13 @@ namespace DHCPNet.v4.Option
             return Address;
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return Address[0].Address;
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return Address[0].Address.ToString();

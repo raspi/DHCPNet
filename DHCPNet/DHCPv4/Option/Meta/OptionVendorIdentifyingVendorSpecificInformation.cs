@@ -5,6 +5,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionVendorIdentifyingVendorSpecificInformation : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -13,11 +14,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new System.NotImplementedException();

@@ -9,9 +9,11 @@ namespace DHCPNet.v4.Option
     /// Deprecates RFC 3825.
     /// 
     /// https://tools.ietf.org/html/rfc6225
+    /// Old: https://tools.ietf.org/html/rfc3825
     /// </summary>
     public class OptionCoordinateBasedLocationConfigurationInformationConfiguration : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -20,11 +22,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new System.NotImplementedException();

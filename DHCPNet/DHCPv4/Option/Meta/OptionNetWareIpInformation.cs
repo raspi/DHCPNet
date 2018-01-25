@@ -21,11 +21,15 @@ namespace DHCPNet.v4.Option
     /// One and only one of the following four sub-options must be the first
     /// sub-option to be present in option 63 encoding.Each of them is
     /// simply a type length pair with length set to zero.
+    /// 
+    /// https://tools.ietf.org/html/rfc2242#section-3
     /// </summary>
     public class OptionNetWareIpInformation : Option
     {
+        /// <inheritdoc />
         public List<NetWareIpInformation> Options { get; set; }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -34,11 +38,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();

@@ -16,6 +16,7 @@
     /// </summary>
     public class OptionUserClassIdentity : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -24,11 +25,13 @@
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new NotImplementedException();

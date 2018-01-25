@@ -22,6 +22,7 @@
     /// </summary>
     public class OptionForceRenewNonceProtocolCapabilities : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -30,12 +31,13 @@
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new System.NotImplementedException();
         }
 
-
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new System.NotImplementedException();

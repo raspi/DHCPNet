@@ -7,13 +7,16 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionUint32 : Option
     {
+        /// <inheritdoc />
         public uint Value;
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             Value = BitConverter.ToUInt32(raw, 0);
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return BitConverter.GetBytes(Value);

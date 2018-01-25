@@ -9,12 +9,15 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionIPAddresses : Option
     {
+        /// <inheritdoc />
         public List<IPv4Address> IPAddresses { get; set; }
 
+        /// <inheritdoc />
         protected AOptionIPAddresses()
         {
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)

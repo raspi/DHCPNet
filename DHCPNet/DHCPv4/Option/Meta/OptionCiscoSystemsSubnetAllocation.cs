@@ -3,6 +3,7 @@
     using System;
 
     /// <summary>
+    /// Cisco Systems' Subnet Allocation
     /// https://tools.ietf.org/html/rfc6656
     /// </summary>
     public class OptionCiscoSystemsSubnetAllocation : Option

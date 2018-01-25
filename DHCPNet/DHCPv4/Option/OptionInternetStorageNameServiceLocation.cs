@@ -7,9 +7,9 @@
     /// (DHCP) option to allow Internet Storage Name Service(iSNS) clients
     /// to discover the location of the iSNS server automatically through the
     /// use of DHCP for IPv4.iSNS provides discovery and management
-    /// capabilities for Internet SCSI(iSCSI) and Internet Fibre Channel
-    /// Protocol(iFCP) storage devices in an enterprise-scale IP storage
-    /// network.iSNS provides intelligent storage management services
+    /// capabilities for Internet SCSI (iSCSI) and Internet Fibre Channel
+    /// Protocol (iFCP) storage devices in an enterprise-scale IP storage
+    /// network. iSNS provides intelligent storage management services
     /// comparable to those found in Fibre Channel networks, allowing a
     /// 
     /// commodity IP network to function in a similar capacity to that of a
@@ -24,6 +24,7 @@
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -32,6 +33,7 @@
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();

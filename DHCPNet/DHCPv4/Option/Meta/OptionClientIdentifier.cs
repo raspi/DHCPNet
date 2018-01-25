@@ -29,6 +29,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionClientIdentifier : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -37,8 +38,10 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         protected EHardwareType _type = EHardwareType.Ethernet;
 
+        /// <inheritdoc />
         public EHardwareType Type
         {
             get
@@ -47,6 +50,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         protected byte[] _id;
 
         /// <summary>
@@ -72,6 +76,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length < 2)
@@ -82,6 +87,7 @@ namespace DHCPNet.v4.Option
             Identifier = raw;
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             byte[] b = new byte[Identifier.Length + 1];
@@ -90,6 +96,7 @@ namespace DHCPNet.v4.Option
             return b;
         }
 
+        /// <inheritdoc />
         public OptionClientIdentifier()
         {
         }

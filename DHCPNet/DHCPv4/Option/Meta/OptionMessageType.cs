@@ -24,6 +24,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMessageType : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -32,17 +33,21 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public EMessageType Type { get; set; }
 
+        /// <inheritdoc />
         public OptionMessageType()
         {
         }
 
+        /// <inheritdoc />
         public OptionMessageType(EMessageType type)
         {
             Type = type;
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)
@@ -58,6 +63,7 @@ namespace DHCPNet.v4.Option
             Type = (EMessageType)(byte)raw[0];
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return new byte[] { (byte)Type };

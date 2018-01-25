@@ -16,15 +16,18 @@ namespace DHCPNet.v4.Option
     /// 
     /// Length 1 byte
     /// 
+    /// https://tools.ietf.org/html/rfc2132#section-8.7
     /// https://tools.ietf.org/html/rfc1001
     /// https://tools.ietf.org/html/rfc1002
     /// </summary>
     public class OptionNetBIOSOverTCPIPNodeType : Option
     {
+        /// <inheritdoc />
         public OptionNetBIOSOverTCPIPNodeType()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -33,13 +36,16 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public ENetBIOSNodeType NodeType;
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return new byte[] { (byte)NodeType };
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             NodeType = (ENetBIOSNodeType)raw[0];

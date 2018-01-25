@@ -7,13 +7,16 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionBoolean : Option
     {
+        /// <inheritdoc />
         public bool Enabled { get; set; }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return new byte[] { Enabled ? (byte)1 : (byte)0 };
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)
@@ -34,6 +37,7 @@ namespace DHCPNet.v4.Option
             Enabled = raw[0] == 1;
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return Enabled ? "true" : "false";

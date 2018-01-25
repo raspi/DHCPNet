@@ -33,11 +33,13 @@
     /// an offset within the complete aggregate block of data.
     /// </para>
     /// <para>
-    /// https://tools.ietf.org/html/rfc3397
+    /// https://tools.ietf.org/html/rfc3397#section-2
     /// </para>
+    /// <see cref="DomainName"/>
     /// </summary>
     public class OptionDomainSearch : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -46,11 +48,13 @@
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new System.NotImplementedException();

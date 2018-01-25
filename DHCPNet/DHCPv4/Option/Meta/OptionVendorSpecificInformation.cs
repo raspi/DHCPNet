@@ -38,15 +38,18 @@ namespace DHCPNet.v4.Option
     ///      end of the encapsulated vendor-specific extensions field.
     ///
     /// Minimum length 1 byte.
+    /// https://tools.ietf.org/html/rfc2132#section-8.4
     /// </summary>
     public class OptionVendorSpecificInformation : Option
     {
         public byte[] VendorSpecificInformation = { };
 
+        /// <inheritdoc />
         public OptionVendorSpecificInformation()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -60,6 +63,7 @@ namespace DHCPNet.v4.Option
             return VendorSpecificInformation;
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             VendorSpecificInformation = raw;

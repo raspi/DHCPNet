@@ -1,12 +1,9 @@
 namespace DHCPNet.v4.Option
 {
-    /// <summary>
-    /// Intel Preboot eXecution Environment (PXE)
-    /// undefined (vendor specific)
-    /// https://tools.ietf.org/html/rfc4578
-    /// </summary>
+    /// <inheritdoc />
     public class OptionIntelPreBootExecutionEnvironment128 : OptionIntelPreBootExecutionEnvironmentBase
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get

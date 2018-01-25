@@ -7,13 +7,16 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class OptionIntelPreBootExecutionEnvironmentBase : Option
     {
+        /// <inheritdoc />
         public byte[] Raw { get; set; }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             this.Raw = raw;
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return this.Raw;

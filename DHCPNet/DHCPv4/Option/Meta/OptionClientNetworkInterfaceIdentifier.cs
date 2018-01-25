@@ -3,10 +3,15 @@ namespace DHCPNet.v4.Option
     using System;
 
     /// <summary>
-    /// https://tools.ietf.org/html/rfc4578
+    /// Intel Preboot eXecution Environment (PXE)
+    /// Client Network Interface Identifier
+    /// <see cref="OptionClientMachineIdentifier"/>
+    /// <see cref="OptionClientSystemArchitectureType"/>
+    /// https://tools.ietf.org/html/rfc4578#section-2.2
     /// </summary>
     public class OptionClientNetworkInterfaceIdentifier : Option {
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -15,12 +20,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new NotImplementedException();
         }
 
-
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();

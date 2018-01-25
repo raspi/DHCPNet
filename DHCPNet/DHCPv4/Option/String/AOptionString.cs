@@ -7,8 +7,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionString : Option
     {
+        /// <inheritdoc />
         public string Value = "";
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             Value = BytesToString(raw);
@@ -19,6 +21,7 @@ namespace DHCPNet.v4.Option
             return StringToBytes(Value);
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return Value;

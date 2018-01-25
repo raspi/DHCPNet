@@ -9,8 +9,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMobilityServicesDiscoveryServerAddresses : Option {
 
+        /// <inheritdoc />
         public List<MobilityServicesDiscoveryAddress> Addresses { get; set; }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -19,6 +21,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             int offset = 0;
@@ -69,6 +72,7 @@ namespace DHCPNet.v4.Option
             while (offset < raw.Length);
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             byte[] o = { };

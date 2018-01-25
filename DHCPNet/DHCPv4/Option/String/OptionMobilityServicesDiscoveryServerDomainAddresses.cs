@@ -10,9 +10,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionMobilityServicesDiscoveryServerDomainAddresses : Option
     {
-
+        /// <inheritdoc />
         public List<MobilityServicesDiscoveryDnsAddress> Addresses { get; set; }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -21,11 +22,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();

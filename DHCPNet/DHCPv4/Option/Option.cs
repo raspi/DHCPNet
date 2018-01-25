@@ -7,10 +7,13 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class Option : MustInitialize, IOption
     {
+        /// <inheritdoc />
         public abstract byte Code { get; }
 
+        /// <inheritdoc />
         public abstract byte[] GetRawBytes();
 
+        /// <inheritdoc />
         public static byte GetCIDRFromBytes(byte[] bytes)
         {
             if (bytes.Length == 0)
@@ -69,6 +72,7 @@ namespace DHCPNet.v4.Option
             return b;
         }
 
+        /// <inheritdoc />
         public static string BytesToString(byte[] bytes)
         {
             char[] chars = new char[bytes.Length / sizeof(char)];
@@ -76,6 +80,7 @@ namespace DHCPNet.v4.Option
             return new string(chars);
         }
 
+        /// <inheritdoc />
         public static byte[] StringToBytes(string str)
         {
             byte[] bytes = new byte[str.Length];
@@ -83,6 +88,7 @@ namespace DHCPNet.v4.Option
             return bytes;
         }
 
+        /// <inheritdoc />
         public static byte[] StringToBytes(string str, int len)
         {
             byte[] bytes = new byte[len];

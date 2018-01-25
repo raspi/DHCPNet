@@ -13,10 +13,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionNameServiceSearchOrder : Option
     {
-        public OptionNameServiceSearchOrder()
-        {
-        }
-
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -25,7 +22,13 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public List<ushort> RequestList = new List<ushort>();
+
+        /// <inheritdoc />
+        public OptionNameServiceSearchOrder()
+        {
+        }
 
         /// <summary>
         /// Generate request list from Option list.
@@ -38,6 +41,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             ushort[] source = this.RequestList.ToArray();
@@ -46,6 +50,7 @@ namespace DHCPNet.v4.Option
             return target;
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)

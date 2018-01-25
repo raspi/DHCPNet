@@ -14,12 +14,15 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionPathMTUPlateauTable : Option
     {
+        /// <inheritdoc />
         public List<ushort> List = new List<ushort>();
+        /// <inheritdoc />
 
         public OptionPathMTUPlateauTable()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -28,6 +31,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             ushort[] source = List.ToArray();
@@ -36,6 +40,7 @@ namespace DHCPNet.v4.Option
             return target;
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)

@@ -9,9 +9,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSessionInitiationProtocolServers : Option {
 
+        /// <inheritdoc />
         public List<string> DnsAddresses = new List<string>();
+        /// <inheritdoc />
         public List<IPv4Address> Ipv4Addresses = new List<IPv4Address>();
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -20,14 +23,17 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public SessionInitiationProtocolServerEncoding Encoding { get; set; }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             Encoding = (SessionInitiationProtocolServerEncoding)raw[0];
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             byte[] raw = new[] { (byte)Encoding };

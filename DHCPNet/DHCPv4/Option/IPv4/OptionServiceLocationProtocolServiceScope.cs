@@ -7,6 +7,7 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionServiceLocationProtocolServiceScope : Option
     {
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -15,15 +16,18 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public OptionServiceLocationProtocolServiceScope()
         {
         }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new NotImplementedException();

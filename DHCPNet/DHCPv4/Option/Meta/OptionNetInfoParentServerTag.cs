@@ -12,6 +12,7 @@ namespace DHCPNet.v4.Option
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
@@ -20,6 +21,7 @@ namespace DHCPNet.v4.Option
             }
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             throw new System.NotImplementedException();
