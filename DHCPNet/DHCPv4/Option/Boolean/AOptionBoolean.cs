@@ -21,17 +21,17 @@ namespace DHCPNet.v4.Option
         {
             if (raw.Length == 0)
             {
-                throw new OptionException("Zero length");
+                throw new OptionLengthZeroException();
             }
 
-            if (raw.Length > 1)
+            if (raw.Length != 1)
             {
-                throw new OptionException("Length > 1");
+                throw new OptionLengthNotExactException("Length > 1");
             }
 
             if (raw[0] > 1)
             {
-                throw new OptionException(String.Format("Invalid value: {0}", raw[0]));
+                throw new OptionException(string.Format("Invalid value: {0}", raw[0]));
             }
 
             Enabled = raw[0] == 1;
