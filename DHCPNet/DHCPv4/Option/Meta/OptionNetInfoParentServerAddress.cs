@@ -7,11 +7,6 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionNetInfoParentServerAddress : Option
     {
-        public override void ReadRaw(byte[] raw)
-        {
-            throw new System.NotImplementedException();
-        }
-
         /// <inheritdoc />
         public override byte Code
         {
@@ -20,6 +15,18 @@ namespace DHCPNet.v4.Option
                 return 112;
             }
         }
+
+        /// <inheritdoc />
+        public override void ReadRaw(byte[] raw)
+        {
+            if (raw.Length == 0)
+            {
+                throw new OptionLengthZeroException();
+            }
+
+            throw new System.NotImplementedException();
+        }
+
 
         /// <inheritdoc />
         public override byte[] GetRawBytes()
