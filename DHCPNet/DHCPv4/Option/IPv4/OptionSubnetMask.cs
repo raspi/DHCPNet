@@ -46,10 +46,7 @@ namespace DHCPNet.v4.Option
                     throw new OptionException(String.Format("Invalid CIDR: {0}", value));
                 }
 
-                Address = new List<IPv4Address>()
-                                   {
-                                       new IPv4Address(GetCIDRBytes(value))
-                                   };
+                Address = new IPv4Address(GetCIDRBytes(value));
             }
         }
     }
