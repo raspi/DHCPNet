@@ -9,8 +9,10 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public abstract class AOptionIPAddressMask : AOptionIPAddresses
     {
-        public List<IPAddressMaskPair> IPMaskPair = new List<IPAddressMaskPair>();
+        /// <inheritdoc />
+        public List<IPAddressMaskPair> IPMaskPair { get; set; }
 
+        /// <inheritdoc />
         protected AOptionIPAddressMask(IPAddressMaskPair ipmask)
         {
             IPMaskPair.Add(ipmask);

@@ -9,7 +9,7 @@ namespace DHCPNet.v4.Option
     public abstract class AOptionIPAddress : Option
     {
         /// <inheritdoc />
-        public List<IPv4Address> Address = new List<IPv4Address>();
+        public List<IPv4Address> Address { get; set; }
 
         /// <inheritdoc />
         protected AOptionIPAddress()
