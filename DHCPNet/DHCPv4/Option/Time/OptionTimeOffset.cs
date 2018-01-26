@@ -23,11 +23,13 @@ namespace DHCPNet
     [Obsolete("Obsoleted by 100 and 101")]
     public class OptionTimeOffset : AOptionTimeInt32
     {
+        /// <inheritdoc />
         [Obsolete("Obsoleted by 100 and 101")]
         public OptionTimeOffset()
         {
         }
 
+        /// <inheritdoc />
         [Obsolete("Obsoleted by 100 and 101")]
         public override byte Code
         {
