@@ -88,9 +88,14 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public static string BytesToString(byte[] bytes)
         {
-            char[] chars = new char[bytes.Length / sizeof(char)];
-            Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
-            return new string(chars);
+            string tmp = string.Empty;
+
+            foreach (byte i in bytes)
+            {
+                tmp += (char)i;
+            }
+
+            return tmp;
         }
 
         /// <inheritdoc />
