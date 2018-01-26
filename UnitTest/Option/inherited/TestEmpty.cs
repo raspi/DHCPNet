@@ -58,7 +58,7 @@ namespace UnitTest.Option.TestEmpty
         [InlineData(typeof(OptionUseEthernetEncapsulation))]
         [InlineData(typeof(OptionTCPDefaultTTL))]
         [InlineData(typeof(OptionTCPKeepaliveInterval))]
-        [InlineData(typeof(OptionTCPKeepaliveGarbage))]
+        [InlineData(typeof(OptionSendTCPKeepaliveGarbageOctet))]
         [InlineData(typeof(OptionNetworkInformationServiceDomain))]
         [InlineData(typeof(OptionNetworkInformationServiceServers))]
         [InlineData(typeof(OptionNetworkTimeProtocolServers))]

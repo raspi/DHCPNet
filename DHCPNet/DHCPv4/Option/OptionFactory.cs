@@ -56,7 +56,7 @@ namespace DHCPNet.v4.Option
                 typeof(OptionUseEthernetEncapsulation), // 36
                 typeof(OptionTCPDefaultTTL), // 37
                 typeof(OptionTCPKeepaliveInterval), // 38
-                typeof(OptionTCPKeepaliveGarbage), // 39
+                typeof(OptionSendTCPKeepaliveGarbageOctet), // 39
                 typeof(OptionNetworkInformationServiceDomain), // 40
                 typeof(OptionNetworkInformationServiceServers), // 41
                 typeof(OptionNetworkTimeProtocolServers), // 42
