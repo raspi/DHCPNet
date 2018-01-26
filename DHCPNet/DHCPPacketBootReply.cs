@@ -7,9 +7,9 @@ namespace DHCPNet
     /// </summary>
     public class DHCPPacketBootReply : DHCPPacketBase
     {
+        /// <inheritdoc />
         public DHCPPacketBootReply()
         {
-        /// <inheritdoc />
         }
     }
 }
