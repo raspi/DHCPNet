@@ -13,10 +13,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionXWindowSystemFontServer : AOptionIPAddresses
     {
+        /// <inheritdoc />
         public OptionXWindowSystemFontServer()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
