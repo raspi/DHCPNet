@@ -5,6 +5,8 @@ using System.IO;
 
 namespace DHCPNet
 {
+    using System.Diagnostics;
+
     /// <summary>
     /// The network binary reader.
     /// </summary>
@@ -34,6 +36,18 @@ namespace DHCPNet
                 Array.Reverse(tmp);
             }
 
+#if DEBUG
+            string dtmp = string.Empty;
+
+            foreach (var i in tmp)
+            {
+                dtmp += string.Format("{0:x2} ", i);
+            }
+
+            Debug.WriteLine("Read: " + dtmp);
+            Debug.WriteLine(string.Format("Offset: 0x{0:x2} ({0:D4})", this.BaseStream.Position));
+#endif
+
             return tmp;
         }
 
@@ -47,6 +61,18 @@ namespace DHCPNet
 
             return BitConverter.ToUInt32(tmp, 0);
         }
+
+        public override ushort ReadUInt16()
+        {
+            byte[] tmp = ReadBytes(2);
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(tmp);
+            }
+
+            return BitConverter.ToUInt16(tmp, 0);
+        }
+
     }
 
 }
