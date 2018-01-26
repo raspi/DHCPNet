@@ -9,7 +9,7 @@ namespace DHCPNet
     {
         public DHCPPacketBootReply()
         {
-
+        /// <inheritdoc />
         }
     }
 }
