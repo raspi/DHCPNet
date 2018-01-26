@@ -3,6 +3,8 @@ using System.Text;
 namespace DHCPNet.v4.Option
 {
     /// <summary>
+    /// Extensions Path
+    /// 
     /// A string to specify a file, retrievable via TFTP,
     /// which contains information which can be interpreted
     /// in the same way as the 64-octet vendor-extension
@@ -14,6 +16,7 @@ namespace DHCPNet.v4.Option
     ///   ignored.
     ///
     /// Minimum length is 1 byte.
+    /// https://tools.ietf.org/html/rfc2132#section-3.20
     /// </summary>
     public class OptionExtensionPath : AOptionString
     {
