@@ -20,8 +20,37 @@ namespace DHCPNet
     /// https://tools.ietf.org/html/rfc2131
     /// https://tools.ietf.org/html/rfc2132
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public abstract class DHCPPacketBase
     {
+        /// <summary>
+        /// Gets Debug string
+        /// </summary>
+        private string DebuggerDisplay
+        {
+            get
+            {
+                List<string> str = new List<string>
+                                       {
+                                           string.Format("{0}", this.GetType()),
+                                           string.Format("htype:{0}", this.HardwareAddressType),
+                                           string.Format("hops:{0:x2} ({0:D})", this.Hops),
+                                           string.Format("xid:{0:x8} ({0:D})", this.TransactionID),
+                                           string.Format("secs:{0:x4} ({0:D})", this.Seconds),
+                                           string.Format("flags:{0:x4} ({0:D})", this.Flags),
+                                           string.Format("ciaddr:{0}", this.ClientAddress),
+                                           string.Format("yiaddr:{0}", this.YourAddress),
+                                           string.Format("siaddr:{0}", this.ServerAddress),
+                                           string.Format("giaddr:{0}", this.RelayAgentAddress),
+                                           string.Format("chaddr:{0}", this.ClientHardwareAddress),
+                                           string.Format("sname:'{0}'", this.ServerHostName),
+                                           string.Format("file:'{0}'", this.File)
+                                       };
+
+                return string.Join(", ", str);
+            }
+        }
+
         private const ushort PacketMinimumLength = 265;
 
         private const ushort PacketMaxLength = 576;
@@ -160,7 +189,7 @@ namespace DHCPNet
             }
             else
             {
-                throw new DHCPException(String.Format("Invalid type: {0}", this.GetType()));
+                throw new DHCPException(string.Format("Invalid type: {0}", this.GetType()));
             }
 
             writer.Write((byte)this.HardwareAddressType); // 1 (2)
@@ -216,6 +245,9 @@ namespace DHCPNet
             return rawbytes;
         }
 
+        /// <summary>
+        /// Get raw bytes from DHCP options
+        /// </summary>
         public byte[] GetRawOptionsBytes()
         {
             NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
@@ -229,7 +261,7 @@ namespace DHCPNet
             bool endFound = false;
             foreach (Option i in this.Options)
             {
-                if (i.Code == 255)
+                if (i is OptionEnd)
                 {
                     endFound = true;
                     break;
@@ -246,15 +278,42 @@ namespace DHCPNet
 
             foreach (Option i in this.Options)
             {
-                Debug.WriteLine(String.Format("Adding: {0} (0x{0:x2}) {1}", i.Code, i.GetType()));
+                Debug.WriteLine(string.Format("Adding: {0:D3} (0x{0:x2}) {1} - {2}", i.Code, i.GetType(), i.ToString()));
                 writer.Write(new byte[] { i.Code }, 0, 1);
 
                 if (!(i is AOptionMetaData))
                 {
-                    byte[] data = i.GetRawBytes();
-                    Debug.WriteLine(String.Format("Length: {0} ", (byte)data.Length));
-                    writer.Write(new byte[] { (byte)data.Length }, 0, 1);
-                    writer.Write(data, 0, data.Length);
+                    try
+                    {
+                        byte[] data = i.GetRawBytes();
+
+#if DEBUG
+                        string dtmp = string.Empty;
+                        foreach (byte b in data)
+                        {
+                            dtmp += string.Format("{0:x2} ", b);
+                        }
+
+                        Debug.WriteLine("Data: " + dtmp);
+#endif
+                        Debug.WriteLine(string.Format("Length: {0:D} ", (byte)data.Length));
+
+                        writer.Write(new byte[] { (byte)data.Length }, 0, 1);
+                        writer.Write(data, 0, data.Length);
+                        Debug.WriteLine(string.Format("Offset: 0x{0:x2} ({0:D}) ", writer.BaseStream.Position));
+                        Debug.WriteLine(string.Empty);
+                    }
+                    catch (OptionException e)
+                    {
+                        Debug.WriteLine(e);
+
+                        if (this.ThrowExceptionOnParse)
+                        {
+                            throw;
+                        }
+
+                    }
+
                 }
             }
 
@@ -265,8 +324,35 @@ namespace DHCPNet
             return rawbytes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DHCPPacketBase()
         {
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            List<string> str = new List<string>
+                                   {
+                                       string.Format("{0}", this.GetType()),
+                                       string.Format("htype:{0}", this.HardwareAddressType),
+                                       string.Format("hops:{0:x2} ({0:D})", this.Hops),
+                                       string.Format("xid:{0:x8} ({0:D})", this.TransactionID),
+                                       string.Format("secs:{0:x4} ({0:D})", this.Seconds),
+                                       string.Format("flags:{0:x4} ({0:D})", this.Flags),
+                                       string.Format("ciaddr:{0}", this.ClientAddress),
+                                       string.Format("yiaddr:{0}", this.YourAddress),
+                                       string.Format("siaddr:{0}", this.ServerAddress),
+                                       string.Format("giaddr:{0}", this.RelayAgentAddress),
+                                       string.Format("chaddr:{0}", this.ClientHardwareAddress),
+                                       string.Format("sname:'{0}'", this.ServerHostName),
+                                       string.Format("file:'{0}'", this.File)
+                                   };
+
+
+            return string.Join(", ", str);
         }
     }
 }

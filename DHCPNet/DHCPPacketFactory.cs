@@ -8,13 +8,25 @@ using DHCPNet.v4.Option;
 namespace DHCPNet
 {
 
+    /// <summary>
+    /// Generate DHCP Packet
+    /// </summary>
     public static class DHCPPacketFactory
     {
+        /// <summary>
+        /// Packet's minimum size
+        /// </summary>
         private const ushort PacketMinimumLength = 265;
+
+        /// <summary>
+        /// Packet's maximum size
+        /// </summary>
         private const ushort PacketMaxLength = 576;
 
+        /// <summary>
+        /// Throw exceptions when parsing?
+        /// </summary>
         public static bool ThrowExceptionOnParse = true;
-
 
         /// <summary>
         /// Read DHCP packet to object
@@ -73,7 +85,7 @@ namespace DHCPNet
                 // 16 (44)
                 byte[] _clienthwaddr = { };
 
-                if(_hwaddrlen > 0)
+                if (_hwaddrlen > 0)
                 {
                     _clienthwaddr = reader.ReadBytes(_hwaddrlen);
                 }
@@ -92,6 +104,8 @@ namespace DHCPNet
 
                     p.ServerHostName = (char)i + p.ServerHostName;
                 }
+
+                //reader.BaseStream.Seek(128, SeekOrigin.Begin);
 
                 p.File = string.Empty;
 
@@ -192,7 +206,7 @@ namespace DHCPNet
 
                         if (code != o.Code)
                         {
-                            throw new OptionException(String.Format("Raw code: {0} class: {1}.", code, o.Code));
+                            throw new OptionException(string.Format("Raw code: {0} class: {1}.", code, o.GetType()));
                         }
 
                         Debug.WriteLine(o.GetType());
@@ -200,11 +214,41 @@ namespace DHCPNet
                         if (!(o is AOptionMetaData))
                         {
                             // Get length of data
-                            byte len = reader.ReadByte();
-                            Debug.WriteLine(String.Format("Length: {0}", (byte)len));
-                            byte[] data = new byte[len];
-                            Array.Copy(reader.ReadBytes(len), 0, data, 0, len);
-                            o.ReadRaw(data);
+                            int len = (int)reader.ReadByte();
+                            Debug.WriteLine(string.Format("Option data length: {0}", len));
+
+                            // Buffer for data
+                            byte[] data = reader.ReadBytes(len);
+
+                            if (data.Length != len)
+                            {
+                                throw new IndexOutOfRangeException();
+                            }
+
+#if DEBUG
+                            string dtmp = string.Empty;
+                            foreach (byte b in data)
+                            {
+                                dtmp += string.Format("{0:x2} ", b);
+                            }    
+                            
+                            Debug.WriteLine("Data: " + dtmp);
+                            Debug.WriteLine(string.Empty);
+#endif
+                            try
+                            {
+                                o.ReadRaw(data);
+                            }
+                            catch (OptionException e)
+                            {
+                                Debug.WriteLine(e);
+                                if (ThrowExceptionOnParse)
+                                {
+                                    throw;
+                                }
+                            }
+
+                            Debug.WriteLine(string.Format("Option: {0}", o.ToString()));
                         }
 
                         options.Add(o);
