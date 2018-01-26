@@ -26,7 +26,9 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthNotExactException("Length is not 4.");
             }
 
-            Time = new TimeSpan(0, 0, (int)BitConverter.ToUInt32(raw, 0));
+            uint seconds = BitConverter.ToUInt32(raw, 0);
+
+            Time = TimeSpan.FromSeconds(seconds);
         }
     }
 }
