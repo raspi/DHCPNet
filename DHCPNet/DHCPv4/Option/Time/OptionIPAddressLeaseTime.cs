@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     /// the client to request a lease time for 
     /// the IP address.
     /// 
-    /// In a server reply(DHCPOFFER), a DHCP server 
+    /// In a server reply (DHCPOFFER), a DHCP server 
     /// uses this option to specify the lease time 
     /// it is willing to offer.
     /// 
@@ -19,10 +19,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionIPAddressLeaseTime : AOptionTimeUint32
     {
+        /// <inheritdoc />
         public OptionIPAddressLeaseTime()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
