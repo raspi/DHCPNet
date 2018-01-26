@@ -29,10 +29,23 @@
     /// access unit.These include a "circuit ID" for the incoming circuit,
     /// and a "remote ID" which provides a trusted identifier for the remote
     /// high-speed modem.
+    /// 
+    /// <see cref="ERelayAgentSubOption"/>
+    /// 
     /// https://tools.ietf.org/html/rfc3046
     /// </summary>
     public class OptionRelayAgentCircuitInformation : Option
     {
+        /// <summary>
+        /// Gets or sets DHCP Relay Agent Sub-option
+        /// </summary>
+        public ERelayAgentSubOption Option { get; set; }
+
+        /// <summary>
+        /// Gets or sets Agent Circuit ID
+        /// </summary>
+        public byte[] AgentCircuitId { get; set; }
+
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
@@ -41,7 +54,27 @@
                 throw new OptionLengthZeroException();
             }
 
-            throw new NotImplementedException();
+            if (raw.Length < 2)
+            {
+                throw new OptionLengthException("Minimum length is 2.");
+            }
+
+            Option = (ERelayAgentSubOption)raw[0];
+            byte len = raw[1];
+
+            switch (Option)
+            {
+                case ERelayAgentSubOption.Circuit:
+                    AgentCircuitId = new byte[len];
+                    Array.Copy(raw, 2, AgentCircuitId, 0, len);
+                    break;
+                case ERelayAgentSubOption.Remote:
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    throw new NotImplementedException();
+                    break;
+            }
         }
 
         /// <inheritdoc />
@@ -56,7 +89,13 @@
         /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
-            throw new NotImplementedException();
+            byte[] tmp = new byte[2 + this.AgentCircuitId.Length];
+            tmp[0] = (byte)Option;
+            tmp[1] = (byte)this.AgentCircuitId.Length;
+
+            Array.Copy(this.AgentCircuitId, 0, tmp, 2, this.AgentCircuitId.Length);
+
+            return tmp;
         }
     }
 }
