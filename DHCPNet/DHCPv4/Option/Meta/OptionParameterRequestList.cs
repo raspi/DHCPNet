@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace DHCPNet.v4.Option
 {
+    using System;
+
     /// <summary>
     /// This option is used by a DHCP client to 
     /// request values for specified configuration 
@@ -67,6 +69,19 @@ namespace DHCPNet.v4.Option
         public override byte[] GetRawBytes()
         {
             return RequestList.ToArray();
+        }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            List<string> opts = new List<string>();
+
+            foreach (byte optcode in this.RequestList)
+            {
+                opts.Add(string.Format("{0:D3} (0x{0:x2})", optcode));
+            }
+
+            return "Requested: " + string.Join(", ", opts.ToArray());
         }
     }
 }
