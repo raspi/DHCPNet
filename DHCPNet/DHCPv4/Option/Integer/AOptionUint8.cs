@@ -5,8 +5,10 @@
     /// </summary>
     public abstract class AOptionUint8 : Option
     {
-        public byte Value;
+        /// <inheritdoc />
+        public byte Value { get; set; }
 
+        /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
         {
             if (raw.Length == 0)
@@ -22,6 +24,7 @@
             Value = raw[0];
         }
 
+        /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
             return new byte[] { Value };

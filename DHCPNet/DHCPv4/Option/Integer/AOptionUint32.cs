@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     public abstract class AOptionUint32 : Option
     {
         /// <inheritdoc />
-        public uint Value;
+        public uint Value { get; set; }
 
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)

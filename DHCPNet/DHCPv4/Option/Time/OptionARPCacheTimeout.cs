@@ -10,16 +10,18 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionARPCacheTimeout : AOptionTimeUint32
     {
-        public OptionARPCacheTimeout()
-        {
-        }
-
+        /// <inheritdoc />
         public override byte Code
         {
             get
             {
                 return 35;
             }
+        }
+
+        /// <inheritdoc />
+        public OptionARPCacheTimeout()
+        {
         }
     }
 }

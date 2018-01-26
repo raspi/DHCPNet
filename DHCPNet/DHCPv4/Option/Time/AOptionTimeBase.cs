@@ -8,7 +8,7 @@ namespace DHCPNet.v4.Option
     public abstract class AOptionTimeBase : Option
     {
         /// <inheritdoc />
-        public TimeSpan Time = new TimeSpan(0, 0, 0);
+        public TimeSpan Time { get; set; }
 
         /// <inheritdoc />
         public override string ToString()
