@@ -11,13 +11,16 @@ namespace DHCPNet.v4.Option
     /// 1 means that the client should use RFC 1042 encapsulation.
     ///
     /// Length 1 byte
+    /// https://tools.ietf.org/html/rfc2132#section-6.3
     /// </summary>
-    public class OptionEthernetEncapsulation : AOptionBoolean
+    public class OptionUseEthernetEncapsulation : AOptionBoolean
     {
-        public OptionEthernetEncapsulation()
+        /// <inheritdoc />
+        public OptionUseEthernetEncapsulation()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

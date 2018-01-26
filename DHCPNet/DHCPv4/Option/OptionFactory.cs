@@ -36,8 +36,8 @@ namespace DHCPNet.v4.Option
                 typeof(OptionSwapServer), // 16
                 typeof(OptionRootPath), // 17
                 typeof(OptionExtensionPath), // 18
-                typeof(OptionIPForwarding), // 19
-                typeof(OptionNonLocalSourceRouting), // 20
+                typeof(OptionUseIPForwarding), // 19
+                typeof(OptionUseNonLocalSourceRouting), // 20
                 typeof(OptionPolicyFilter), // 21
                 typeof(OptionMaximumDatagramReassembly), // 22
                 typeof(OptionDefaultIPTimeToLive), // 23
@@ -47,13 +47,13 @@ namespace DHCPNet.v4.Option
                 typeof(OptionAllSubnetsAreLocal), // 27
                 typeof(OptionBroadcastAddress), // 28
                 typeof(OptionPerformMaskDiscovery), // 29
-                typeof(OptionMaskSupplier), // 30
+                typeof(OptionClientShouldRespondsToSubnetMaskICMPRequests), // 30
                 typeof(OptionPerformRouterDiscovery), // 31
                 typeof(OptionRouterSolicitationAddress), // 32
                 typeof(OptionStaticRoute), // 33
-                typeof(OptionTrailerEncapsulation), // 34
+                typeof(OptionUseTrailerEncapsulation), // 34
                 typeof(OptionARPCacheTimeout), // 35
-                typeof(OptionEthernetEncapsulation), // 36
+                typeof(OptionUseEthernetEncapsulation), // 36
                 typeof(OptionTCPDefaultTTL), // 37
                 typeof(OptionTCPKeepaliveInterval), // 38
                 typeof(OptionTCPKeepaliveGarbage), // 39

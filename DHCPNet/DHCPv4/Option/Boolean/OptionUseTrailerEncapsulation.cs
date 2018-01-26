@@ -10,13 +10,17 @@ namespace DHCPNet.v4.Option
     /// 1 means that the client should attempt to use trailers.
     /// 
     /// Length 1 byte.
+    /// https://tools.ietf.org/html/rfc2132#section-6.1
+    /// Reference: https://tools.ietf.org/html/rfc893
     /// </summary>
-    public class OptionTrailerEncapsulation : AOptionBoolean
+    public class OptionUseTrailerEncapsulation : AOptionBoolean
     {
-        public OptionTrailerEncapsulation()
+        /// <inheritdoc />
+        public OptionUseTrailerEncapsulation()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

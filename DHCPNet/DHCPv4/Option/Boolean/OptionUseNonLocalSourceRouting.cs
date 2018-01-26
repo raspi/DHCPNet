@@ -9,13 +9,16 @@ namespace DHCPNet.v4.Option
     /// datagrams, and a value of 1 means allow forwarding.
     ///
     /// Length 1 byte.
+    /// https://tools.ietf.org/html/rfc2132#section-4.2
     /// </summary>
-    public class OptionNonLocalSourceRouting : AOptionBoolean
+    public class OptionUseNonLocalSourceRouting : AOptionBoolean
     {
-        public OptionNonLocalSourceRouting()
+        /// <inheritdoc />
+        public OptionUseNonLocalSourceRouting()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

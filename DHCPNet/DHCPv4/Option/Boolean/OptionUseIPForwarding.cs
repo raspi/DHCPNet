@@ -7,13 +7,16 @@ namespace DHCPNet.v4.Option
     /// and a value of 1 means enable IP forwarding.
     ///
     /// Length 1 byte.
+    /// https://tools.ietf.org/html/rfc2132#section-4.1
     /// </summary>
-    public class OptionIPForwarding : AOptionBoolean
+    public class OptionUseIPForwarding : AOptionBoolean
     {
-        public OptionIPForwarding()
+        /// <inheritdoc />
+        public OptionUseIPForwarding()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
