@@ -30,6 +30,8 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthNotMultipleOfException("Length must be multiple of 4.");
             }
 
+            this.IPAddresses = new List<IPv4Address>();
+
             for (int i = 0; i < raw.Length; i += 4)
             {
                 byte[] b = { 0, 0, 0, 0 };
@@ -68,11 +70,12 @@ namespace DHCPNet.v4.Option
         /// <returns></returns>
         public override byte[] GetRawBytes()
         {
-            byte[] b = { };
+            byte[] b = new byte[this.IPAddresses.Count * 4];
 
-            foreach (IPv4Address i in this.IPAddresses)
+            for (var index = 0; index < this.IPAddresses.Count; index++)
             {
-                Array.Copy(i.Address, 0, b, 0, 4);
+                IPv4Address i = this.IPAddresses[index];
+                Array.Copy(i.Address, 0, b, 4 * index, 4);
             }
 
             return b;
