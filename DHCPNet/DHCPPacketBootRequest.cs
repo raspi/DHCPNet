@@ -7,9 +7,9 @@ namespace DHCPNet
     /// </summary>
     public class DHCPPacketBootRequest : DHCPPacketBase
     {
+        /// <inheritdoc />
         public DHCPPacketBootRequest()
         {
-
         }
     }
 }
