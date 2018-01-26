@@ -29,9 +29,9 @@ namespace DHCPNet.v4.Option
             byte cidrnet = 0;
             bool zeroed = false;
 
-            for (var i = 0; i < bytes.Length; i++)
+            foreach (var t in bytes)
             {
-                for (int v = bytes[i]; (v & 0xFF) != 0; v = v << 1)
+                for (int v = t; (v & 0xFF) != 0; v = v << 1)
                 {
                     if (zeroed)
                     {
