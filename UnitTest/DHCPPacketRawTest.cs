@@ -8,6 +8,8 @@ using UnitTest.Raw;
 
 namespace UnitTest.RawPacketTest
 {
+    using System.Diagnostics;
+
     using Option = DHCPNet.v4.Option.Option;
 
     /// <summary>
@@ -266,7 +268,7 @@ namespace UnitTest.RawPacketTest
             Assert.True(EHardwareType.Ethernet == p.HardwareAddressType, "Address type wasn't Ethernet");
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Hops, "Hops wasn't 0");
-            Assert.True((uint)0x3d1e == p.TransactionID, String.Format("Transaction id was '{0:x}'", p.TransactionID));
+            Assert.True((uint)0x3d1e == p.TransactionID, string.Format("Transaction id was '{0:x}'", p.TransactionID));
             Assert.True(6 == p.HardwareAddressLength, "Address length wasn't 6");
             Assert.True(0 == p.Seconds, "Seconds wasn't 0");
             Assert.True(0 == p.Flags, "Flags wasn't 0");
@@ -287,7 +289,7 @@ namespace UnitTest.RawPacketTest
 
                 Assert.True(
                     expected == actual,
-                    String.Format(
+                    string.Format(
                         "Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}. Expected: {3} Actual: {4}",
                         (byte)expected,
                         (byte)actual,
@@ -296,9 +298,64 @@ namespace UnitTest.RawPacketTest
                         p.ClientHardwareAddress));
             }
 
-            Assert.Equal(String.Empty, p.ServerHostName);
-            Assert.Equal(String.Empty, p.File);
+            Assert.Equal(string.Empty, p.ServerHostName);
+            Assert.Equal(string.Empty, p.File);
 
         }
+
+        /// <summary>
+        /// Test authentication with raw bytes capture data
+        /// </summary>
+        [Fact]
+        public void RawAuthenticationOffer()
+        {
+            byte[] b = RawAuthenticationData.Offer;
+            DHCPPacketBase packet = DHCPPacketFactory.Read(b);
+            byte[] pb = packet.GetRawBytes();
+
+            Assert.Equal(b.Length, pb.Length);
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                byte expected = b[i];
+                byte actual = pb[i];
+
+                Assert.True(
+                    expected == actual,
+                    string.Format(
+                        "Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}.",
+                        (byte)expected,
+                        (byte)actual,
+                        i));
+            }
+        }
+
+        /// <summary>
+        /// Test TFTP with raw bytes capture data.
+        /// </summary>
+        [Fact]
+        public void RawTFTPDiscover()
+        {
+            byte[] b = RawPrivBothOverLoaded.Discover;
+            byte[] pb = DHCPPacketFactory.Read(b).GetRawBytes();
+
+            Assert.Equal(b.Length, pb.Length);
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                byte expected = b[i];
+                byte actual = pb[i];
+
+                Assert.True(
+                    expected == actual,
+                    string.Format(
+                        "Expected: '0x{0:x2}', Actual: '0x{1:x2}' at offset {2}.",
+                        (byte)expected,
+                        (byte)actual,
+                        i));
+
+            }
+        }
+
     }
 }
