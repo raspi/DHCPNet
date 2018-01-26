@@ -1,10 +1,10 @@
 ﻿using DHCPNet;
 using DHCPNet.v4.Option;
 using Xunit;
+using System;
 
-namespace UnitTest.Option
+namespace UnitTest.Option.TestEmpty
 {
-    using System;
 
     using Option = DHCPNet.v4.Option.Option;
 
@@ -175,10 +175,7 @@ namespace UnitTest.Option
             Option opt = (Option)Activator.CreateInstance(o);
             Exception ex = Record.Exception(() => opt.ReadRaw(new byte[] { }));
             Assert.NotNull(ex);
-            //Assert.True(ex.Message == String.Empty, string.Format("Message was '{0}'.", ex.Message));
             Assert.IsType<OptionLengthZeroException>(ex);
-            //Action act = () => opt.ReadRaw(new byte[] { });
-            //Assert.Throws<OptionLengthZeroException>(act);
         }
     }
 }
