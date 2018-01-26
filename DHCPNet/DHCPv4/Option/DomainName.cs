@@ -5,10 +5,56 @@ using System.Text;
 namespace DHCPNet
 {
     /// <summary>
+    /// Domain name compression
+    /// 
+    /// For example, a datagram might need to use the domain names F.ISI.ARPA,
+    /// FOO.F.ISI.ARPA, ARPA, and the root.Ignoring the other fields of the
+    /// message, these domain names might be represented as:
+    ///
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    20 |           1           |           F           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    22 |           3           |           I           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    24 |           S           |           I           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    26 |           4           |           A           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    28 |           R           |           P           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    30 |           A           |           0           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    /// 
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    40 |           3           |           F           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    42 |           O           |           O           |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    44 | 1  1|                20                       |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    64 | 1  1|                26                       |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///    92 |           0           |                       |
+    ///       +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    ///
+    /// The domain name for F.ISI.ARPA is shown at offset 20.  The domain name
+    /// FOO.F.ISI.ARPA is shown at offset 40; this definition uses a pointer to
+    /// concatenate a label for FOO to the previously defined F.ISI.ARPA.The
+    /// domain name ARPA is defined at offset 64 using a pointer to the ARPA
+    /// component of the name F.ISI.ARPA at 20; note that this pointer relies on
+    /// ARPA being the last label in the string at 20.  The root domain name is
+    /// defined by a single octet of zeros at 92; the root domain name has no
+    /// labels.
+    /// 
     /// https://tools.ietf.org/html/rfc1035#section-4.1.4
     /// </summary>
     public static class DomainName
     {
+        /// <inheritdoc />
         public static List<string> CompressedBytesToString(byte[] raw)
         {
             if (raw.Length == 0)
@@ -73,6 +119,7 @@ namespace DHCPNet
             return addr;
         }
 
+        /// <inheritdoc />
         public static byte[] StringToCompressedBytes(List<string> list)
         {
             List<byte> raw = new List<byte>();
