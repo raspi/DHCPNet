@@ -15,10 +15,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionBroadcastAddress : AOptionIPAddress
     {
+        /// <inheritdoc />
         public OptionBroadcastAddress()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get

@@ -17,10 +17,12 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionExtensionPath : AOptionString
     {
+        /// <inheritdoc />
         public OptionExtensionPath()
         {
         }
 
+        /// <inheritdoc />
         public override byte Code
         {
             get
