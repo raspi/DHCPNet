@@ -1,12 +1,25 @@
 using System;
+using System.Diagnostics;
 
 namespace DHCPNet.v4.Option
 {
     /// <summary>
     /// DHCP Option base class
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public abstract class Option : MustInitialize, IOption
     {
+        /// <summary>
+        /// Gets Debug string
+        /// </summary>
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return string.Format("Class: {0} Code: {1:d} - {2}", this.GetType(), this.Code, this.ToString()); 
+            }
+        }
+
         /// <inheritdoc />
         public abstract byte Code { get; }
 
