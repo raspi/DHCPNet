@@ -8,12 +8,16 @@ namespace DHCPNet
     /// </summary>
     public class MacAddress
     {
+        /// <inheritdoc />
         protected const char DefaultSeparator = ':';
 
+        /// <inheritdoc />
         public char Separator = DefaultSeparator;
 
+        /// <inheritdoc />
         public byte[] Address = { 0, 0, 0, 0, 0, 0 };
 
+        /// <inheritdoc />
         public MacAddress(byte[] v)
         {
             if (v.Length == 0)
@@ -29,6 +33,7 @@ namespace DHCPNet
             Address = v;
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return String.Format(
