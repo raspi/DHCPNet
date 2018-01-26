@@ -21,6 +21,7 @@ namespace DHCPNet.v4.Option
     /// 13 DHCPLEASEACTIVE rfc4388
     /// 
     /// Length 1 byte. 
+    /// https://tools.ietf.org/html/rfc2132#section-9.6
     /// </summary>
     public class OptionMessageType : Option
     {
@@ -44,7 +45,7 @@ namespace DHCPNet.v4.Option
         /// <inheritdoc />
         public OptionMessageType(EMessageType type)
         {
-            Type = type;
+            this.Type = type;
         }
 
         /// <inheritdoc />
@@ -60,13 +61,13 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthNotExactException(string.Format("Invalid length: {0}. Should be 1.", raw.Length));
             }
 
-            Type = (EMessageType)(byte)raw[0];
+            this.Type = (EMessageType)(byte)raw[0];
         }
 
         /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
-            return new byte[] { (byte)Type };
+            return new byte[] { (byte)this.Type };
         }
     }
 }
