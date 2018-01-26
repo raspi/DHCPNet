@@ -15,10 +15,21 @@ namespace DHCPNet.v4.Option
     /// Additionally, some network administrators may wish to provide for
     /// authentication of the source and contents of DHCP messages.
     /// 
+    /// <see cref="EAuthenticationProtocol"/>
+    /// <see cref="AuthenticationOptionBase"/>
+    /// <see cref="AuthenticationDelayed"/>
+    /// <see cref="AuthenticationConfigurationToken"/>
     /// https://tools.ietf.org/html/rfc3118
     /// </summary>
     public class OptionAuthentication : Option
     {
+        /// <summary>
+        /// Gets or sets authentication protocol
+        /// <see cref="AuthenticationDelayed"/>
+        /// <see cref="AuthenticationConfigurationToken"/>
+        /// </summary>
+        public AuthenticationOptionBase Protocol { get; set; }
+
         /// <inheritdoc />
         public override byte Code
         {
@@ -36,13 +47,36 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthZeroException();
             }
 
-            throw new NotImplementedException();
+            EAuthenticationProtocol protocol = (EAuthenticationProtocol)raw[0];
+
+            switch (protocol)
+            {
+                case EAuthenticationProtocol.ConfigurationToken:
+                    throw new NotImplementedException();
+                    this.Protocol = new AuthenticationConfigurationToken();
+                    break;
+
+                case EAuthenticationProtocol.DelayedAuthentication:
+                    byte[] tmp = new byte[raw.Length - 3];
+                    Array.Copy(raw, 3, tmp, 0, raw.Length - 3);
+                    this.Protocol = new AuthenticationDelayed()
+                                   {
+                                       Algorithm = (EAuthenticationDelayedAlgorithm)raw[1],
+                                       ReplayDetectionMethod = (EAuthenticationDelayedReplayDetectionMethod)raw[2],
+                                       ReplayValue = tmp,
+                                   };
+                    break;
+
+                default:
+                    throw new OptionException("Unknown protocol.");
+            }
+
         }
 
         /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
-            throw new NotImplementedException();
+            return this.Protocol.GetRawBytes();
         }
     }
 }
