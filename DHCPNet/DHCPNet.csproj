@@ -47,4 +47,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DHCPv4\Option\PXE\Intel\" />
+    <Folder Include="DHCPv4\Option\PXE\Linux\" />
+  </ItemGroup>
+
 </Project>
