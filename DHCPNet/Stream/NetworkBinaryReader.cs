@@ -9,6 +9,7 @@ namespace DHCPNet
 
     /// <summary>
     /// The network binary reader.
+    /// <see cref="NetworkBinaryWriter"/>
     /// </summary>
     public class NetworkBinaryReader : BinaryReader
     {
@@ -27,6 +28,9 @@ namespace DHCPNet
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override byte[] ReadBytes(int count)
         {
             byte[] tmp = base.ReadBytes(count);
