@@ -102,45 +102,22 @@ namespace DHCPNet
 
                 if (_hwaddrlen > 0)
                 {
+                    Debug.WriteLine(string.Format("Reading hardware address length at offset {0:D4}", reader.BaseStream.Position));
                     _clienthwaddr = reader.ReadBytes(_hwaddrlen);
                 }
 
                 // Discard rest
                 reader.BaseStream.Seek(44, SeekOrigin.Begin);
 
-                p.ServerHostName = string.Empty;
-
                 Debug.WriteLine(string.Format("Reading server host name at offset {0:D4}", reader.BaseStream.Position));
-                foreach (byte i in reader.ReadBytes(64)) // 64 (128)
-                {
-                    if (i == 0)
-                    {
-                        break;
-                    }
+                p.ServerHostName = reader.ReadBytes(64); // 64 (128)
 
-                    p.ServerHostName = (char)i + p.ServerHostName;
-                }
-
-                reader.BaseStream.Seek(108, SeekOrigin.Begin);
-
-                p.File = string.Empty;
+                //reader.BaseStream.Seek(108, SeekOrigin.Begin);
 
                 Debug.WriteLine(string.Format("Reading file name at offset {0:D4}", reader.BaseStream.Position));
-                foreach (byte i in reader.ReadBytes(128)) // 128 (236)
-                {
-                    if (i == 0)
-                    {
-                        break;
-                    }
+                p.File = reader.ReadBytes(128); // 128 (236)
 
-                    p.File = (char)i + p.File;
-                }
-
-                if (_hwaddrlen == 0)
-                {
-                    p.ClientHardwareAddress = new HardwareAddress(new byte[] { });
-                }
-                else if (_hwaddrlen == 6)
+                if (p.HardwareAddressType == EHardwareType.Ethernet && _hwaddrlen == 6)
                 {
                     byte[] macaddr = new byte[6];
                     Array.Copy(_clienthwaddr, 0, macaddr, 0, 6);
@@ -158,6 +135,8 @@ namespace DHCPNet
                 }
 
                 bool validCookie = true;
+
+                Debug.WriteLine(string.Format("Reading magic cookie at offset {0:D4}", reader.BaseStream.Position));
 
                 if (reader.ReadByte() != 99)
                 {

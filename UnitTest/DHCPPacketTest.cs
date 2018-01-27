@@ -100,8 +100,8 @@ namespace UnitTest.DHCPPacketTest
                 ServerAddress = expectedIP,
                 RelayAgentAddress = expectedIP,
                 ClientHardwareAddress = ha,
-                ServerHostName = String.Empty,
-                File = String.Empty,
+                ServerHostName = new byte[64],
+                File = new byte[128],
             };
 
             p.Options = new List<Option>() { new OptionEnd() };
@@ -116,8 +116,8 @@ namespace UnitTest.DHCPPacketTest
             Assert.Equal(expectedIP.ToString(), p.ServerAddress.ToString());
             Assert.Equal(expectedIP.ToString(), p.RelayAgentAddress.ToString());
             Assert.Equal(ha.Address, p.ClientHardwareAddress.Address);
-            Assert.Equal(String.Empty, p.ServerHostName);
-            Assert.Equal(String.Empty, p.File);
+            Assert.Equal(new byte[64], p.ServerHostName);
+            Assert.Equal(new byte[128], p.File);
 
             Assert.Equal(265, p.GetRawBytes().Length);
 

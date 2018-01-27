@@ -151,10 +151,43 @@ namespace DHCPNet
         public HardwareAddress ClientHardwareAddress { get; set; }
 
         /// <summary>
-        /// sname 64 bytes
-        /// Optional server host name, null terminated string.
+        /// optional server host name
+        /// <see cref="ServerHostName"/>
         /// </summary>
-        public string ServerHostName { get; set; }
+        private byte[] _serverHostname = new byte[64];
+
+        /// <summary>
+        /// Gets or sets optional server host name, null terminated string.
+        /// sname 64 bytes
+        /// </summary>
+        public byte[] ServerHostName
+        {
+            get
+            {
+                return this._serverHostname;
+            }
+
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentNullException();
+                }
+
+                if (value.Length > 64)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                Array.Copy(value, 0, this._serverHostname, 0, value.Length);
+            }
+        }
+
+        /// <summary>
+        /// file 128 bytes
+        /// <see cref="File"/>
+        /// </summary>
+        private byte[] _fileName = new byte[128];
 
         /// <summary>
         /// file 128 bytes
@@ -162,7 +195,29 @@ namespace DHCPNet
         /// name or null in DHCPDISCOVER, fully qualified
         /// directory-path name in DHCPOFFER.
         /// </summary>
-        public string File { get; set; }
+        public byte[] File
+        {
+            get
+            {
+                return this._fileName;
+            }
+
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentNullException();
+                }
+
+                if (value.Length > 128)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                Array.Copy(value, 0, this._fileName, 0, value.Length);
+            }
+
+        }
 
         /// <summary>
         /// Get or set DHCP Options and BOOTP Vendor Extensions
@@ -225,17 +280,17 @@ namespace DHCPNet
             Debug.WriteLine(string.Format("Writing client hardware address at offset {0:D4}", writer.BaseStream.Position));
             writer.Write(this.ClientHardwareAddress.Address, 0, 16); // 16 (44)
 
-            writer.Seek(44, SeekOrigin.Begin);
+            //writer.Seek(44, SeekOrigin.Begin);
 
             Debug.WriteLine(string.Format("Writing server hostname at offset {0:D4}", writer.BaseStream.Position));
-            writer.Write(Encoding.UTF8.GetBytes(this.ServerHostName), 0, this.ServerHostName.Length); // 64 (108)
+            writer.Write(this.ServerHostName, 0, 64); // 64 (108)
 
-            writer.Seek(108, SeekOrigin.Begin);
+            //writer.Seek(108, SeekOrigin.Begin);
 
             Debug.WriteLine(string.Format("Writing file name at offset {0:D4}", writer.BaseStream.Position));
-            writer.Write(Encoding.UTF8.GetBytes(this.File), 0, this.File.Length); // 128 (236)
+            writer.Write(this.File, 0, 128); // 128 (236)
 
-            writer.Seek(236, SeekOrigin.Begin);
+            //writer.Seek(236, SeekOrigin.Begin);
 
             // Magic cookie
             Debug.WriteLine(string.Format("Writing magic cookie at offset {0:D4}", writer.BaseStream.Position));

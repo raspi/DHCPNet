@@ -11,16 +11,12 @@ namespace DHCPNet
     /// </summary>
     public class NetworkBinaryWriter : BinaryWriter
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc />
         public NetworkBinaryWriter(Stream output) : base(output)
         {
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc />
         public override void Write(byte[] buffer, int index, int count)
         {
             if (!BitConverter.IsLittleEndian)
@@ -39,27 +35,25 @@ namespace DHCPNet
 
             Debug.WriteLine(string.Format("NBW::Writing: <{0}>", dtmp));
             Debug.WriteLine(string.Format("NBW::Length: {0:D3} Offset: 0x{1:x4} ({1:D4})", count, this.BaseStream.Position));
+            Debug.WriteLine(string.Empty);
 #endif
 
             base.Write(buffer, index, count);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc />
         public override void Write(byte[] buffer)
         {
             this.Write(buffer, 0, buffer.Length);
         }
 
+        /// <inheritdoc />
         public override void Write(byte b)
         {
             this.Write(new byte[] { b }, 0, 1);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc />
         public override void Write(uint value)
         {
             byte[] buffer = BitConverter.GetBytes(value);
@@ -72,9 +66,7 @@ namespace DHCPNet
             base.Write(buffer, 0, 4);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <inheritdoc />
         public override void Write(ushort value)
         {
             byte[] buffer = BitConverter.GetBytes(value);
@@ -86,7 +78,5 @@ namespace DHCPNet
 
             base.Write(buffer, 0, 2);
         }
-
     }
-
 }
