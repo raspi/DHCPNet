@@ -2,6 +2,7 @@ namespace DHCPNet.v4.Option
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
 
     /// <summary>
     /// Session Initiation Protocol (SIP) Servers
@@ -61,11 +62,16 @@ namespace DHCPNet.v4.Option
                     {
                         byte[] b = { 0, 0, 0, 0 };
                         Array.Copy(raw, i, b, 0, 4);
-                        addrs.Add(new IPv4Address(b));
+                        IPv4Address ip = new IPv4Address(b);
+
+                        Debug.WriteLine(string.Format("Adding IP {0}", ip));
+
+                        addrs.Add(ip);
                     }
 
                     this.Addresses.Add(new OptionSessionInitiationProtocolServerIPAddress()
                                            {
+                                               Type = SessionInitiationProtocolServerEncoding.Ipv4AddressList,
                                                Addresses = addrs,
                                            });
 
@@ -88,7 +94,9 @@ namespace DHCPNet.v4.Option
             foreach (var addr in this.Addresses)
             {
                 b.Add((byte)addr.Type);
-                foreach (var i in addr.GetRawBytes())
+                byte[] data = addr.GetRawBytes();
+
+                foreach (var i in data)
                 {
                     b.Add(i);
                 }

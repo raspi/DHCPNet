@@ -10,8 +10,6 @@ namespace DHCPNet.v4.Option
     /// </summary>
     public class OptionSessionInitiationProtocolServerIPAddress : OptionSessionInitiationProtocolServerBase
     {
-        /// <inheritdoc />
-        public SessionInitiationProtocolServerEncoding Type = SessionInitiationProtocolServerEncoding.Ipv4AddressList;
 
         /// <summary>
         /// IP addresses

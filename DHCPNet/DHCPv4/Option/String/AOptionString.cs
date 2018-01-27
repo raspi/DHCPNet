@@ -2,13 +2,17 @@
 
 namespace DHCPNet.v4.Option
 {
+    using System;
+
     /// <summary>
     /// Option is string
     /// </summary>
     public abstract class AOptionString : Option
     {
-        /// <inheritdoc />
-        public string Value = "";
+        /// <summary>
+        /// Gets or sets string value
+        /// </summary>
+        public string Value { get; set; }
 
         /// <inheritdoc />
         public override void ReadRaw(byte[] raw)
@@ -18,19 +22,19 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthZeroException();
             }
 
-            Value = BytesToString(raw);
+            this.Value = Encoding.UTF8.GetString(raw, 0, raw.Length);
         }
 
         /// <inheritdoc />
         public override byte[] GetRawBytes()
         {
-            return StringToBytes(Value);
+            return Encoding.UTF8.GetBytes(this.Value);
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return Value;
+            return string.Format("'{0}'", this.Value);
         }
     }
 }

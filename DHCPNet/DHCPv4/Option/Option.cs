@@ -3,6 +3,8 @@ using System.Diagnostics;
 
 namespace DHCPNet.v4.Option
 {
+    using System.Text;
+
     /// <summary>
     /// DHCP Option base class
     /// </summary>
@@ -83,27 +85,6 @@ namespace DHCPNet.v4.Option
             Array.Copy(BitConverter.GetBytes((0xFFFFFFFFL << (32 - (int)cidr))), 0, b, 0, 4);
 
             return b;
-        }
-
-        /// <inheritdoc />
-        public static string BytesToString(byte[] bytes)
-        {
-            string tmp = string.Empty;
-
-            foreach (byte i in bytes)
-            {
-                tmp += (char)i;
-            }
-
-            return tmp;
-        }
-
-        /// <inheritdoc />
-        public static byte[] StringToBytes(string str)
-        {
-            byte[] bytes = new byte[str.Length];
-            Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, str.Length);
-            return bytes;
         }
 
         /// <inheritdoc />

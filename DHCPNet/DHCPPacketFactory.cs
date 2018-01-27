@@ -49,7 +49,11 @@ namespace DHCPNet
 
             using (reader)
             {
+                Debug.WriteLine("");
+                Debug.WriteLine("--- Reading DHCP packet");
+                Debug.WriteLine("");
 
+                Debug.WriteLine(string.Format("Reading op code at offset {0:D4}", reader.BaseStream.Position));
                 EOpCode PacketType = (EOpCode)(byte)reader.ReadByte(); // 1
 
                 switch (PacketType)
@@ -64,8 +68,10 @@ namespace DHCPNet
                         throw new DHCPException("Unknown OpCode.");
                 }
 
+                Debug.WriteLine(string.Format("Reading hardware address type at offset {0:D4}", reader.BaseStream.Position));
                 p.HardwareAddressType = (EHardwareType)(byte)reader.ReadByte(); // 1 (2)
 
+                Debug.WriteLine(string.Format("Reading hardware address length at offset {0:D4}", reader.BaseStream.Position));
                 byte _hwaddrlen = (byte)reader.ReadByte(); // 1 (3)
 
                 if (_hwaddrlen > 16)
@@ -73,10 +79,19 @@ namespace DHCPNet
                     throw new DHCPException(String.Format("Malformed packet. Hardware address length was {0}.", _hwaddrlen));
                 }
 
+                Debug.WriteLine(string.Format("Reading hops at offset {0:D4}", reader.BaseStream.Position));
                 p.Hops = (byte)reader.ReadByte(); // 1 (4)
+
+                Debug.WriteLine(string.Format("Reading transaction ID at offset {0:D4}", reader.BaseStream.Position));
                 p.TransactionID = reader.ReadUInt32(); // 4 (8)
+
+                Debug.WriteLine(string.Format("Reading seconds at offset {0:D4}", reader.BaseStream.Position));
                 p.Seconds = reader.ReadUInt16(); // 2 (10)
+
+                Debug.WriteLine(string.Format("Reading flags at offset {0:D4}", reader.BaseStream.Position));
                 p.Flags = reader.ReadUInt16(); // 2 (12)
+
+                Debug.WriteLine(string.Format("Reading IPv4 addresses at offset {0:D4}", reader.BaseStream.Position));
                 p.ClientAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (16)
                 p.YourAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (20)
                 p.ServerAddress = new IPv4Address(reader.ReadBytes(4)); // 4 (24)
@@ -95,25 +110,27 @@ namespace DHCPNet
 
                 p.ServerHostName = string.Empty;
 
+                Debug.WriteLine(string.Format("Reading server host name at offset {0:D4}", reader.BaseStream.Position));
                 foreach (byte i in reader.ReadBytes(64)) // 64 (128)
                 {
                     if (i == 0)
                     {
-                        continue;
+                        break;
                     }
 
                     p.ServerHostName = (char)i + p.ServerHostName;
                 }
 
-                //reader.BaseStream.Seek(128, SeekOrigin.Begin);
+                reader.BaseStream.Seek(108, SeekOrigin.Begin);
 
                 p.File = string.Empty;
 
+                Debug.WriteLine(string.Format("Reading file name at offset {0:D4}", reader.BaseStream.Position));
                 foreach (byte i in reader.ReadBytes(128)) // 128 (236)
                 {
                     if (i == 0)
                     {
-                        continue;
+                        break;
                     }
 
                     p.File = (char)i + p.File;
@@ -132,6 +149,12 @@ namespace DHCPNet
                 else
                 {
                     p.ClientHardwareAddress = new HardwareAddress(_clienthwaddr);
+                }
+
+                if (reader.BaseStream.Position != 236)
+                {
+                    throw new DHCPException(
+                        string.Format("Packet position should be at 236 bytes but it is {0}.", reader.BaseStream.Position));
                 }
 
                 bool validCookie = true;
@@ -192,6 +215,11 @@ namespace DHCPNet
 
             using (reader)
             {
+
+                Debug.WriteLine("");
+                Debug.WriteLine("--- Reading DHCP options");
+                Debug.WriteLine("");
+
                 try
                 {
                     // Format:
@@ -206,16 +234,13 @@ namespace DHCPNet
 
                         if (code != o.Code)
                         {
-                            throw new OptionException(string.Format("Raw code: {0} class: {1}.", code, o.GetType()));
+                            throw new OptionException(string.Format("Invalid option code: '{0}' class: '{1}'.", code, o.GetType()));
                         }
-
-                        Debug.WriteLine(o.GetType());
 
                         if (!(o is AOptionMetaData))
                         {
                             // Get length of data
-                            int len = (int)reader.ReadByte();
-                            Debug.WriteLine(string.Format("Option data length: {0}", len));
+                            byte len = reader.ReadByte();
 
                             // Buffer for data
                             byte[] data = reader.ReadBytes(len);
@@ -225,16 +250,6 @@ namespace DHCPNet
                                 throw new IndexOutOfRangeException();
                             }
 
-#if DEBUG
-                            string dtmp = string.Empty;
-                            foreach (byte b in data)
-                            {
-                                dtmp += string.Format("{0:x2} ", b);
-                            }    
-                            
-                            Debug.WriteLine("Data: " + dtmp);
-                            Debug.WriteLine(string.Empty);
-#endif
                             try
                             {
                                 o.ReadRaw(data);
@@ -248,7 +263,6 @@ namespace DHCPNet
                                 }
                             }
 
-                            Debug.WriteLine(string.Format("Option: {0}", o.ToString()));
                         }
 
                         options.Add(o);

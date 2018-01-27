@@ -174,17 +174,22 @@ namespace DHCPNet
         /// <summary>
         /// Get raw bytes of the packet
         /// </summary>
-        /// <returns></returns>
         public byte[] GetRawBytes()
         {
             NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
 
+            Debug.WriteLine("");
+            Debug.WriteLine("--- Writing DHCP packet");
+            Debug.WriteLine("");
+
             if (this is DHCPPacketBootRequest)
             {
+                Debug.WriteLine(string.Format("Type boot request at offset {0:D4}", writer.BaseStream.Position));
                 writer.Write((byte)EOpCode.BootRequest); // 1
             }
             else if (this is DHCPPacketBootReply)
             {
+                Debug.WriteLine(string.Format("Type boot reply at offset {0:D4}", writer.BaseStream.Position));
                 writer.Write((byte)EOpCode.BootReply); // 1
             }
             else
@@ -192,38 +197,55 @@ namespace DHCPNet
                 throw new DHCPException(string.Format("Invalid type: {0}", this.GetType()));
             }
 
+            Debug.WriteLine(string.Format("Writing hardware address type at offset {0:D4}", writer.BaseStream.Position));
             writer.Write((byte)this.HardwareAddressType); // 1 (2)
+
+            Debug.WriteLine(string.Format("Writing hardware address length at offset {0:D4}", writer.BaseStream.Position));
             writer.Write(this.HardwareAddressLength); // 1 (3)
+
+            Debug.WriteLine(string.Format("Writing hop count at offset {0:D4}", writer.BaseStream.Position));
             writer.Write(this.Hops); // 1 (4)
-            writer.Write(BitConverter.GetBytes(this.TransactionID)); // 4 (8)
-            writer.Write(BitConverter.GetBytes(this.Seconds)); // 2 (10)
-            writer.Write(BitConverter.GetBytes(this.Flags)); // 2 (12)
+
+            Debug.WriteLine(string.Format("Writing transaction ID at offset {0:D4}", writer.BaseStream.Position));
+            writer.Write(this.TransactionID); // 4 (8)
+
+            Debug.WriteLine(string.Format("Writing seconds at offset {0:D4}", writer.BaseStream.Position));
+            writer.Write(this.Seconds); // 2 (10)
+
+            Debug.WriteLine(string.Format("Writing flags at offset {0:D4}", writer.BaseStream.Position));
+            writer.Write(this.Flags); // 2 (12)
 
             // IPv4 addresses
+            Debug.WriteLine(string.Format("Writing IPv4 addresses at offset {0:D4}", writer.BaseStream.Position));
             writer.Write(this.ClientAddress.Address, 0, 4); // 4 (16)
             writer.Write(this.YourAddress.Address, 0, 4); // 4 (20)
             writer.Write(this.ServerAddress.Address, 0, 4); // 4 (24)
             writer.Write(this.RelayAgentAddress.Address, 0, 4); // 4 (28)
 
+            Debug.WriteLine(string.Format("Writing client hardware address at offset {0:D4}", writer.BaseStream.Position));
             writer.Write(this.ClientHardwareAddress.Address, 0, 16); // 16 (44)
-            writer.Write(Option.StringToBytes(this.ServerHostName, 64)); // 64 (108)
-            writer.Write(Option.StringToBytes(this.File, 128)); // 128 (236)
+
+            writer.Seek(44, SeekOrigin.Begin);
+
+            Debug.WriteLine(string.Format("Writing server hostname at offset {0:D4}", writer.BaseStream.Position));
+            writer.Write(Encoding.UTF8.GetBytes(this.ServerHostName), 0, this.ServerHostName.Length); // 64 (108)
+
+            writer.Seek(108, SeekOrigin.Begin);
+
+            Debug.WriteLine(string.Format("Writing file name at offset {0:D4}", writer.BaseStream.Position));
+            writer.Write(Encoding.UTF8.GetBytes(this.File), 0, this.File.Length); // 128 (236)
+
+            writer.Seek(236, SeekOrigin.Begin);
 
             // Magic cookie
+            Debug.WriteLine(string.Format("Writing magic cookie at offset {0:D4}", writer.BaseStream.Position));
             writer.Write((byte)99);
             writer.Write((byte)130);
             writer.Write((byte)83);
             writer.Write((byte)99);
 
-            if (writer.BaseStream.Length != 240)
-            {
-                throw new DHCPException(
-                    string.Format("Packet size should be 240 bytes but it is {0} bytes.", writer.BaseStream.Length));
-            }
-
-            // Read options
-            byte[] options = this.GetRawOptionsBytes();
-            writer.Write(options, 0, options.Length);
+            // Add DHCP options
+            this.AddRawOptionsBytes(writer);
 
             if (writer.BaseStream.Length > PacketMaxLength)
             {
@@ -248,13 +270,21 @@ namespace DHCPNet
         /// <summary>
         /// Get raw bytes from DHCP options
         /// </summary>
-        public byte[] GetRawOptionsBytes()
+        public void AddRawOptionsBytes(NetworkBinaryWriter writer)
         {
-            NetworkBinaryWriter writer = new NetworkBinaryWriter(new MemoryStream());
+            if (writer.BaseStream.Length != 240)
+            {
+                throw new DHCPException(
+                    string.Format("Packet size should be 240 bytes but it is {0} bytes.", writer.BaseStream.Length));
+            }
+
+            Debug.WriteLine("");
+            Debug.WriteLine("--- Writing DHCP options");
+            Debug.WriteLine("");
 
             if (this.Options.Count == 0)
             {
-                throw new DHCPException(string.Format("No options."));
+                throw new OptionException(string.Format("No options."));
             }
 
             // Find End
@@ -272,56 +302,52 @@ namespace DHCPNet
             {
                 if (this.ThrowExceptionOnParse)
                 {
-                    throw new DHCPException(string.Format("End option was not found"));
+                    throw new OptionException(string.Format("End option was not found"));
                 }
             }
+
+            writer.Seek(240, SeekOrigin.Begin);
 
             foreach (Option i in this.Options)
             {
-                Debug.WriteLine(string.Format("Adding: {0:D3} (0x{0:x2}) {1} - {2}", i.Code, i.GetType(), i.ToString()));
+                Debug.WriteLine(string.Format("+{0} {1:D3} at offset {2:D4} (0x{2:x4})", i.GetType(), i.Code, writer.BaseStream.Position));
                 writer.Write(new byte[] { i.Code }, 0, 1);
 
-                if (!(i is AOptionMetaData))
+                if (i is AOptionMetaData)
                 {
-                    try
+                    continue;
+                }
+
+                try
+                {
+                    byte[] data = i.GetRawBytes();
+
+                    // Write to packet
+                    Debug.WriteLine(string.Format("Writing option length byte: 0x{0:x2} ({0:D3})", data.Length));
+                    writer.Write(new byte[] { (byte)data.Length }, 0, 1);
+
+                    Debug.WriteLine(string.Format("Writing option data:"));
+                    writer.Write(data, 0, data.Length);
+
+                    Debug.WriteLine(String.Empty);
+
+                    if (writer.BaseStream.Length > PacketMaxLength)
                     {
-                        byte[] data = i.GetRawBytes();
-
-#if DEBUG
-                        string dtmp = string.Empty;
-                        foreach (byte b in data)
-                        {
-                            dtmp += string.Format("{0:x2} ", b);
-                        }
-
-                        Debug.WriteLine("Data: " + dtmp);
-#endif
-                        Debug.WriteLine(string.Format("Length: {0:D} ", (byte)data.Length));
-
-                        writer.Write(new byte[] { (byte)data.Length }, 0, 1);
-                        writer.Write(data, 0, data.Length);
-                        Debug.WriteLine(string.Format("Offset: 0x{0:x2} ({0:D}) ", writer.BaseStream.Position));
-                        Debug.WriteLine(string.Empty);
-                    }
-                    catch (OptionException e)
-                    {
-                        Debug.WriteLine(e);
-
-                        if (this.ThrowExceptionOnParse)
-                        {
-                            throw;
-                        }
-
+                        throw new DHCPException(
+                            string.Format("Packet is too large ({0} / {1} bytes)", writer.BaseStream.Length, PacketMaxLength));
                     }
 
                 }
-            }
+                catch (OptionException e)
+                {
+                    Debug.WriteLine(e);
 
-            writer.Seek(0, SeekOrigin.Begin);
-            byte[] rawbytes = new byte[writer.BaseStream.Length];
-            writer.BaseStream.Read(rawbytes, 0, (int)writer.BaseStream.Length);
-
-            return rawbytes;
+                    if (this.ThrowExceptionOnParse)
+                    {
+                        throw;
+                    }
+                } // catch
+            } // foreach
         }
 
         /// <summary>

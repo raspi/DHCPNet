@@ -1,6 +1,7 @@
 namespace DHCPNet.v4.Option
 {
     using System.Collections.Generic;
+    using System.Text;
 
     /// <summary>
     /// The Open Group's User Authentication Protocol
@@ -28,7 +29,7 @@ namespace DHCPNet.v4.Option
                 throw new OptionLengthZeroException();
             }
 
-            string tmp = BytesToString(raw);
+            string tmp = Encoding.UTF8.GetString(raw, 0, raw.Length);
 
             foreach (string url in tmp.Split(' '))
             {
