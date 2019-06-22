@@ -1,0 +1,42 @@
+<p>Found 1 record.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3118.txt" target="_blank">RFC&nbsp;3118</a>, "Authentication for DHCP Messages", June 2001</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3474">3474</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Chris Lonvick<br />
+Date Reported: 2013-02-02<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 2 says:
+</p>
+<pre class="rfctext">
+   If the RDM field contains 0x00, the replay detection field MUST be
+   set to the value of a monotonically increasing counter.  Using a
+   counter value such as the current time of day (e.g., an NTP-format
+   timestamp [4]) can reduce the danger of replay attacks.  This method
+   MUST be supported by all protocols.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   If the RDM field contains 0x00, the replay detection field MUST be
+   set to the value of a strictly increasing counter.  Using a
+   counter value such as the time since the epoch (e.g., an NTP-format
+   timestamp [4]) can reduce the danger of replay attacks.  This method
+   MUST be supported by all protocols.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The term &quot;monotonically increasing&quot; does not actually mean what the authors and editors hope it means.  :-)  An example of a monotonically increasing sequence is: <br />
+  1, 2, 2, 2, 2, 2, 2...  <br />
+<br />
+Strictly following that definition in the current section 2 would allow replays of captured packets.  Changing the term to &quot;strictly increasing&quot; requires that subsequent values are greater than previous values.  This would mean that a captured packet replayed with the same Authentication Information value would not meet the criteria described in my proposed corrected text, and should consequently be detected as a replay attack by a recipient.<br />
+<br />
+The term monotonically increasing is also used at the end of Section 6 and should also be replaced with strictly increasing.<br />
+<br />
+Also, the use of the term  &quot;time of day&quot; could be problematic.  If the first packet were sent just before midnight, and the second sent just after midnight, then the value of the second would be much lower than the value of the first.  To align with the NTP example, I'm suggesting a change in text to be something that is actually increasing.
+</p>

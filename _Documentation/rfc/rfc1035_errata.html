@@ -1,0 +1,396 @@
+<p>Found 12 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (3)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc1035.txt" target="_blank">RFC&nbsp;1035</a>, "Domain names - implementation and specification", November 1987</h3>
+<a href="/source/">Source of RFC</a>: Legacy<br />
+Area Assignment: int<br />
+<p>
+Errata ID: <a href="/errata/eid562">562</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: CFeng<br />
+Date Reported: 2003-02-09<br />
+</p>
+<p>Section 6.4.2 says:
+</p>
+<pre class="rfctext">
+                         +-----------------------------------------+
+           Header        |         OPCODE=RESPONSE, ID=997         |
+                         +-----------------------------------------+
+          Question       |QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU |
+                         +-----------------------------------------+
+           Answer        |  VENERA.ISI.EDU  A IN 10.1.0.52         |
+                         +-----------------------------------------+
+          Authority      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+         Additional      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+                         +-----------------------------------------+
+           Header        |      OPCODE=IQUERY, ID=997, QR=1        |
+                         +-----------------------------------------+
+          Question       |QTYPE=A, QCLASS=IN, QNAME=VENERA.ISI.EDU |
+                         +-----------------------------------------+
+           Answer        |  VENERA.ISI.EDU  A IN 10.1.0.52         |
+                         +-----------------------------------------+
+          Authority      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+         Additional      |                 &lt;empty&gt;                 |
+                         +-----------------------------------------+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+There is an error in the Header line. It should be<br />
+&quot;OPCODE=IQUERY, ID=997, QR=1&quot; because the OPCODE does not have a <br />
+value of RESPONSE (see Section 4.1.1). <br />
+
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2130">2130</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alexei A. Smekalkine<br />
+Date Reported: 2010-04-05<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2012-04-26<br />
+</p>
+<p>Section 3.2.1 says:
+</p>
+<pre class="rfctext">
+TTL             a 32 bit signed integer that specifies the time interval
+                that the resource record may be cached before the source
+                of the information should again be consulted.  Zero
+                values are interpreted to mean that the RR can only be
+                used for the transaction in progress, and should not be
+                cached.  For example, SOA records are always distributed
+                with a zero TTL to prohibit caching.  Zero values can
+                also be used for extremely volatile data.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+TTL             a 32 bit unsigned integer that specifies the time interval
+                that the resource record may be cached before the source
+                of the information should again be consulted.  Zero
+                values are interpreted to mean that the RR can only be
+                used for the transaction in progress, and should not be
+                cached.  For example, SOA records are always distributed
+                with a zero TTL to prohibit caching.  Zero values can
+                also be used for extremely volatile data.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Conflicting descriptions of the type of TTL field.<br />
+<br />
+Section 3.2.1 says &quot;a 32 bit signed integer&quot; while section 4.1.3 says &quot;a 32 bit unsigned integer&quot;.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid563">563</a><br />
+<b>Status: Verified<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Allan Edward Prentice<br />
+Date Reported: 2006-03-04<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2012-04-26<br />
+</p>
+<p>Section 5.1 says:
+</p>
+<pre class="rfctext">
+Because these files are text files several special encodings are
+necessary to allow arbitrary data to be loaded. In particular:
+
+                of the root.
+
+@               A free standing @ is used to denote the current origin.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Because these files are text files several special encodings are
+necessary to allow arbitrary data to be loaded. In particular:
+
+@               A free standing @ is used to denote the current origin.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+&quot;of the root.&quot; makes no sense here.
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (8)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc1035.txt" target="_blank">RFC&nbsp;1035</a>, "Domain names - implementation and specification", November 1987</h3>
+<a href="/source/">Source of RFC</a>: Legacy<br />
+Area Assignment: int<br />
+<p>
+Errata ID: <a href="/errata/eid1813">1813</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: moritzh<br />
+Date Reported: 2009-07-19<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 5.3 says:
+</p>
+<pre class="rfctext">
+The following is an example file which might be used to define the
+ISI.EDU zone.and is loaded with an origin of ISI.EDU:
+
+@   IN  SOA     VENERA      Action\.domains (
+                                 20     ; SERIAL
+                                 7200   ; REFRESH
+                                 600    ; RETRY
+                                 3600000; EXPIRE
+                                 60)    ; MINIMUM
+
+        NS      A.ISI.EDU.
+        NS      VENERA
+        NS      VAXA
+        MX      10      VENERA
+        MX      20      VAXA
+
+A       A       26.3.0.103
+
+VENERA  A       10.1.0.52
+        A       128.9.0.32
+
+VAXA    A       10.2.0.27
+        A       128.9.0.33
+
+
+[...]
+
+Note the use of the \ character in the SOA RR to specify the responsible
+person mailbox &quot;Action.domains@E.ISI.EDU&quot;.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The following is an example file which might be used to define the
+ISI.EDU zone.and is loaded with an origin of ISI.EDU:
+
+@   IN  SOA     VENERA      Action\.domains (
+                                 20     ; SERIAL
+                                 7200   ; REFRESH
+                                 600    ; RETRY
+                                 3600000; EXPIRE
+                                 60)    ; MINIMUM
+
+        NS      A.ISI.EDU.
+        NS      VENERA
+        NS      VAXA
+        MX      10      VENERA
+        MX      20      VAXA
+
+A       A       26.3.0.103
+
+VENERA  A       10.1.0.52
+        A       128.9.0.32
+
+VAXA    A       10.2.0.27
+        A       128.9.0.33
+
+
+[...]
+
+Note the use of the \ character in the SOA RR to specify the responsible
+person mailbox &quot;Action.domains@ISI.EDU&quot;.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The introductory sentence and the following zone definition both correctly refer to the zone ISI.EDU. But the closing sentence noting the usage of &quot;\.&quot; in the mailbox name erroneously expands the example to &quot;Action.domains@E.ISI.EDU&quot; instead of &quot;Action.domains@ISI.EDU&quot;.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid3421">3421</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: Jeremy C. Reed<br />
+Date Reported: 2012-11-28<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 3.3.5 says:
+</p>
+<pre class="rfctext">
+The recommended policy for dealing with MD RRs found in
+a master file is to reject them, or to convert them to MX RRs with a
+preference of 10.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The recommended policy for dealing with MF RRs found in
+a master file is to reject them, or to convert them to MX RRs with a
+preference of 10.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+3.3.5 about MF says &quot;dealing with MD&quot;. It should probably say &quot;dealing with MF&quot;. I assume this is a copy and paste error from earlier section about MD.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2646">2646</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Nikolai Malykh<br />
+Date Reported: 2010-11-29<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 5.3 says:
+</p>
+<pre class="rfctext">
+The following is an example file which might be used to define the
+ISI.EDU zone.and is loaded with an origin of ISI.EDU:
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The following is an example file which might be used to define the
+ISI.EDU zone and is loaded with an origin of ISI.EDU:
+
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2691">2691</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Hirochika Asai<br />
+Date Reported: 2011-01-22<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 4.1.4 says:
+</p>
+<pre class="rfctext">
+In this scheme, an entire domain name or a list of labels at
+the end of a domain name is replaced with a pointer to a prior occurance
+of the same name.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+In this scheme, an entire domain name or a list of labels at
+the end of a domain name is replaced with a pointer to a prior occurrence
+of the same name.
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid3230">3230</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sam Bretheim<br />
+Date Reported: 2012-05-22<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 4.1.1 says:
+</p>
+<pre class="rfctext">
+RA              Recursion Available - this be is set or cleared in a
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+RA              Recursion Available - this bit is set or cleared in a
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid3691">3691</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sam Bretheim<br />
+Date Reported: 2013-08-01<br />
+Held for Document Update by: Ted Lemon<br />
+</p>
+<p>Section 5.1 says:
+</p>
+<pre class="rfctext">
+\DDD            where each D is a digit is the octet corresponding to
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+\DDD            where each D is a digit in the octet corresponding to
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4227">4227</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sun Congyou<br />
+Date Reported: 2015-01-09<br />
+Held for Document Update by: Ted Lemon<br />
+Date Held: 2015-01-10<br />
+</p>
+<p>Section 4.2.1 says:
+</p>
+<pre class="rfctext">
+Messages sent using UDP user server port 53 (decimal).
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Messages sent using UDP use server port 53 (decimal).
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+I'm very sorry for my previous mistake in errata ID 4226, this should be a correct one.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid5463">5463</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Shulhan<br />
+Date Reported: 2018-08-14<br />
+Held for Document Update by: Warren Kumari (Ops AD)<br />
+Date Held: 2018-08-14<br />
+</p>
+<p>Section 4.1.3 says:
+</p>
+<pre class="rfctext">
+RDATA           a variable length string of octets that describes the
+                resource.  The format of this information varies
+                according to the TYPE and CLASS of the resource record.
+                For example, the if the TYPE is A and the CLASS is IN,
+                the RDATA field is a 4 octet ARPA Internet address.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+RDATA           a variable length string of octets that describes the
+                resource.  The format of this information varies
+                according to the TYPE and CLASS of the resource record.
+                For example, if the TYPE is A and the CLASS is IN,
+                the RDATA field is a 4 octet ARPA Internet address.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The original text says &quot;For example, the if the ...&quot;, where it should say, &quot;For example, if the ...&quot;.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Rejected</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc1035.txt" target="_blank">RFC&nbsp;1035</a>, "Domain names - implementation and specification", November 1987</h3>
+<a href="/source/">Source of RFC</a>: Legacy<br />
+Area Assignment: int<br />
+<p>
+Errata ID: <a href="/errata/eid4226">4226</a><br />
+<b>Status: Rejected<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sun Congyou<br />
+Date Reported: 2015-01-09<br />
+Rejected by: Ted Lemon<br />
+Date Rejected: 2015-01-10<br />
+</p>
+<p>Section 4.2.1 says:
+</p>
+<pre class="rfctext">
+Messages sent using UDP user server port 53 (decimal).
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Messages sent using UDP uses server port 53 (decimal).
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+<br />
+ --VERIFIER NOTES-- <br />
+   Duplicate of errata #4227.
+</p>

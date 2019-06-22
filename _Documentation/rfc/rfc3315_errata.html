@@ -1,0 +1,328 @@
+<p>Found 10 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (7)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3315.txt" target="_blank">RFC&nbsp;3315</a>, "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)", July 2003</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid294">294</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Hideshi Enokihara<br />
+Date Reported: 2006-06-29<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 20.1.2 says:
+</p>
+<pre class="rfctext">
+   The relay agent copies the source address from the IP datagram in
+   which the message was received from the client into the peer-address
+   field in the Relay-forward message and sets the hop-count field to
+   the value of the hop-count field in the received message incremented
+   by 1.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   The relay agent copies the source address from the IP datagram in
+   which the message was received from the relay agent into the peer-address
+   field in the Relay-forward message and sets the hop-count field to
+   the value of the hop-count field in the received message incremented
+   by 1.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+ 
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2472">2472</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Ole Troan<br />
+Date Reported: 2010-08-17<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 17.2.2 says:
+</p>
+<pre class="rfctext">
+If the server will not assign any addresses to any IAs in a
+subsequent Request from the client, the server MUST send an Advertise
+message to the client that includes only a Status Code option with
+code NoAddrsAvail and a status message for the user, a Server
+Identifier option with the server's DUID, and a Client Identifier
+option with the client's DUID.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+If the server will not assign any addresses to an IA in a
+subsequent Request from the client, the server MUST send an Advertise
+message to the client that includes the IA containing a Status Code 
+option with status code NoAddrsAvail and a status message for the 
+user, a Server Identifier option with the server's DUID, and a Client 
+Identifier option with the client's DUID. The server SHOULD include 
+other stateful IA options (like IA_PD) and other configuration options 
+in the Advertise message.
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2471">2471</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Ole Troan<br />
+Date Reported: 2010-08-17<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 17.1.3 says:
+</p>
+<pre class="rfctext">
+The client MUST ignore any Advertise message that includes a Status
+Code option containing the value NoAddrsAvail, with the exception
+that the client MAY display the associated status message to the
+user.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The client MUST ignore any IAs in an Advertise message that includes 
+a Status Code option containing the value NoAddrsAvail, with the 
+exception that the client MAY display the associated status message 
+to the user.
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1373">1373</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Robert Marks<br />
+Date Reported: 2008-03-19<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 22.17 says:
+</p>
+<pre class="rfctext">
+      option-code          OPTION_VENDOR_OPTS (17)
+
+      option-len           4 + length of option-data field
+
+      enterprise-number    The vendor's registered Enterprise Number as
+                           registered with IANA [6].
+
+      option-data          An opaque object of option-len octets,
+                           interpreted by vendor-specific code on the
+                           clients and servers
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+      option-code          OPTION_VENDOR_OPTS (17)
+
+      option-len           4 + length of option-data field
+
+      enterprise-number    The vendor's registered Enterprise Number as
+                           registered with IANA [6].
+
+      option-data          An opaque object,
+                           interpreted by vendor-specific code on the
+                           clients and servers
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+option-len is defined to be the size of the option-data + 4. Thus the size of option-data cannot option-len, but is actually option-len - 4.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2928">2928</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Leaf Yeh<br />
+Date Reported: 2011-08-09<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 17.2.1 says:
+</p>
+<pre class="rfctext">
+   For example, if the administrative policy for the server is
+   that it may only respond to a client that is willing to accept a
+   Reconfigure message, if the client indicates with a Reconfigure
+   Accept option in the Solicit message that it will not accept a
+   Reconfigure message, the servers discard the Solicit message.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   For example, if the administrative policy for the server is 
+   that it may only respond to a client that is willing to accept a 
+   Reconfigure message, if the client does not include a Reconfigure 
+   Accept option (see section 22.20) in the Solicit message, the 
+   servers discard the Solicit message.
+
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1815">1815</a><br />
+<b>Status: Verified<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Michelle Cotton<br />
+Date Reported: 2009-07-22<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2012-07-29<br />
+</p>
+<p>Section 26 says:
+</p>
+<pre class="rfctext">
+ [6]  IANA.  Private Enterprise Numbers.
+        http://www.iana.org/assignments/enterprise-numbers.html.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+ [6]  IANA.  Private Enterprise Numbers.
+        http://www.iana.org/assignments/enterprise-numbers
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The URL for the enterprise numbers registry is incorrect.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid3577">3577</a><br />
+<b>Status: Verified<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Pablo Armando<br />
+Date Reported: 2013-03-31<br />
+Verifier Name: Ted Lemon<br />
+Date Verified: 2013-04-02<br />
+</p>
+<p>Section 9.3 says:
+</p>
+<pre class="rfctext">
+An example DUID of this type might look like this:
+
+ +---+---+---+---+---+---+---+---+
+ | 0 | 2 | 0 | 0 | 0 |  9| 12|192|
+ +---+---+---+---+---+---+---+---+
+ |132|221| 3 | 0 | 9 | 18|
+ +---+---+---+---+---+---+
+
+This example includes the two-octet type of 2, the Enterprise Number
+(9), followed by eight octets of identifier data
+(0x0CC084D303000912).
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+An example DUID of this type might look like this:
+
+ +---+---+---+---+---+---+---+---+
+ | 0 | 2 | 0 | 0 | 0 |  9| 12|192|
+ +---+---+---+---+---+---+---+---+
+ |132|211| 3 | 0 | 9 | 18|
+ +---+---+---+---+---+---+
+
+This example includes the two-octet type of 2, the Enterprise Number
+(9), followed by eight octets of identifier data
+(0x0CC084D303000912).
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+0xD3 is 211 decimal, not 221.<br />
+<br />
+I am assuming that this number is the correct one: 0x0CC084D303000912
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Reported</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3315.txt" target="_blank">RFC&nbsp;3315</a>, "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)", July 2003</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid5450">5450</a><br />
+<b>Status: Reported<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Nikolai Malykh<br />
+Date Reported: 2018-08-03<br />
+</p>
+<p>Section 18.2.5 says:
+</p>
+<pre class="rfctext">
+   The server MUST include a Server Identifier option containing the
+   server's DUID in the Reply message.  If the client included a Client
+   Identification option in the Information-request message, the server
+   copies that option to the Reply message.
+
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   The server MUST include a Server Identifier option containing the
+   server's DUID in the Reply message.  If the client included a Client
+   Identifier option in the Information-request message, the server
+   copies that option to the Reply message.
+
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Incorrect option name
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3315.txt" target="_blank">RFC&nbsp;3315</a>, "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)", July 2003</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid2509">2509</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: Suresh Krishnan<br />
+Date Reported: 2010-09-03<br />
+Held for Document Update by: Ralph Droms<br />
+</p>
+<p>Section 22.7 says:
+</p>
+<pre class="rfctext">
+A server MAY include an Option Request option in a 
+Reconfigure option to indicate which options the client should 
+request from the server.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+A server MAY include an Option Request option in a 
+Reconfigure message to indicate which options the client should 
+request from the server.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+There is no such thing as a &quot;Reconfigure option&quot;. I believe that the intent was to refer to the Reconfigure message instead.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid295">295</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Hideshi Enokihara<br />
+Date Reported: 2006-06-29<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 18.2.7 says:
+</p>
+<pre class="rfctext">
+   After all the addresses have been processed, the server generates a
+   Reply message and includes a Status Code option with the value
+   Success, a Server Identifier option with the server's DUID, and a
+   Client Identifier option with the client's DUID.  For each IA in the
+   Decline message for which the server has no binding information, the
+   server adds an IA option using the IAID from the Release message and
+   includes a Status Code option with the value NoBinding in the IA
+   option.  No other options are included in the IA option.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   After all the addresses have been processed, the server generates a
+   Reply message and includes a Status Code option with the value
+   Success, a Server Identifier option with the server's DUID, and a
+   Client Identifier option with the client's DUID.  For each IA in the
+   Decline message for which the server has no binding information, the
+   server adds an IA option using the IAID from the Decline message and
+   includes a Status Code option with the value NoBinding in the IA
+   option.  No other options are included in the IA option.
+
+</pre>

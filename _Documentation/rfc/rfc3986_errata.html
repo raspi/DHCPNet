@@ -1,0 +1,516 @@
+<p>Found 14 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3986.txt" target="_blank">RFC&nbsp;3986</a>, "Uniform Resource Identifier (URI): Generic Syntax", January 2005</h3>
+<a href="/source/">Source of RFC</a>: IETF - NON WORKING GROUP<br />
+Area Assignment: app<br />
+<p>
+Errata ID: <a href="/errata/eid2525">2525</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Christopher Yeleighton<br />
+Date Reported: 2010-09-17<br />
+Verifier Name: Alexey Melnikov<br />
+Date Verified: 2010-11-12<br />
+</p>
+<p>Section 3.1 says:
+</p>
+<pre class="rfctext">
+Advice for designers of new URI schemes can be found in [RFC2718].
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Advice for designers of new URI schemes can be found in [RFC4395].
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The document [RFC2718] is for designers of designers of new URL schemes only.  It has been obsoleted by [RFC4395] that covers all URI schemes.<br />
+<br />
+[RFC4395]  <br />
+T. Hansen, T. Hardie, T. and L. Masinter,<br />
+&quot;Guidelines and Registration Procedures for New URI Schemes&quot;, <br />
+RFC 4395, February 2006.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Reported</a> (4)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3986.txt" target="_blank">RFC&nbsp;3986</a>, "Uniform Resource Identifier (URI): Generic Syntax", January 2005</h3>
+<a href="/source/">Source of RFC</a>: IETF - NON WORKING GROUP<br />
+Area Assignment: app<br />
+<p>
+Errata ID: <a href="/errata/eid4547">4547</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: siva elango ramaswamy<br />
+Date Reported: 2015-12-01<br />
+</p>
+<p>Section 5.4.2 says:
+</p>
+<pre class="rfctext">
+5.4.2.  Abnormal Examples
+
+   Although the following abnormal examples are unlikely to occur in
+   normal practice, all URI parsers should be capable of resolving them
+   consistently.  Each example uses the same base as that above.
+
+   Parsers must be careful in handling cases where there are more &quot;..&quot;
+   segments in a relative-path reference than there are hierarchical
+   levels in the base URI's path.  Note that the &quot;..&quot; syntax cannot be
+   used to change the authority component of a URI.
+
+      &quot;../../../g&quot;    =  &quot;http://a/g&quot;
+      &quot;../../../../g&quot; =  &quot;http://a/g&quot;
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+5.4.2.  Abnormal Examples
+
+   Although the following abnormal examples are unlikely to occur in
+   normal practice, all URI parsers should be capable of resolving them
+   consistently.  Each example uses the same base as that above.
+
+   Parsers must be careful in handling cases where there are more &quot;..&quot;
+   segments in a relative-path reference than there are hierarchical
+   levels in the base URI's path.  Note that the &quot;..&quot; syntax cannot be
+   used to change the authority component of a URI.
+
+      &quot;../../../g&quot;    =  &quot;http://a/../g&quot;
+      &quot;../../../../g&quot; =  &quot;http://a/../../g&quot;
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The example which was taken from RFC 1808 had proper resolved URL ( 5.2 ).<br />
+<br />
+As the base URL has two levels ( http://a/b/c/ ) and if the relative url's have two &quot;..&quot; segments then from the resolved URI both the hierarchical levels can be removed to form the resolved URL, as below:<br />
+<br />
+../../g    = http://a/g <br />
+<br />
+and if there are more &quot;..&quot; segments than hierarchical level in base URI's path... then the number of &quot;..&quot; segments that doesn't have corresponding segments in base URI should be left as is in the resolved URI,  like below<br />
+<br />
+&quot;../../../g&quot; = &quot;http://a/../g&quot;
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4789">4789</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: Dinar Qurbanov<br />
+Date Reported: 2016-08-31<br />
+</p>
+<p>Section 5.2.3 says:
+</p>
+<pre class="rfctext">
+   o  If the base URI has a defined authority component and an empty
+      path, then return a string consisting of &quot;/&quot; concatenated with the
+      reference's path; otherwise,
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   o  If the base URI has a defined authority component and an empty 
+      path, or if the base URI's path is ending with &quot;/..&quot;, then return 
+      a string consisting of base's path concatenated with &quot;/&quot; and then 
+      concatenated with the reference's path; otherwise,
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+this is about case when reference does not have scheme and authority and its path is not starting with &quot;/&quot;.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4942">4942</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: r. de raat<br />
+Date Reported: 2017-02-19<br />
+</p>
+<p>Section 3.2.2. Host says:
+</p>
+<pre class="rfctext">
+Such a name consists of a sequence of domain labels separated by &quot;.&quot;,
+each domain label starting and ending with an alphanumeric character
+and possibly also containing &quot;-&quot; characters.  The rightmost domain
+label of a fully qualified domain name in DNS may be followed by a
+single &quot;.&quot; and should be if it is necessary to distinguish between
+the complete domain name and some local domain.
+
+   reg-name    = *( unreserved / pct-encoded / sub-delims )
+
+If the URI scheme defines a default for host, then that default
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Such a name consists of a sequence of domain labels separated by &quot;.&quot;,
+each domain label starting and ending with an alphanumeric character
+and possibly also containing &quot;-&quot; characters.  The rightmost domain
+label of a fully qualified domain name in DNS may be followed by a
+single &quot;.&quot; and should be if it is necessary to distinguish between
+the complete domain name and some local domain.
+
+   reg-name    = *( unreserved / pct-encoded / &quot;-&quot; / &quot;.&quot;)
+
+If the URI scheme defines a default for host, then that default
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+sub-delims  are defined as &quot;!&quot; / &quot;$&quot; / &quot;&amp;&quot; / &quot;'&quot; / &quot;(&quot; / &quot;)&quot; / &quot;*&quot; / &quot;+&quot; / &quot;,&quot; / &quot;;&quot; / &quot;=&quot; these are not characters that are allowed in host, domain or tld names, in addition the sub-delims do not sontain the &quot;-&quot; and &quot;.&quot; <br />
+therefore the reg-name (fully qualified domain name) definition is incorrect   <br />
+<br />
+The same issue appears in &quot;Appendix A.&quot;
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid5428">5428</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: Kevin Layer<br />
+Date Reported: 2018-07-17<br />
+</p>
+<p>Section 4.2 says:
+</p>
+<pre class="rfctext">
+      relative-part = &quot;//&quot; authority path-abempty
+                    / path-absolute
+                    / path-noscheme
+                    / path-empty
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+      relative-part = &quot;//&quot; authority path-abempty
+                    / path-absolute
+                    / path-noscheme
+		    / path-abempty    ; this was added
+                    / path-empty
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+As written, the ABNF excludes &quot;/&quot; being a valid URI.  It is hard to believe that href=&quot;/&quot; when converted to a URI, would be illegal.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (3)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3986.txt" target="_blank">RFC&nbsp;3986</a>, "Uniform Resource Identifier (URI): Generic Syntax", January 2005</h3>
+<a href="/source/">Source of RFC</a>: IETF - NON WORKING GROUP<br />
+Area Assignment: app<br />
+<p>
+Errata ID: <a href="/errata/eid2624">2624</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: Peter Saint-Andre<br />
+Date Reported: 2010-11-11<br />
+Held for Document Update by: Peter Saint-Andre<br />
+Date Held: 2011-03-30<br />
+</p>
+<p>Section Appendix B says:
+</p>
+<pre class="rfctext">
+^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+This is a copy of Erratum #1933, reported against RFC 2396.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2033">2033</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Tanaka Akira<br />
+Date Reported: 2010-02-05<br />
+Held for Document Update by: Alexey Melnikov<br />
+</p>
+<p>Section 3.3. says:
+</p>
+<pre class="rfctext">
+      path-empty    = 0&lt;pchar&gt;
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+      path-empty    = &quot;&quot;
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+According to ABNF, 0&lt;pchar&gt; is interpreted as<br />
+zero repeatation of the prose-val: pchar.<br />
+<br />
+However pchar is an non-terminal.<br />
+So I think the production should be follows:<br />
+  path-empty = 0pchar<br />
+<br />
+However this production means a empty string.<br />
+So<br />
+  path-empty = &quot;&quot;<br />
+is more clear.<br />
+<br />
+Appendix A. has also the same production.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2933">2933</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Bjoern Hoehrmann<br />
+Date Reported: 2011-08-13<br />
+Held for Document Update by: Peter Saint-Andre<br />
+Date Held: 2012-02-27<br />
+</p>
+<p>Section 5.2.2. says:
+</p>
+<pre class="rfctext">
+T.path = merge(Base.path, R.path);
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+T.path = merge(Base, R);
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+In 5.2.3. the &quot;If the base URI has a defined authority component&quot; condition requires knowing the authority component, so passing just the path component is misleading.<br />
+<br />
+During discussion of this issue, Roy Fielding noted: &quot;No, this is not an error in the algorithm.  The algorithm is just saying that you need to merge the two paths.  The two paths are not parameters to a function, nor is the merge procedure limited to those two parameters.&quot; Saving this report as &quot;Hold For Document Update&quot; so that future implementers do not experience the same confusion.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Rejected</a> (6)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3986.txt" target="_blank">RFC&nbsp;3986</a>, "Uniform Resource Identifier (URI): Generic Syntax", January 2005</h3>
+<a href="/source/">Source of RFC</a>: IETF - NON WORKING GROUP<br />
+Area Assignment: app<br />
+<p>
+Errata ID: <a href="/errata/eid3330">3330</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: David Sheets<br />
+Date Reported: 2012-08-29<br />
+Rejected by: Barry Leiba<br />
+Date Rejected: 2012-09-04<br />
+</p>
+<p>Section Appendix A says:
+</p>
+<pre class="rfctext">
+fragment      = *( pchar / &quot;/&quot; / &quot;?&quot; )
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+fragment      = *( pchar / &quot;/&quot; / &quot;?&quot; / &quot;#&quot; )
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Appendix B's regex doesn't fail with this correction. Additionally, this gives freedom to media type designers. Specifically, the ((path?),(query?),(fragment?)) subsyntax could be reused in hypermedia type design as the &quot;?&quot; delimiter transitions path =&gt; query and the &quot;#&quot; delimiter transitions query =&gt; fragment. It also follows the pattern:<br />
+path         = *( pchar / &quot;/&quot; )<br />
+query         = *( pchar / &quot;/&quot; / &quot;?&quot; )<br />
+fragment      = *( pchar / &quot;/&quot; / &quot;?&quot; / &quot;#&quot; )<br />
+ --VERIFIER NOTES-- <br />
+This is something that should be looked at further, but it is not an error in the spec and is unlikely to be a direct change we'd make in a revision of the spec.<br />
+<br />
+Some applications at the time the specification was written parsed the fragment from left to right, and others parsed from right to left, which means they would get different results if &quot;#&quot; were allowed inside of a fragment.  That's why it was not allowed in the ABNF.  It's possible that situation has improved in the years since, but it would be difficult to test so many implementations.  Deciding the right way to handle this goes beyond what can be handled by an erratum.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4293">4293</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: Cesar Crusius<br />
+Date Reported: 2015-03-07<br />
+Rejected by: Barry Leiba<br />
+Date Rejected: 2015-03-07<br />
+</p>
+<p>Section Appendix B says:
+</p>
+<pre class="rfctext">
+^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+^(([^:/?#]+):)(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The regular expression makes the scheme part optional, but both the ABNF in Appendix A and the text in Section 3 state that the scheme is in fact required.<br />
+ --VERIFIER NOTES-- <br />
+The context is that this is for parsing references:<br />
+<br />
+   The following line is the regular expression for breaking-down a<br />
+   well-formed URI reference into its components.<br />
+<br />
+The ABNF makes it clear that the scheme is, in fact, NOT required for URI references (see the ABNF for the &quot;relative-ref&quot; production).
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4393">4393</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: Steven Liekens<br />
+Date Reported: 2015-06-15<br />
+Rejected by: Barry Leiba<br />
+Date Rejected: 2015-06-15<br />
+</p>
+<p>Section 3.2.2 says:
+</p>
+<pre class="rfctext">
+dec-octet   = DIGIT                 ; 0-9
+            / %x31-39 DIGIT         ; 10-99
+            / &quot;1&quot; 2DIGIT            ; 100-199
+            / &quot;2&quot; %x30-34 DIGIT     ; 200-249
+            / &quot;25&quot; %x30-35          ; 250-255
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+dec-octet = &quot;25&quot; %x30-35          ; 250-255
+          / &quot;2&quot; %x30-34 DIGIT     ; 200-249
+          / &quot;1&quot; 2DIGIT            ; 100-199
+          / %x31-39 DIGIT         ; 10-99
+          / DIGIT                 ; 0-9
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The 'dec-octet' rule requires more than 1 lookahead symbol.<br />
+<br />
+Example value: 127<br />
+<br />
+Parsers that implement a first-match-wins strategy will erroneously match 127 as ( DIGIT ), followed by two unexpected symbols.<br />
+<br />
+Parsers that implement a first-match-wins strategy with the corrected grammar will correctly match 127 as ( &quot;1&quot; 2DIGIT ).<br />
+ --VERIFIER NOTES-- <br />
+Yes, except that ABNF defined in RFC 5234 is designed to describe what's valid to produce -- it's not designed as the definitive source for building a perfect parser.  In particular, the order of the alternatives is not significant in ABNF, so reordering them is irrelevant.<br />
+<br />
+In fact, the ABNF here is more specific than it often is.  In other RFCs it will say things like<br />
+   xyz = 0 / %x31-39 *2DIGIT ; valid values are 0-255<br />
+...and just let the comment restrict the maximum value.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid4394">4394</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: Steven Liekens<br />
+Date Reported: 2015-06-15<br />
+Rejected by: Barry Leiba<br />
+Date Rejected: 2015-06-15<br />
+</p>
+<p>Section 3.2.2 says:
+</p>
+<pre class="rfctext">
+IPv6address =                            6( h16 &quot;:&quot; ) ls32
+                 /                       &quot;::&quot; 5( h16 &quot;:&quot; ) ls32
+                 / [               h16 ] &quot;::&quot; 4( h16 &quot;:&quot; ) ls32
+                 / [ *1( h16 &quot;:&quot; ) h16 ] &quot;::&quot; 3( h16 &quot;:&quot; ) ls32
+                 / [ *2( h16 &quot;:&quot; ) h16 ] &quot;::&quot; 2( h16 &quot;:&quot; ) ls32
+                 / [ *3( h16 &quot;:&quot; ) h16 ] &quot;::&quot;    h16 &quot;:&quot;   ls32
+                 / [ *4( h16 &quot;:&quot; ) h16 ] &quot;::&quot;              ls32
+                 / [ *5( h16 &quot;:&quot; ) h16 ] &quot;::&quot;              h16
+                 / [ *6( h16 &quot;:&quot; ) h16 ] &quot;::&quot;
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+IPv6address = (                6( h16 &quot;:&quot; ) ls32 ) 
+            / (           &quot;::&quot; 5( h16 &quot;:&quot; ) ls32 )
+            / ( [   h16 ] &quot;::&quot; 4( h16 &quot;:&quot; ) ls32 )
+            / ( [ h16-2 ] &quot;::&quot; 3( h16 &quot;:&quot; ) ls32 )
+            / ( [ h16-3 ] &quot;::&quot; 2( h16 &quot;:&quot; ) ls32 )
+            / ( [ h16-4 ] &quot;::&quot;    h16 &quot;:&quot;   ls32 )
+            / ( [ h16-5 ] &quot;::&quot;              ls32 )
+            / ( [ h16-6 ] &quot;::&quot;               h16 )
+            / ( [ h16-7 ] &quot;::&quot;                   )
+
+h16-7       = ( *6( h16 &quot;:&quot; ) h16 ) / h16-6
+
+h16-6       = ( *5( h16 &quot;:&quot; ) h16 ) / h16-5
+
+h16-5       = ( *4( h16 &quot;:&quot; ) h16 ) / h16-4
+
+h16-4       = ( *3( h16 &quot;:&quot; ) h16 ) / h16-3
+
+h16-3       = ( *2( h16 &quot;:&quot; ) h16 ) / h16-2
+
+h16-2       = (   [ h16 &quot;:&quot; ] h16 ) / h16
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The 'IPv6address' rule requires more than 1 lookahead symbol.<br />
+<br />
+Example value: 1::<br />
+<br />
+Parsers that implement a first-match-wins strategy will erroneously match 1:: as ( h16 &quot;:&quot; ), followed by an unexpected symbol.<br />
+<br />
+Parsers that implement a first-match-wins strategy with the corrected grammar will correctly match 1:: as ( h16 &quot;::&quot; ).<br />
+ --VERIFIER NOTES-- <br />
+As with errata report 4393, this is trying to use ABNF beyond what it's meant for.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1783">1783</a><br />
+<b>Status: Rejected<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Christopher Yeleighton<br />
+Date Reported: 2009-05-15<br />
+Rejected by: Peter Saint-Andre<br />
+Date Rejected: 2010-09-15<br />
+</p>
+<p>Section 3.1. says:
+</p>
+<pre class="rfctext">
+Advice for designers of new URI schemes can be found in [RFC2718].
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Advice for designers of new URL schemes can be found in [RFC2718].
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+[RFC2718] does not contain advice for designers of new URN schemes; it is applies to URL schemes only and it is titled accordingly.<br />
+The information as published is misleading.<br />
+ --VERIFIER NOTES-- <br />
+   Given that RFC 4395 (&quot;Guidelines and Registration Procedures for New URI Schemes&quot;) obsoletes the referenced RFC 2718 (&quot;Guidelines for new URL Schemes&quot;), this erratum is best considered in error.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2717">2717</a><br />
+<b>Status: Rejected<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Winfred Qin<br />
+Date Reported: 2011-02-14<br />
+Rejected by: Peter Saint-Andre<br />
+Date Rejected: 2011-05-16<br />
+</p>
+<p>Section 3 says:
+</p>
+<pre class="rfctext">
+      hier-part   = &quot;//&quot; authority path-abempty
+                  / path-absolute
+                  / path-rootless
+                  / path-empty
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+      hier-part   = &quot;//&quot; authority path-abempty
+                  / path-absolute
+                  / path-noscheme
+                  / path-rootless
+                  / path-empty
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+There are four ABNF rules for path, but the following words says:<br />
+<br />
+'These restrictions result in five different ABNF rules for a path (Section 3.3)'<br />
+<br />
+And in section 3.3, there are five rules.<br />
+ --VERIFIER NOTES-- <br />
+   PSA: There is no error here, because the hierarchical part excludes<br />
+   paths that are not preceded by &quot;//&quot;, whereas the path rule includes<br />
+   paths that are not preceded by &quot;//&quot; (thus five rules for &quot;path&quot; but<br />
+   only four rules for &quot;hier-part&quot;).
+</p>

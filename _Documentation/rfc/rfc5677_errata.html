@@ -1,0 +1,235 @@
+<p>Found 6 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc5677.txt" target="_blank">RFC&nbsp;5677</a>, "IEEE 802.21 Mobility Services Framework Design (MSFD)", December 2009</h3>
+<a href="/source/">Source of RFC</a>: mipshop (int)<br />
+<p>
+Errata ID: <a href="/errata/eid1964">1964</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2012-09-07<br />
+</p>
+<p>Section 7, Fig. 9 says:
+</p>
+<pre class="rfctext">
+|                MN                                         MoS
+ |===================================|    |======| |===================|
+ + ---------+                                                +---------+
+ | MIH USER |       +------+  +------+    +------+  +------+ | MIH USER|
+ | +------+ |       | TCP  |  |DHCP  |    |DHCP  |  | TCP  | | +------+|
+ | | MIHF | |       |Client|  |Client|    |Server|  |Server| | | MIHF ||
+ +----------+       +------+  +------+    +------+  +------++----------+
+     |                 |         |           |         |          |
+ ...
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+|                MN                                   Mobility Server
+ |===================================|    |======| |===================|
+ + ---------+                                                +---------+
+ | MIH USER |       +------+  +------+    +------+  +------+ | MIH USER|
+ | +------+ |       | TCP  |  |DHCP  |    |DHCP  |  | TCP  | | +------+|
+ | | MIHF | |       |Client|  |Client|    |Server|  |Server| | | MIHF ||
+ +----------+       +------+  +------+    +------+  +------++----------+
+     |                 |         |           |         |          |
+ ...
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:<br />
+  The published RFC uses improved terminology, distinguishing<br />
+  between &quot;MoS&quot; (IEEE 802.21 Mobility Services) and &quot;Mobility <br />
+  Servers&quot; providing these services -- cf. Section 2 of the RFC.<br />
+  Unfortunately, this change has been missed for the heading of<br />
+  Figure 9, on top of page 20.
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (5)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc5677.txt" target="_blank">RFC&nbsp;5677</a>, "IEEE 802.21 Mobility Services Framework Design (MSFD)", December 2009</h3>
+<a href="/source/">Source of RFC</a>: mipshop (int)<br />
+<p>
+Errata ID: <a href="/errata/eid1962">1962</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 11.2 says:
+</p>
+<pre class="rfctext">
+   [IEEE80221] &quot;IEEE Standard for Local and Metropolitan Area Networks -
+               Part 21: Media Independent Handover Services&quot;, IEEE
+               LAN/MAN Std 802.21-2008, January 2009,
+|              http://www.ieee802.org/21/private/Published%20Spec/
+|              802.21-2008.pdf (access to the document requires
+|              membership).
+
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   [IEEE80221] &quot;IEEE Standard for Local and Metropolitan Area Networks -
+               Part 21: Media Independent Handover Services&quot;, IEEE
+               LAN/MAN Std 802.21-2008, January 2009,
+|              http://standards.ieee.org/getieee802/802.21.html.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale: By the time of publication of the RFC, the 6-month<br />
+  IEEE 802 grace period had passed for more than 5 months, and<br />
+  the specification is now  available freely as usual.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1963">1963</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 5.3,1st para says:
+</p>
+<pre class="rfctext">
+|  To discover a Mobility Server in a remote network other than home
+   network, the MN MUST use the DNS-based MoS discovery method described
+   in [RFC5679].  [...]
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+|  To discover a Mobility Server in a remote network other than the home
+   network, the MN MUST use the DNS-based MoS discovery method described
+   in [RFC5679].  [...]
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:  Missing article.<br />
+<br />
+Other editorial flaw (keep for update!):<br />
+  The text of Section 2.1 (page 7) is indented too much;<br />
+  should be same indentation as for the body of Section 3.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1965">1965</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 6.3,2nd para says:
+</p>
+<pre class="rfctext">
+                             [...]  The default maximum number of
+   retransmissions is set to 2 and the initial retransmission timer
+|  (TMO) is set to 3s when RTT is not known.  The maximum TMO is set to
+   30s.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+                             [...]  The default maximum number of
+   retransmissions is set to 2 and the initial retransmission timer
+|  (TMO) is set to 3s when the RTT is not known.  The maximum TMO is set
+   to 30s.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:<br />
+  Missing article; adjustment to use of language in preceding text.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1966">1966</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 8 says:
+</p>
+<pre class="rfctext">
+|             [...]  Since IEEE 802.21 base specification does not
+   provide MIH protocol level security, it is assumed that either lower
+   layer security (e.g., link layer) or overall system-specific (e.g.,
+   proprietary) security solutions are available.  [...]
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+|             [...]  Since the IEEE 802.21 base specification does not
+   provide MIH protocol level security, it is assumed that either lower
+   layer security (e.g., link layer) or overall system-specific (e.g.,
+   proprietary) security solutions are available.  [...]
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:  Missing article.  (Keep for update!)
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid1967">1967</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2009-12-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 8.1 says:
+</p>
+<pre class="rfctext">
+a)  1st para:
+  
+       [...]  In such cases, the link between the DHCP client and Layer
+   2 termination point may be protected, but the DHCP message source and
+   its messages cannot be authenticated or the integrity of the latter
+|  checked unless there exits a security binding between link layer and
+   DHCP layer.
+
+b) 2nd para:
+                    v
+|  In the case where DNS is used for discovering MoS, fake DNS requests
+   and responses may cause denial of service (DoS) and the inability of
+   the MN to perform a proper handover, respectively.  Where networks
+   are exposed to such DoS, it is RECOMMENDED that DNS service providers
+   use the Domain Name System Security Extensions (DNSSEC) as described
+   in [RFC4033].  Readers may also refer to [RFC4641] to consider the
+   aspects of DNSSEC operational practices.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+a)  1st para:
+  
+       [...]  In such cases, the link between the DHCP client and Layer
+   2 termination point may be protected, but the DHCP message source and
+   its messages cannot be authenticated or the integrity of the latter
+|  checked unless there exists a security binding between link layer and
+   DHCP layer.
+
+b) 2nd para:
+                    vvvvv
+|  In the case where the DNS is used for discovering MoS, fake DNS
+   requests and responses may cause denial of service (DoS) and the
+   inability of the MN to perform a proper handover, respectively.
+   Where networks are exposed to such DoS, it is RECOMMENDED that DNS
+   service providers use the Domain Name System Security Extensions
+   (DNSSEC) as described in [RFC4033].  Readers may also refer to
+   [RFC4641] to consider the aspects of DNSSEC operational practices.
+
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:<br />
+  a) typo<br />
+  b) missing article
+</p>

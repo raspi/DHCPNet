@@ -1,0 +1,116 @@
+<p>Found 4 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc2131.txt" target="_blank">RFC&nbsp;2131</a>, "Dynamic Host Configuration Protocol", March 1997</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid489">489</a><br />
+<b>Status: Verified<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Soohong Daniel Park<br />
+Date Reported: 2004-04-29<br />
+</p>
+<p>Section 3.1 number 5 says:
+</p>
+<pre class="rfctext">
+     The client times out and retransmits the DHCPREQUEST message if the
+     client receives neither a DHCPACK or a DHCPNAK message.  
+     ...
+     If the client
+     receives neither a DHCPACK or a DHCPNAK message after employing the
+     retransmission algorithm, the client reverts to INIT state and
+     restarts the initialization process. 
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+     The client times out and retransmits the DHCPREQUEST message if the
+     client receives neither a DHCPACK nor a DHCPNAK message.  
+     ...
+     If the client
+     receives neither a DHCPACK nor a DHCPNAK message after employing the
+     retransmission algorithm, the client reverts to INIT state and
+     restarts the initialization process. 
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+<br />
+<br />
+
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid490">490</a><br />
+<b>Status: Verified<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sreeni R. Nair<br />
+Date Reported: 2004-01-13<br />
+</p>
+<p>Section 4.1 says:
+</p>
+<pre class="rfctext">
+Normally, DHCP servers and BOOTP relay agents attempt to deliver
+DHCPOFFER, DHCPACK and DHCPNAK messages directly to the client using
+uicast delivery.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Normally, DHCP servers and BOOTP relay agents attempt to deliver
+DHCPOFFER, DHCPACK and DHCPNAK messages directly to the client using
+unicast delivery.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+typo (uicast -&gt; unicast). Updated 2013-06-05. Thanks to Carlos Prendes for the correction.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Reported</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc2131.txt" target="_blank">RFC&nbsp;2131</a>, "Dynamic Host Configuration Protocol", March 1997</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid5100">5100</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: Fan Wei<br />
+Date Reported: 2017-08-29<br />
+</p>
+<p>Section 4.1 says:
+</p>
+<pre class="rfctext">
+Normally, DHCP servers and BOOTP relay agents attempt to deliver
+DHCPOFFER, DHCPACK and DHCPNAK messages directly to the client using
+uicast delivery.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Normally, DHCP servers and BOOTP relay agents attempt to deliver
+DHCPOFFER, DHCPACK messages directly to the client using
+unicast delivery.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+According to prior part description in section 4.1: &quot;In all cases, when ’giaddr’ is zero, the server broadcasts any DHCPNAK messages to 0xffffffff.&quot;, the DHCP server should not send DHCPNAK in unicast to client unless 'giaddr' is not zero.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc2131.txt" target="_blank">RFC&nbsp;2131</a>, "Dynamic Host Configuration Protocol", March 1997</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid488">488</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Robert Floyd Jr<br />
+Date Reported: 2006-03-23<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 1.2 says:
+</p>
+<pre class="rfctext">
+In other related work, the path minimum transmission unit (MTU) discovery
+algorithm can determine the MTU of an arbitrary internet path [14].
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+In other related work, the path maximum transmission unit (MTU) discovery
+algorithm can determine the MTU of an arbitrary internet path [14].
+
+</pre>

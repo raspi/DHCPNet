@@ -1,0 +1,106 @@
+<p>Found 2 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc6011.txt" target="_blank">RFC&nbsp;6011</a>, "Session Initiation Protocol (SIP) User Agent Configuration", October 2010</h3>
+<a href="/source/">Source of RFC</a>: IETF - NON WORKING GROUP<br />
+Area Assignment: rai<br />
+<p>
+Errata ID: <a href="/errata/eid2622">2622</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2010-11-11<br />
+Verifier Name: Gonzalo Camarillo<br />
+Date Verified: 2013-04-03<br />
+</p>
+<p>Section 2.3.1.2 says:
+</p>
+<pre class="rfctext">
+   If the DNS request to resolve the Configuration Service Domain name
+   to a request URL does not receive any response, the UA should follow
+   standard DNS retry procedures.
+
+   If the DNS request to resolve the Configuration Service Domain name
+|  to a host name returns a response that indicates that no matching
+|  result is available (NXDOMAIN), the UA SHOULD attempt to obtain
+   another Configuration Service Domain name using the procedures in
+   Section 2.2, &quot;Obtaining the Configuration Service Domain&quot;.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   If the DNS request to resolve the Configuration Service Domain name
+   to a request URL does not receive any response, the UA should follow
+   standard DNS retry procedures.
+
+   If the DNS request to resolve the Configuration Service Domain name
+|  to a request URL returns a response that indicates that the queried
+|  domain does not exist (NXDomain), that no matching result is
+|  available at that domain (NoError response with an empty NAPTR RRset
+|  in the Answer section), or that a permanent error condition exists
+|  (other non-zero RCODE value, e.g., ServFail), the UA SHOULD attempt
+   to obtain another Configuration Service Domain name using the
+   procedures in Section 2.2, &quot;Obtaining the Configuration Service
+   Domain&quot;.
+
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:<br />
+a) This section discusses the U-NAPTR usage; therefore, as in the first<br />
+   paragraph, the second paragraph should not erroneously indicate<br />
+   a &quot;host name&quot; return, it also should precisely indicate that it<br />
+   talks about U-NAPTR lookup; hence   s/host name/request URL/ .<br />
+<br />
+b) It is an unfortunately widespread misconception that a DNS query<br />
+   for a RR type that does not exists at a particular domain name<br />
+   returns a NXDomain response.  This is not the case.  An empty RRset<br />
+   is a valid response returned with RCODE=0 (NoError).  Further, the<br />
+   RFC text omits the important error cases that also need to be dealt<br />
+   with by the SIP UA configuration procedure.<br />
+   The replacement text tries to clarify the different situations<br />
+   where no NAPTR record can be obtained.<br />
+<br />
+c) Use the standard version spelling of DNS RCODE names as registered<br />
+   in the &quot;DNS RCODEs&quot; sub-registry -- part of<br />
+   http://www.IANA.ORG/assignments/dns-parameters.
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2623">2623</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2010-11-11<br />
+Verifier Name: Gonzalo Camarillo<br />
+Date Verified: 2013-04-03<br />
+</p>
+<p>Section 2.4.2 says:
+</p>
+<pre class="rfctext">
+[[ first bullet on page 14: ]]
+ 
+  o  If a DNS request to resolve the host name in the request URL
+      returns a response that indicates that no matching result is
+|     available (NXDOMAIN), the UA MUST remove that request URL from the
+      list of alternatives for the Configuration Service Domain.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   o  If a DNS request to resolve the host name in the request URL
+      returns a response that indicates that no matching result is
+|     available, the UA MUST remove that request URL from the list of
+      alternatives for the Configuration Service Domain.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Rationale:<br />
+  See the related Errata Note for Section 2.3.1.2 (EID=2622) for<br />
+  background and details. Dropping the parenthetical &quot;NXDOMAIN&quot;<br />
+  here seems to be the most simple way to remove the misleading<br />
+  allusion that &quot;no matching data available&quot; be equivalent to a<br />
+  NXDomain response.
+</p>

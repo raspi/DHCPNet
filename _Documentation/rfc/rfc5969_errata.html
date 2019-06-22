@@ -1,0 +1,69 @@
+<p>Found 2 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc5969.txt" target="_blank">RFC&nbsp;5969</a>, "IPv6 Rapid Deployment on IPv4 Infrastructures (6rd) -- Protocol Specification", August 2010</h3>
+<a href="/source/">Source of RFC</a>: softwire (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3049">3049</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alessandro Cortiana<br />
+Date Reported: 2011-12-11<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-10<br />
+</p>
+<p>Section 12 says:
+</p>
+<pre class="rfctext">
+By restricting the 6rd domain to within a provider
+network, a CE only needs to accept packets from a single or small set
+of known 6rd BR IPv4 addresses.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+By restricting the 6rd domain to within a provider
+network, a CE only needs to accept packets from a single or small set
+of known 6rd BR IPv4 addresses and from other CEs within the 6rd domain.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+A CE also needs to accept packets from other CEs within the 6rd domain.<br />
+This happens when, within a 6rd domain, two customer sites want to communicate.<br />
+Reference: RFC5569 section 3
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<!-- <p>No records found for status Held for Document Update.</p> -->
+<h2>Status: <a href="status_type_desc.html">Rejected</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc5969.txt" target="_blank">RFC&nbsp;5969</a>, "IPv6 Rapid Deployment on IPv4 Infrastructures (6rd) -- Protocol Specification", August 2010</h3>
+<a href="/source/">Source of RFC</a>: softwire (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3869">3869</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: Fernando Gont<br />
+Date Reported: 2014-01-20<br />
+Rejected by: Ted Lemon<br />
+Date Rejected: 2014-01-21<br />
+</p>
+<p>Section 9.2 says:
+</p>
+<pre class="rfctext">
+In order to prevent spoofing of IPv6 addresses, the 6rd BR and CE
+MUST validate the embedded IPv4 source address of the encapsulated
+IPv6 packet with the IPv4 source address it is encapsulated by
+according to the configured parameters of the 6rd domain.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+In order to prevent spoofing of IPv6 addresses, the 6rd BR and CE
+MUST validate the embedded IPv6 source address of the encapsulated
+IPv6 packet with the IPv4 source address it is encapsulated by
+according to the configured parameters of the 6rd domain.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Authors have verified that the text as written in the RFC is correct, and the proposed change is incorrect.<br />
+ --VERIFIER NOTES-- <br />
+Authors have verified that the text as written in the RFC is correct, and the proposed change is incorrect.
+</p>

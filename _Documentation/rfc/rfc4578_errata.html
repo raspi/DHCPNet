@@ -1,0 +1,51 @@
+<p>Found 1 record.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc4578.txt" target="_blank">RFC&nbsp;4578</a>, "Dynamic Host Configuration Protocol (DHCP) Options for the Intel Preboot eXecution Environment (PXE)", November 2006</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid4624">4624</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: David Anderson<br />
+Date Reported: 2016-02-23<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2016-03-23<br />
+</p>
+<p>Section 2.1 says:
+</p>
+<pre class="rfctext">
+            Type   Architecture Name
+            ----   -----------------
+              0    Intel x86PC
+              1    NEC/PC98
+              2    EFI Itanium
+              3    DEC Alpha
+              4    Arc x86
+              5    Intel Lean Client
+              6    EFI IA32
+              7    EFI BC
+              8    EFI Xscale
+              9    EFI x86-64
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+            Type   Architecture Name
+            ----   -----------------
+              0    Intel x86PC
+              1    NEC/PC98
+              2    EFI Itanium
+              3    DEC Alpha
+              4    Arc x86
+              5    Intel Lean Client
+              6    EFI IA32
+              7    EFI x86-64
+              8    EFI Xscale
+              9    EFI BC
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The values for EFI BC and EFI x86-64 should be swapped. UEFI imeplementations use value 7 to report EFI x86-64, not value 9. The IANA registry for DHCPv6 options (http://www.iana.org/assignments/dhcpv6-parameters/dhcpv6-parameters.xhtml#processor-architecture) correctly reflects reality, with values 7 and 9 swapped compared to RFC 4578.
+</p>

@@ -1,0 +1,528 @@
+<p>Found 4 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc4388.txt" target="_blank">RFC&nbsp;4388</a>, "Dynamic Host Configuration Protocol (DHCP) Leasequery", February 2006</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3518">3518</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2006-03-02<br />
+Verifier Name: Ralph Droms<br />
+Date Verified: 2013-03-09<br />
+</p>
+<p>Section 6.4.1 says:
+</p>
+<pre class="rfctext">
+(1)  [word omission]
+
+The second paragraph of section 4.2 of RFC 4388 says:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+   about servers the load presented to them.
+
+It should perhaps better say:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+|  about servers and the load presented to them.
+                ^^^^^
+
+
+(2)  [improper wording]
+
+RFC 4388 repeatedly talks about
+
+   &quot;[an] IP address most recently accessed by a client&quot;
+                                  ^^^^^^^^^^^
+where, IMHO, it should talk about
+
+|  &quot;[an] IP address most recently assigned to a client&quot;
+                                  ^^^^^^^^^^^
+Rationale:
+  The client may access any IP address at any time.  Such access
+  is mostly unrelated to the protocol described in RFC 4338.
+
+The affected places in the text I found are:
+- Section 5, first paragraph of both the second and the third
+  bulleted items, on page 10 / 11, respectively;
+- Last paragraph on page 17 (within section 6.4.1).
+
+
+(3)  [incomplete specification]
+
+The second paragraph of Section 6.4.1, on page 17, says:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+   DHCPLEASEUNASSIGNED message.
+
+It should in fact say:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+|  DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message returned.
+   ^^^^^^^^^^^^^^^^^^^^^                           ^^^^^^^^^
+
+Rationale:
+  From the remaining text, it can be inferred that the &quot;ciaddr&quot;
+  field from the DHCPLEASEQUERY message should be copied to an
+  DHCPRELEASEACTIVE reply message as well -- cf. section 6.4.2.
+
+IMHO, this copy should be performed generally, i.e. also in the case
+described by the subsequent paragraph:
+
+   If the IP address is not managed by the DHCP server, then a
+   DHCPLEASEUNKNOWN message must be returned.
+
+that therefore might be amended to say:
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned, with that IP address
+|  set in the &quot;ciaddr&quot; field.
+
+[The original 'must' should be a 'MUST' because the alternatives
+are also specified as a 'MUST' -- or else the specification would
+be incomplete.]
+
+Taken together, it might be preferable to restate this fact by
+only changing the first paragraph cited above as follows, and leave
+the second paragraph unchanged with the exception of the 'must':
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+|  DHCPLEASEQUERY message, then that IP address MUST be set in the
+|  &quot;ciaddr&quot; field of any reply returned.
+
+|  If that IP address is one managed by the DHCP server, then it MUST
+|  reply with a DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message.
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned.
+
+Please comment on which alternative you prefer.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+[incomplete specification]
+
+The second paragraph of Section 6.4.1, on page 17, says:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+   DHCPLEASEUNASSIGNED message.
+
+It should in fact say:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+|  DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message returned.
+   ^^^^^^^^^^^^^^^^^^^^^                           ^^^^^^^^^
+
+Rationale:
+  From the remaining text, it can be inferred that the &quot;ciaddr&quot;
+  field from the DHCPLEASEQUERY message should be copied to an
+  DHCPRELEASEACTIVE reply message as well -- cf. section 6.4.2.
+
+IMHO, this copy should be performed generally, i.e. also in the case
+described by the subsequent paragraph:
+
+   If the IP address is not managed by the DHCP server, then a
+   DHCPLEASEUNKNOWN message must be returned.
+
+that therefore might be amended to say:
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned, with that IP address
+|  set in the &quot;ciaddr&quot; field.
+
+[The original 'must' should be a 'MUST' because the alternatives
+are also specified as a 'MUST' -- or else the specification would
+be incomplete.]
+
+Taken together, it might be preferable to restate this fact by
+only changing the first paragraph cited above as follows, and leave
+the second paragraph unchanged with the exception of the 'must':
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+|  DHCPLEASEQUERY message, then that IP address MUST be set in the
+|  &quot;ciaddr&quot; field of any reply returned.
+
+|  If that IP address is one managed by the DHCP server, then it MUST
+|  reply with a DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message.
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned.
+
+Please comment on which alternative you prefer.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Split from errata 104
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc4388.txt" target="_blank">RFC&nbsp;4388</a>, "Dynamic Host Configuration Protocol (DHCP) Leasequery", February 2006</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid104">104</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2006-03-02<br />
+Held for Document Update by: Ralph Droms<br />
+Date Held: 2013-03-09<br />
+</p>
+<p>Section 4.2 says:
+</p>
+<pre class="rfctext">
+(1)  [word omission]
+
+The second paragraph of section 4.2 of RFC 4388 says:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+   about servers the load presented to them.
+
+It should perhaps better say:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+|  about servers and the load presented to them.
+                ^^^^^
+
+
+(2)  [improper wording]
+
+RFC 4388 repeatedly talks about
+
+   &quot;[an] IP address most recently accessed by a client&quot;
+                                  ^^^^^^^^^^^
+where, IMHO, it should talk about
+
+|  &quot;[an] IP address most recently assigned to a client&quot;
+                                  ^^^^^^^^^^^
+Rationale:
+  The client may access any IP address at any time.  Such access
+  is mostly unrelated to the protocol described in RFC 4338.
+
+The affected places in the text I found are:
+- Section 5, first paragraph of both the second and the third
+  bulleted items, on page 10 / 11, respectively;
+- Last paragraph on page 17 (within section 6.4.1).
+
+
+(3)  [incomplete specification]
+
+The second paragraph of Section 6.4.1, on page 17, says:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+   DHCPLEASEUNASSIGNED message.
+
+It should in fact say:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+|  DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message returned.
+   ^^^^^^^^^^^^^^^^^^^^^                           ^^^^^^^^^
+
+Rationale:
+  From the remaining text, it can be inferred that the &quot;ciaddr&quot;
+  field from the DHCPLEASEQUERY message should be copied to an
+  DHCPRELEASEACTIVE reply message as well -- cf. section 6.4.2.
+
+IMHO, this copy should be performed generally, i.e. also in the case
+described by the subsequent paragraph:
+
+   If the IP address is not managed by the DHCP server, then a
+   DHCPLEASEUNKNOWN message must be returned.
+
+that therefore might be amended to say:
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned, with that IP address
+|  set in the &quot;ciaddr&quot; field.
+
+[The original 'must' should be a 'MUST' because the alternatives
+are also specified as a 'MUST' -- or else the specification would
+be incomplete.]
+
+Taken together, it might be preferable to restate this fact by
+only changing the first paragraph cited above as follows, and leave
+the second paragraph unchanged with the exception of the 'must':
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+|  DHCPLEASEQUERY message, then that IP address MUST be set in the
+|  &quot;ciaddr&quot; field of any reply returned.
+
+|  If that IP address is one managed by the DHCP server, then it MUST
+|  reply with a DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message.
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned.
+
+Please comment on which alternative you prefer.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+This errata has been split to 3517 and 3518.<br />
+<br />
+Verified status applies only to item (1).
+</p>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid3517">3517</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2006-03-02<br />
+Held for Document Update by: Ralph Droms<br />
+Date Held: 2013-03-09<br />
+</p>
+<p>Section 6.4.1 says:
+</p>
+<pre class="rfctext">
+(1)  [word omission]
+
+The second paragraph of section 4.2 of RFC 4388 says:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+   about servers the load presented to them.
+
+It should perhaps better say:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+|  about servers and the load presented to them.
+                ^^^^^
+
+
+(2)  [improper wording]
+
+RFC 4388 repeatedly talks about
+
+   &quot;[an] IP address most recently accessed by a client&quot;
+                                  ^^^^^^^^^^^
+where, IMHO, it should talk about
+
+|  &quot;[an] IP address most recently assigned to a client&quot;
+                                  ^^^^^^^^^^^
+Rationale:
+  The client may access any IP address at any time.  Such access
+  is mostly unrelated to the protocol described in RFC 4338.
+
+The affected places in the text I found are:
+- Section 5, first paragraph of both the second and the third
+  bulleted items, on page 10 / 11, respectively;
+- Last paragraph on page 17 (within section 6.4.1).
+
+
+(3)  [incomplete specification]
+
+The second paragraph of Section 6.4.1, on page 17, says:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+   DHCPLEASEUNASSIGNED message.
+
+It should in fact say:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+|  DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message returned.
+   ^^^^^^^^^^^^^^^^^^^^^                           ^^^^^^^^^
+
+Rationale:
+  From the remaining text, it can be inferred that the &quot;ciaddr&quot;
+  field from the DHCPLEASEQUERY message should be copied to an
+  DHCPRELEASEACTIVE reply message as well -- cf. section 6.4.2.
+
+IMHO, this copy should be performed generally, i.e. also in the case
+described by the subsequent paragraph:
+
+   If the IP address is not managed by the DHCP server, then a
+   DHCPLEASEUNKNOWN message must be returned.
+
+that therefore might be amended to say:
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned, with that IP address
+|  set in the &quot;ciaddr&quot; field.
+
+[The original 'must' should be a 'MUST' because the alternatives
+are also specified as a 'MUST' -- or else the specification would
+be incomplete.]
+
+Taken together, it might be preferable to restate this fact by
+only changing the first paragraph cited above as follows, and leave
+the second paragraph unchanged with the exception of the 'must':
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+|  DHCPLEASEQUERY message, then that IP address MUST be set in the
+|  &quot;ciaddr&quot; field of any reply returned.
+
+|  If that IP address is one managed by the DHCP server, then it MUST
+|  reply with a DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message.
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned.
+
+Please comment on which alternative you prefer.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+(2)  [improper wording]
+
+RFC 4388 repeatedly talks about
+
+   &quot;[an] IP address most recently accessed by a client&quot;
+                                  ^^^^^^^^^^^
+where, IMHO, it should talk about
+
+|  &quot;[an] IP address most recently assigned to a client&quot;
+                                  ^^^^^^^^^^^
+Rationale:
+  The client may access any IP address at any time.  Such access
+  is mostly unrelated to the protocol described in RFC 4338.
+
+The affected places in the text I found are:
+- Section 5, first paragraph of both the second and the third
+  bulleted items, on page 10 / 11, respectively;
+- Last paragraph on page 17 (within section 6.4.1).
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Split from errata 104
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Rejected</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc4388.txt" target="_blank">RFC&nbsp;4388</a>, "Dynamic Host Configuration Protocol (DHCP) Leasequery", February 2006</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3516">3516</a><br />
+<b>Status: Rejected<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2006-03-02<br />
+Rejected by: Ralph Droms<br />
+Date Rejected: 2013-03-09<br />
+</p>
+<p>&nbsp;</p>
+<pre class="rfctext">
+(1)  [word omission]
+
+The second paragraph of section 4.2 of RFC 4388 says:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+   about servers the load presented to them.
+
+It should perhaps better say:
+
+   The DHCP Server MIB effort [DHCPMIB] grew out of traffic engineering
+   and troubleshooting activities at large DHCP installations, and is
+   primarily intended as a method of gathering performance statistics
+|  about servers and the load presented to them.
+                ^^^^^
+
+
+(2)  [improper wording]
+
+RFC 4388 repeatedly talks about
+
+   &quot;[an] IP address most recently accessed by a client&quot;
+                                  ^^^^^^^^^^^
+where, IMHO, it should talk about
+
+|  &quot;[an] IP address most recently assigned to a client&quot;
+                                  ^^^^^^^^^^^
+Rationale:
+  The client may access any IP address at any time.  Such access
+  is mostly unrelated to the protocol described in RFC 4338.
+
+The affected places in the text I found are:
+- Section 5, first paragraph of both the second and the third
+  bulleted items, on page 10 / 11, respectively;
+- Last paragraph on page 17 (within section 6.4.1).
+
+
+(3)  [incomplete specification]
+
+The second paragraph of Section 6.4.1, on page 17, says:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+   DHCPLEASEUNASSIGNED message.
+
+It should in fact say:
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+   DHCPLEASEQUERY message, if that IP address is one managed by the DHCP
+   server, then that IP address MUST be set in the &quot;ciaddr&quot; field of a
+|  DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message returned.
+   ^^^^^^^^^^^^^^^^^^^^^                           ^^^^^^^^^
+
+Rationale:
+  From the remaining text, it can be inferred that the &quot;ciaddr&quot;
+  field from the DHCPLEASEQUERY message should be copied to an
+  DHCPRELEASEACTIVE reply message as well -- cf. section 6.4.2.
+
+IMHO, this copy should be performed generally, i.e. also in the case
+described by the subsequent paragraph:
+
+   If the IP address is not managed by the DHCP server, then a
+   DHCPLEASEUNKNOWN message must be returned.
+
+that therefore might be amended to say:
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned, with that IP address
+|  set in the &quot;ciaddr&quot; field.
+
+[The original 'must' should be a 'MUST' because the alternatives
+are also specified as a 'MUST' -- or else the specification would
+be incomplete.]
+
+Taken together, it might be preferable to restate this fact by
+only changing the first paragraph cited above as follows, and leave
+the second paragraph unchanged with the exception of the 'must':
+
+   In the event that an IP address appears in the &quot;ciaddr&quot; field of a
+|  DHCPLEASEQUERY message, then that IP address MUST be set in the
+|  &quot;ciaddr&quot; field of any reply returned.
+
+|  If that IP address is one managed by the DHCP server, then it MUST
+|  reply with a DHCPRELEASEACTIVE or DHCPLEASEUNASSIGNED message.
+
+   If the IP address is not managed by the DHCP server, then a
+|  DHCPLEASEUNKNOWN message MUST be returned.
+
+Please comment on which alternative you prefer.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+from pending<br />
+ --VERIFIER NOTES-- <br />
+Tool error   
+</p>

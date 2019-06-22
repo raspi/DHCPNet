@@ -1,0 +1,32 @@
+<p>Found 1 record.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc7598.txt" target="_blank">RFC&nbsp;7598</a>, "DHCPv6 Options for Configuration of Softwire Address and Port-Mapped Clients", July 2015</h3>
+<a href="/source/">Source of RFC</a>: softwire (int)<br />
+<p>
+Errata ID: <a href="/errata/eid4865">4865</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Ian Farrer<br />
+Date Reported: 2016-11-15<br />
+Verifier Name: Terry Manderson<br />
+Date Verified: 2017-03-01<br />
+</p>
+<p>Section 4.3 says:
+</p>
+<pre class="rfctext">
+dmr-prefix6-len: 8 bits long; expresses the bitmask length of the 
+IPv6 prefix specified in the dmr-ipv6-prefix field.  Allowed
+values range from 0 to 128.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+dmr-prefix6-len: 8 bits long; expresses the bitmask length of the 
+IPv6 prefix specified in the dmr-ipv6-prefix field.  Allowed
+values range from 0 to 96.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+This field is used to provision the default mapping rule prefix length, which is defined in section 5.1 of RFC7599:<br />
+The DMR IPv6 prefix length SHOULD be 64 bits long by default and in any case MUST NOT exceed 96 bits.
+</p>

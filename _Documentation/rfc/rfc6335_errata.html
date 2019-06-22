@@ -1,0 +1,65 @@
+<p>Found 2 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc6335.txt" target="_blank">RFC&nbsp;6335</a>, "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", August 2011</h3>
+<a href="/source/">Source of RFC</a>: tsvwg (tsv)<br />
+<p>
+Errata ID: <a href="/errata/eid3814">3814</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Gorry Fairhurst<br />
+Date Reported: 2013-11-29<br />
+Verifier Name: Martin Stiemerling<br />
+Date Verified: 2015-12-16<br />
+</p>
+<p>Section 10.3.1 says:
+</p>
+<pre class="rfctext">
+Service codes are assigned on a &quot;first come, first served&quot; basis
+according to Section 19.8 of the DCCP specification [RFC4340].
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+Service Codes are generally assigned on a &quot;first come, first
+served&quot; basis, according to the rules specified in Section 19.8
+of the DCCP specification [RFC4340]. This also defines
+exceptions to this policy. [RFC5595] updated the policy
+to require Service Codes assignments
+in a Standards-Track specification to be assigned from the
+Specifications-Required portion of the Service Code registry.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+RFC 6335 should have noted in Section 10.3.1:  Exceptions to the FCFS<br />
+policy are documented in RFC 4340. RFC 5595 updated the usage of the SC<br />
+values described in RFC 4340.
+</p>
+<div class="special_hr"></div><h2>Status: <a href="status_type_desc.html">Reported</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc6335.txt" target="_blank">RFC&nbsp;6335</a>, "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", August 2011</h3>
+<a href="/source/">Source of RFC</a>: tsvwg (tsv)<br />
+<p>
+Errata ID: <a href="/errata/eid4999">4999</a><br />
+<b>Status: Reported<br />
+Type: Technical<br />
+</b><br />
+Reported By: Mark Nottingham<br />
+Date Reported: 2017-04-19<br />
+</p>
+<p>Throughout the document, when it says:
+</p>
+<pre class="rfctext">
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+HOLD FOR UPDATE<br />
+<br />
+Many port number assignments are to individuals, but the document does not<br />
+contemplate how they should be handled when the assignee is dead or<br />
+otherwise can't be contacted. <br />
+<br />
+The most obvious procedure to follow is a transfer (8.5), but that requires <br />
+de-assignment (8.2), and that doesn't cover the case above.
+</p>

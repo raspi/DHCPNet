@@ -1,0 +1,111 @@
+<p>Found 4 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc2132.txt" target="_blank">RFC&nbsp;2132</a>, "DHCP Options and BOOTP Vendor Extensions", March 1997</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid486">486</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: George V. Neville-Neil<br />
+Date Reported: 2001-12-12<br />
+</p>
+<p>Section 9.6 says:
+</p>
+<pre class="rfctext">
+    Code   Len  Type
+   +-----+-----+-----+
+   |  53 |  1  | 1-9 |
+   +-----+-----+-----+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+    Code   Len  Type
+   +-----+-----+-----+
+   |  53 |  1  | 1-8 |
+   +-----+-----+-----+
+
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2305">2305</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Richard Chen<br />
+Date Reported: 2010-06-17<br />
+Verifier Name: Brian Haberman<br />
+Date Verified: 2012-12-12<br />
+</p>
+<p>Section 3.10. says:
+</p>
+<pre class="rfctext">
+The code for the log server option is 8.
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The code for the cookie server option is 8.
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Copy error.
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (2)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc2132.txt" target="_blank">RFC&nbsp;2132</a>, "DHCP Options and BOOTP Vendor Extensions", March 1997</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid487">487</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: &quot;Tyler Tidman&quot;<br />
+Date Reported: 2002-09-24<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 3.18 says:
+</p>
+<pre class="rfctext">
+3.18. Swap Server
+
+   This specifies the IP address of the client's swap server.
+
+   The code for this option is 16 and its length is 4.
+
+    Code   Len    Swap Server Address
+   +-----+-----+-----+-----+-----+-----+
+   |  16 |  n  |  a1 |  a2 |  a3 |  a4 |
+   +-----+-----+-----+-----+-----+-----+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+3.18. Swap Server
+
+   This specifies the IP address of the client's swap server.
+
+   The code for this option is 16 and its length is 4.
+
+    Code   Len    Swap Server Address
+   +-----+-----+-----+-----+-----+-----+
+   |  16 |  4  |  a1 |  a2 |  a3 |  a4 |
+   +-----+-----+-----+-----+-----+-----+
+
+</pre>
+<div class="special_hr"></div><p>
+Errata ID: <a href="/errata/eid2388">2388</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Muhammad Yousaf<br />
+Date Reported: 2010-07-21<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 1.2 says:
+</p>
+<pre class="rfctext">
+A DHCP server of &quot;server&quot;is an Internet host that returns configuration parameters to DHCP clients.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+A DHCP server or &quot;server&quot; is an Internet host that returns configuration parameters to DHCP clients.
+</pre>

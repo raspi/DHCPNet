@@ -1,0 +1,100 @@
+<p>Found 2 records.</p>
+<h2>Status: <a href="status_type_desc.html">Verified</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc6704.txt" target="_blank">RFC&nbsp;6704</a>, "Forcerenew Nonce Authentication", August 2012</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid4995">4995</a><br />
+<b>Status: Verified<br />
+Type: Technical<br />
+</b><br />
+Reported By: Niels Widger<br />
+Date Reported: 2017-04-14<br />
+Verifier Name: Suresh Krishnan<br />
+Date Verified: 2017-04-19<br />
+</p>
+<p>Section 4 says:
+</p>
+<pre class="rfctext">
+   IANA has assigned the following new DHCPv4 option code from the
+   registry &quot;BOOTP Vendor Extensions and DHCP Options&quot; maintained at
+   http://www.iana.org/assignments/bootp-dhcp-parameters:
+
+   Tag: 145
+
+   Name: FORCERENEW_NONCE_CAPABLE
+
+   Data length: 1
+
+   Description: Forcerenew Nonce Capable
+
+   Reference: this document
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   IANA has assigned the following new DHCPv4 option code from the
+   registry &quot;BOOTP Vendor Extensions and DHCP Options&quot; maintained at
+   http://www.iana.org/assignments/bootp-dhcp-parameters:
+
+   Tag: 145
+
+   Name: FORCERENEW_NONCE_CAPABLE
+
+   Data length: n
+
+   Description: Forcerenew Nonce Capable
+
+   Reference: this document
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+RFC 6704 Section 3.1.1 states that the FORCERENEW_NONCE_CAPABLE option is variable length and contains a list of algorithm types:<br />
+<br />
+The FORCERENEW_NONCE_CAPABLE option contains code 145, length n, and<br />
+   a sequence of algorithms the client supports:<br />
+<br />
+             Code   Len   Algorithms<br />
+            +-----+-----+----+----+----+<br />
+            | 145 |  n  | A1 | A2 | A3 | ....<br />
+            +-----+-----+----+----+----+<br />
+<br />
+                 Figure 1: FORCERENEW_NONCE_CAPABLE Option<br />
+<br />
+<br />
+Verifier's note(Suresh Krishnan - INT AD): This erratum is correct and it requires a change in the IANA registry. I authorize IANA to make this change.
+</p>
+<div class="special_hr"></div><!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc6704.txt" target="_blank">RFC&nbsp;6704</a>, "Forcerenew Nonce Authentication", August 2012</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3353">3353</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Gaurav Halwasia<br />
+Date Reported: 2012-09-14<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 5.1 says:
+</p>
+<pre class="rfctext">
+   The mechanism described in this document is vulnerable to a denial-
+   of-service (DoS) attack through flooding a client with bogus
+   FORCERENEW messages.  The calculations involved in authenticating the
+   bogus FORECERENEW messages may overwhelm the device on which the
+   client is running.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   The mechanism described in this document is vulnerable to a denial-
+   of-service (DoS) attack through flooding a client with bogus
+   FORCERENEW messages.  The calculations involved in authenticating the
+   bogus FORCERENEW messages may overwhelm the device on which the
+   client is running.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+Spelling of &quot;FORECERENEW&quot; is incorrect. It should be &quot;FORCERENEW&quot;
+</p>

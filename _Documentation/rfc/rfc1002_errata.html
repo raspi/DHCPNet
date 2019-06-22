@@ -1,0 +1,45 @@
+<p>Found 1 record.</p>
+<!-- <p>No records found for status Verified.</p> -->
+<!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc1002.txt" target="_blank">RFC&nbsp;1002</a>, "Protocol standard for a NetBIOS service on a TCP/UDP transport: Detailed specifications", March 1987</h3>
+<a href="/source/">Source of RFC</a>: Legacy<br />
+Area Assignment: int<br />
+<p>
+Errata ID: <a href="/errata/eid567">567</a><br />
+<b>Status: Held for Document Update<br />
+Type: Editorial<br />
+</b><br />
+Reported By: Sir Dystic<br />
+Date Reported: 2001-04-26<br />
+Held for Document Update by: Brian Haberman<br />
+</p>
+<p>Section 4.2.16 says:
+</p>
+<pre class="rfctext">
+WAIT FOR ACKNOWLEDGEMENT (WACK) RESPONSE
+
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          NULL (0x0020)        |         IN (0x0001)           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+The values for the first field (the resource record type) are defined above
+in section 4.2.1.3.  RESOURCE RECORD:
+
+   NULL       0x000A   NULL Resource Record (See WAIT FOR
+                       ACKNOWLEDGEMENT RESPONSE)
+   NB         0x0020   NetBIOS general Name Service Resource Record
+                       (See NB_FLAGS and NB_ADDRESS, below)
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+<br />
+The value for type NULL is defined as 0x000A and the<br />
+comment specifically mentions WACK responses.  The value shown in the packet<br />
+layout is 0x0020, the value for NB resource records, the most common value<br />
+for this field.  In truth, I can't get Windows boxes to respond to this<br />
+packet as documented with either value in that field.<br />
+
+</p>

@@ -1,0 +1,48 @@
+<p>Found 1 record.</p>
+<!-- <p>No records found for status Verified.</p> -->
+<!-- <p>No records found for status Reported.</p> -->
+<h2>Status: <a href="status_type_desc.html">Held for Document Update</a> (1)</h2>
+<h3><a href="http://www.rfc-editor.org/rfc/rfc3942.txt" target="_blank">RFC&nbsp;3942</a>, "Reclassifying Dynamic Host Configuration Protocol version 4 (DHCPv4) Options", November 2004</h3>
+<a href="/source/">Source of RFC</a>: dhc (int)<br />
+<p>
+Errata ID: <a href="/errata/eid3204">3204</a><br />
+<b>Status: Held for Document Update<br />
+Type: Technical<br />
+</b><br />
+Reported By: Alfred Hoenes<br />
+Date Reported: 2012-04-27<br />
+Held for Document Update by: Ralph Droms<br />
+</p>
+<p>Section 6. IANA Cons says:
+</p>
+<pre class="rfctext">
+   4. change the listing of any options listed as &quot;Tentatively-Assigned&quot;
+|     to &quot;Unavailable&quot; 18 months from this RFC's publication date and
+      periodically thereafter as long as there is an option listed as
+      &quot;Tentatively-Assigned&quot;, if no un-expired Internet-Draft exists
+      documenting the usage.
+
+</pre>
+<p>It should say:</p>
+<pre class="rfctext">
+   4. change the listing of any options listed as &quot;Tentatively-Assigned&quot;
+|     to &quot;Unassigned&quot; 18 months from this RFC's publication date and
+      periodically thereafter as long as there is an option listed as
+      &quot;Tentatively-Assigned&quot;, if no un-expired Internet-Draft exists
+      documenting the usage.
+
+</pre>
+<p>Notes:</p>
+<p class="simpleindent">
+The body of the RFC clearly states in Section 4, bullet 4.<br />
+that the IANA action desired by the RFC is to make these code<br />
+points available for assignment after the 18-month grace period.<br />
+<br />
+This Errata Note is tagged as &quot;Technical&quot; because the inconsistency<br />
+between the IANA Considerations and the body of the RFC apparently<br />
+has caused IANA to not follow the body and spirit of the RFC -- at<br />
+the time this Errata Note is being filed, there are several entries<br />
+left in the BOOTP+DHCP parameters option codes registry that should<br />
+have been cleaned up and made available for assignment since the<br />
+publication of RFC 3942 in November 2004.
+</p>
